@@ -1,0 +1,125 @@
+:original_name: kafka-dnat.html
+
+.. _kafka-dnat:
+
+Using DNAT to Access a Kafka Instance
+=====================================
+
+Scenario
+--------
+
+You can use destination NAT (DNAT) to access a Kafka instance so that the instance can provide services on the public network through port mapping.
+
+Prerequisites
+-------------
+
+You have created EIPs. The number of EIPs is the same as the number of brokers in the Kafka instance.
+
+Step 1: Obtain Information About the Kafka Instance
+---------------------------------------------------
+
+#. Log in to the management console.
+
+#. Click |image1| in the upper left corner to select a region.
+
+   .. note::
+
+      Select the region where your Kafka instance is located.
+
+#. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
+
+#. Click the desired Kafka instance to view the instance details.
+
+#. .. _kafka-dnat__li122701357121013:
+
+   In the **Connection** area on the **Basic Information** tab page, view and record the private network access addresses of the Kafka instance. In the **Network** area, view and record the VPC and subnet where the Kafka instance is located.
+
+Step 2: Create a Public NAT Gateway
+-----------------------------------
+
+#. Click **Service List** and choose **Network** > **NAT Gateway**.
+
+#. Click **Create Public NAT Gateway**.
+
+#. Set the following parameters:
+
+   -  **Region**: Select the region that the Kafka instance is in.
+   -  **Name**: Enter a name for the public NAT gateway.
+   -  **VPC**: Select the VPC recorded in :ref:`5 <kafka-dnat__li122701357121013>`.
+   -  **Subnet**: Select the subnet recorded in :ref:`5 <kafka-dnat__li122701357121013>`.
+
+   Set other parameters as required. For details, see `Creating a NAT Gateway <https://docs.otc.t-systems.com/usermanual/nat/en-us_topic_0150270259.html>`__.
+
+#. Click **Create Now**.
+
+#. Confirm the specifications and click **Submit**.
+
+Step 3: Add a DNAT Rule
+-----------------------
+
+#. On **Public NAT Gateways** page, locate the row that contains the newly created public NAT gateway and click **Add Rule** in the **Operation** column.
+
+#. .. _kafka-dnat__li2872030202015:
+
+   On the **DNAT Rules** tab page, click **Add DNAT Rule**.
+
+#. Set the following parameters:
+
+   -  **Scenario**: Select **VPC**.
+   -  **Port Type**: Select **Specific port**.
+   -  **Protocol**: Select **TCP**.
+   -  **EIP**: Select an EIP.
+   -  **Outside Port**: Enter **9011**.
+   -  **Private IP Address**: Enter one of the private network addresses of the Kafka instance recorded in :ref:`5 <kafka-dnat__li122701357121013>`.
+   -  **Inside Port**: Enter **9011**.
+
+   For details about more parameters, see `Adding a DNAT Rule <https://docs.otc.t-systems.com/usermanual/nat/en-us_topic_0127489530.html>`__.
+
+
+   .. figure:: /_static/images/en-us_image_0000001427521685.png
+      :alt: **Figure 1** Adding a DNAT rule
+
+      **Figure 1** Adding a DNAT rule
+
+#. .. _kafka-dnat__li295532675915:
+
+   Click **OK**.
+
+   View the DNAT rule status in the DNAT rule list. If **Status** is **Running**, the rule has been added successfully.
+
+#. Repeat :ref:`2 <kafka-dnat__li2872030202015>` to :ref:`4 <kafka-dnat__li295532675915>` to create DNAT rules for other private network addresses of the Kafka instance recorded in :ref:`5 <kafka-dnat__li122701357121013>`. Each private network address corresponds to a separate EIP.
+
+#. .. _kafka-dnat__li1062193864112:
+
+   After all DNAT rules are created, click the **DNAT Rules** tab to view the created DNAT rules and record the EIPs corresponding to the private IP addresses.
+
+Step 4: Bind EIPs on the Kafka Console
+--------------------------------------
+
+#. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
+
+#. Click the desired Kafka instance to view the instance details.
+
+#. In the **Advanced Settings** section on the **Basic Information** tab page, click **Modify** next to **Cross-VPC Access**.
+
+#. Change the values of **advertised.listeners IP Address/Domain Name** to the EIPs in the DNAT rules. Ensure that the mapping between the private network addresses and the EIPs is consistent with that recorded in :ref:`6 <kafka-dnat__li1062193864112>`. Then click **Save**.
+
+   .. _kafka-dnat__fig15689320154314:
+
+   .. figure:: /_static/images/en-us_image_0000001329138322.png
+      :alt: **Figure 2** Changing the advertised.listeners IP addresses
+
+      **Figure 2** Changing the advertised.listeners IP addresses
+
+Step 5: Verify Connectivity
+---------------------------
+
+Check whether messages can be created and retrieved by referring to :ref:`Accessing a Kafka Instance Without SASL <kafka-ug-180604020>` or :ref:`Accessing a Kafka Instance with SASL <kafka-ug-180801001>`.
+
+Notes:
+
+-  The address for connecting to a Kafka instance is in the format of "*advertised.listeners IP*\ **:9011**". For example, the addresses for connecting to the Kafka instance shown in :ref:`Figure 2 <kafka-dnat__fig15689320154314>` are **100.xxx.xxx.20:9011,100.xxx.xxx.21:9011,100.xxx.xxx.23:9011**.
+-  Configure security group rules for the Kafka instance to allow inbound access over port **9011**.
+-  Public access must be enabled on the client connected to the Kafka instance.
+
+.. |image1| image:: /_static/images/en-us_image_0143929918.png
