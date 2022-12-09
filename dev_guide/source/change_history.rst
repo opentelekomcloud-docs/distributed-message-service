@@ -1,0 +1,29 @@
+:original_name: kafka-devg-0407002.html
+
+.. _kafka-devg-0407002:
+
+Change History
+==============
+
++-----------------------------------+-----------------------------------------------------------------------------------------+
+| Date                              | Description                                                                             |
++===================================+=========================================================================================+
+| 2022-10-30                        | This issue incorporates the following changes:                                          |
+|                                   |                                                                                         |
+|                                   | -  Removed the developer guide for Kafka queues.                                        |
+|                                   | -  Added :ref:`Go <kafka-go>` and :ref:`Obtaining Kafka Clients <kafka-connect-other>`. |
++-----------------------------------+-----------------------------------------------------------------------------------------+
+| 2020-02-20                        | This issue incorporates the following changes:                                          |
+|                                   |                                                                                         |
+|                                   | -  Upgraded Kafka premium compatibility from Kafka 2.3.0 to 2.3.1.                      |
++-----------------------------------+-----------------------------------------------------------------------------------------+
+| 2019-11-08                        | This issue incorporates the following changes:                                          |
+|                                   |                                                                                         |
+|                                   | -  Added Kafka premium features and developer guide.                                    |
++-----------------------------------+-----------------------------------------------------------------------------------------+
+| 2018-02-03                        | This issue is the second official release, which incorporates the following changes:    |
+|                                   |                                                                                         |
+|                                   | -  Revised description in the previous issue.                                           |
++-----------------------------------+-----------------------------------------------------------------------------------------+
+| 2018-01-19                        | This issue is the first official release.                                               |
++-----------------------------------+-----------------------------------------------------------------------------------------+
