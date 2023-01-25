@@ -13,6 +13,6 @@ Consumer Groups
    :maxdepth: 1
    :hidden: 
 
-   do_i_need_to_create_consumer_groups,_producers,_and_consumers_for_kafka_instances
+   do_i_need_to_create_consumer_groups_producers_and_consumers_for_kafka_instances
    do_i_need_to_unsubscribe_from_a_topic_before_deleting_a_consumer_group
    will_a_consumer_group_without_active_consumers_be_automatically_deleted_in_14_days

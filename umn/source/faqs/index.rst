@@ -21,4 +21,4 @@ FAQs
    topics_and_partitions/index
    consumer_groups/index
    messages/index
-   monitoring_&_alarm/index
+   monitoring_and_alarm/index
