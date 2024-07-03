@@ -7,7 +7,7 @@ Other APIs
 
 -  :ref:`Listing Maintenance Time Windows <showmaintainwindows>`
 -  :ref:`Listing AZ Information <listavailablezones>`
--  :ref:`Listing Product Specifications <listproducts_0>`
+-  :ref:`Querying Product Specifications List <listengineproducts>`
 -  :ref:`Querying Kafka Instance Monitoring Dimensions <showceshierarchy>`
 
 .. toctree::
@@ -16,5 +16,5 @@ Other APIs
 
    listing_maintenance_time_windows
    listing_az_information
-   listing_product_specifications
+   querying_product_specifications_list
    querying_kafka_instance_monitoring_dimensions

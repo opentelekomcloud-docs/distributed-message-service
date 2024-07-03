@@ -17,11 +17,11 @@ GET /v2/{project_id}/kafka/tags
 
 .. table:: **Table 1** Path Parameters
 
-   ========== ========= ====== ===========
-   Parameter  Mandatory Type   Description
-   ========== ========= ====== ===========
-   project_id Yes       String Project ID.
-   ========== ========= ====== ===========
+   +------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | Parameter  | Mandatory | Type   | Description                                                                                               |
+   +============+===========+========+===========================================================================================================+
+   | project_id | Yes       | String | Project ID. For details about how to obtain it, see :ref:`Obtaining a Project ID <kafka-api-0036212547>`. |
+   +------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
 
 Request Parameters
 ------------------
@@ -45,21 +45,12 @@ Response Parameters
 
 .. table:: **Table 3** TagMultyValueEntity
 
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------+
-   | Parameter             | Type                  | Description                                                                                          |
-   +=======================+=======================+======================================================================================================+
-   | key                   | String                | Tag key, which can contain a maximum of 36 Unicode characters.                                       |
-   |                       |                       |                                                                                                      |
-   |                       |                       | The key cannot be left blank or be an empty string.                                                  |
-   |                       |                       |                                                                                                      |
-   |                       |                       | It cannot contain nonprintable ASCII (0-31) characters and the following special characters: =*<>,|/ |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------+
-   | values                | Array of strings      | Tag value, which can contain a maximum of 43 Unicode characters.                                     |
-   |                       |                       |                                                                                                      |
-   |                       |                       | The value cannot be left blank or be an empty string.                                                |
-   |                       |                       |                                                                                                      |
-   |                       |                       | It cannot contain nonprintable ASCII (0-31) characters and the following special characters: =*<>,|/ |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------+
+   ========= ================ ===========
+   Parameter Type             Description
+   ========= ================ ===========
+   key       String           Tag key.
+   values    Array of strings Tag value.
+   ========= ================ ===========
 
 Example Requests
 ----------------

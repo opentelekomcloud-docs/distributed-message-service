@@ -7,6 +7,7 @@ Distributed Message Service - API Reference
 
    using_apis
    apis_v2_recommended/index
+   permissions_and_supported_actions
    out-of-date_apis/index
    appendix/index
    change_history

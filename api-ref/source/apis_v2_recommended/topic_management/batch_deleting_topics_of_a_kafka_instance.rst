@@ -8,7 +8,7 @@ Batch Deleting Topics of a Kafka Instance
 Function
 --------
 
-This API is used to delete multiple topics of a Kafka instance in batches. If some consumer groups are deleted successfully while some fail to be deleted, a success response is returned with information about consumer groups that fail to be deleted.
+This API is used to delete multiple topics of a Kafka instance in batches. If some topics are deleted successfully while some fail to be deleted, a success response is returned with information about topics that fail to be deleted.
 
 URI
 ---
@@ -17,23 +17,34 @@ POST /v2/{project_id}/instances/{instance_id}/topics/delete
 
 .. table:: **Table 1** Path Parameters
 
-   =========== ========= ====== ============
-   Parameter   Mandatory Type   Description
-   =========== ========= ====== ============
-   project_id  Yes       String Project ID.
-   instance_id Yes       String Instance ID.
-   =========== ========= ====== ============
+   +-----------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------+
+   | Parameter       | Mandatory       | Type            | Description                                                                                               |
+   +=================+=================+=================+===========================================================================================================+
+   | project_id      | Yes             | String          | Project ID. For details about how to obtain it, see :ref:`Obtaining a Project ID <kafka-api-0036212547>`. |
+   |                 |                 |                 |                                                                                                           |
+   |                 |                 |                 | Minimum: **1**                                                                                            |
+   |                 |                 |                 |                                                                                                           |
+   |                 |                 |                 | Maximum: **64**                                                                                           |
+   +-----------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------+
+   | instance_id     | Yes             | String          | Instance ID.                                                                                              |
+   |                 |                 |                 |                                                                                                           |
+   |                 |                 |                 | Minimum: **1**                                                                                            |
+   |                 |                 |                 |                                                                                                           |
+   |                 |                 |                 | Maximum: **64**                                                                                           |
+   +-----------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------+
 
 Request Parameters
 ------------------
 
 .. table:: **Table 2** Request body parameters
 
-   ========= ========= ================ =========================
-   Parameter Mandatory Type             Description
-   ========= ========= ================ =========================
-   topics    No        Array of strings List of topics to delete.
-   ========= ========= ================ =========================
+   +-----------------+-----------------+------------------+--------------------------------------------------------------------------+
+   | Parameter       | Mandatory       | Type             | Description                                                              |
+   +=================+=================+==================+==========================================================================+
+   | topics          | No              | Array of strings | Topics to delete.                                                        |
+   |                 |                 |                  |                                                                          |
+   |                 |                 |                  | This parameter is mandatory when instance topics are deleted in batches. |
+   +-----------------+-----------------+------------------+--------------------------------------------------------------------------+
 
 Response Parameters
 -------------------
@@ -62,6 +73,8 @@ Response Parameters
 Example Requests
 ----------------
 
+Batch deleting topics
+
 .. code-block:: text
 
    POST https://{endpoint}/v2/{project_id}/instances/{instance_id}/topics/delete
@@ -81,10 +94,7 @@ The deletion is successful.
 
    {
      "topics" : [ {
-       "id" : "haha",
-       "success" : true
-     }, {
-       "id" : "aabb",
+       "id" : "topic01",
        "success" : true
      } ]
    }

@@ -17,23 +17,24 @@ POST /v2/{project_id}/instances/{instance_id}/groups/batch-delete
 
 .. table:: **Table 1** Path Parameters
 
-   =========== ========= ====== ============
-   Parameter   Mandatory Type   Description
-   =========== ========= ====== ============
-   project_id  Yes       String Project ID.
-   instance_id Yes       String Instance ID.
-   =========== ========= ====== ============
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | Parameter   | Mandatory | Type   | Description                                                                                               |
+   +=============+===========+========+===========================================================================================================+
+   | project_id  | Yes       | String | Project ID. For details about how to obtain it, see :ref:`Obtaining a Project ID <kafka-api-0036212547>`. |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | instance_id | Yes       | String | Instance ID.                                                                                              |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
 
 Request Parameters
 ------------------
 
 .. table:: **Table 2** Request body parameters
 
-   +-----------+-----------+------------------+----------------------------------------+
-   | Parameter | Mandatory | Type             | Description                            |
-   +===========+===========+==================+========================================+
-   | [items]   | Yes       | Array of strings | List of consumer groups to be deleted. |
-   +-----------+-----------+------------------+----------------------------------------+
+   +-----------+-----------+------------------+-------------------------------------------+
+   | Parameter | Mandatory | Type             | Description                               |
+   +===========+===========+==================+===========================================+
+   | group_ids | Yes       | Array of strings | IDs of all consumer groups to be deleted. |
+   +-----------+-----------+------------------+-------------------------------------------+
 
 Response Parameters
 -------------------
@@ -64,11 +65,15 @@ Response Parameters
 Example Requests
 ----------------
 
+Batch deleting consumer groups
+
 .. code-block:: text
 
    POST https://{endpoint}/v2/{project_id}/instances/{instance_id}/groups/batch-delete
 
-   [ "group1", "group2" ]
+   {
+     "group_ids" : [ "get-sync-group0", "get-sync-group1" ]
+   }
 
 Example Responses
 -----------------

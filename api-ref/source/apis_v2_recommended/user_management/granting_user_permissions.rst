@@ -19,12 +19,13 @@ POST /v1/{project_id}/instances/{instance_id}/topics/accesspolicy
 
 .. table:: **Table 1** Path Parameters
 
-   =========== ========= ====== ============
-   Parameter   Mandatory Type   Description
-   =========== ========= ====== ============
-   project_id  Yes       String Project ID.
-   instance_id Yes       String Instance ID.
-   =========== ========= ====== ============
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | Parameter   | Mandatory | Type   | Description                                                                                               |
+   +=============+===========+========+===========================================================================================================+
+   | project_id  | Yes       | String | Project ID. For details about how to obtain it, see :ref:`Obtaining a Project ID <kafka-api-0036212547>`. |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | instance_id | Yes       | String | Instance ID.                                                                                              |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
 
 Request Parameters
 ------------------
@@ -53,19 +54,23 @@ Request Parameters
 
 .. table:: **Table 4** AccessPolicyEntity
 
-   +-----------------+-----------------+-----------------+------------------------------------------------+
-   | Parameter       | Mandatory       | Type            | Description                                    |
-   +=================+=================+=================+================================================+
-   | user_name       | No              | String          | Username.                                      |
-   +-----------------+-----------------+-----------------+------------------------------------------------+
-   | access_policy   | No              | String          | Permission type.                               |
-   |                 |                 |                 |                                                |
-   |                 |                 |                 | -  **all**: publish and subscribe permissions. |
-   |                 |                 |                 |                                                |
-   |                 |                 |                 | -  **pub**: publish permissions.               |
-   |                 |                 |                 |                                                |
-   |                 |                 |                 | -  **sub**: subscribe permissions.             |
-   +-----------------+-----------------+-----------------+------------------------------------------------+
+   +-----------------+-----------------+-----------------+------------------------------------------------------------+
+   | Parameter       | Mandatory       | Type            | Description                                                |
+   +=================+=================+=================+============================================================+
+   | user_name       | No              | String          | Username.                                                  |
+   |                 |                 |                 |                                                            |
+   |                 |                 |                 | This parameter is mandatory when you set user permissions. |
+   +-----------------+-----------------+-----------------+------------------------------------------------------------+
+   | access_policy   | No              | String          | Permission type.                                           |
+   |                 |                 |                 |                                                            |
+   |                 |                 |                 | -  **all**: publish and subscribe permissions.             |
+   |                 |                 |                 |                                                            |
+   |                 |                 |                 | -  **pub**: publish permissions.                           |
+   |                 |                 |                 |                                                            |
+   |                 |                 |                 | -  **sub**: subscribe permissions.                         |
+   |                 |                 |                 |                                                            |
+   |                 |                 |                 | This parameter is mandatory when you set user permissions. |
+   +-----------------+-----------------+-----------------+------------------------------------------------------------+
 
 Response Parameters
 -------------------
@@ -95,7 +100,7 @@ Response Parameters
 Example Requests
 ----------------
 
-Granting user permissions.
+Granting the root user the permission to publish and subscribe to topic-test
 
 .. code-block:: text
 

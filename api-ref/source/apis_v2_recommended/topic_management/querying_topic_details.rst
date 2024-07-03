@@ -8,7 +8,7 @@ Querying Topic Details
 Function
 --------
 
-This API is used to query topic details of a Kafka instance.
+This API is used to query topic details of a Kafka instance. (Up to 1s for each instance call)
 
 URI
 ---
@@ -17,13 +17,15 @@ GET /v2/{project_id}/instances/{instance_id}/management/topics/{topic}
 
 .. table:: **Table 1** Path Parameters
 
-   =========== ========= ====== ============
-   Parameter   Mandatory Type   Description
-   =========== ========= ====== ============
-   project_id  Yes       String Project ID.
-   instance_id Yes       String Instance ID.
-   topic       Yes       String Topic name.
-   =========== ========= ====== ============
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | Parameter   | Mandatory | Type   | Description                                                                                               |
+   +=============+===========+========+===========================================================================================================+
+   | project_id  | Yes       | String | Project ID. For details about how to obtain it, see :ref:`Obtaining a Project ID <kafka-api-0036212547>`. |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | instance_id | Yes       | String | Instance ID.                                                                                              |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | topic       | Yes       | String | Topic name.                                                                                               |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
 
 Request Parameters
 ------------------
@@ -88,11 +90,13 @@ Response Parameters
    +-----------+---------+-----------------------------------------------------------------------+
    | size      | Integer | Current log size of the replica. Unit: byte.                          |
    +-----------+---------+-----------------------------------------------------------------------+
-   | lag       | Integer | Number of messages that lag behind the high watermark in the replica. |
+   | lag       | Long    | Number of messages that lag behind the high watermark in the replica. |
    +-----------+---------+-----------------------------------------------------------------------+
 
 Example Requests
 ----------------
+
+Querying details about a specified topic
 
 .. code-block:: text
 

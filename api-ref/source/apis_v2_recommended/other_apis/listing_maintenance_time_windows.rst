@@ -61,7 +61,7 @@ Example Responses
 
 **Status code: 200**
 
-The consumption of the message is successfully acknowledged.
+Query succeeded.
 
 .. code-block::
 
@@ -102,11 +102,11 @@ The consumption of the message is successfully acknowledged.
 Status Codes
 ------------
 
-=========== ============================================================
+=========== ================
 Status Code Description
-=========== ============================================================
-200         The consumption of the message is successfully acknowledged.
-=========== ============================================================
+=========== ================
+200         Query succeeded.
+=========== ================
 
 Error Codes
 -----------

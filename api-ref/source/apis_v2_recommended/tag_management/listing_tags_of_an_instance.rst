@@ -17,12 +17,13 @@ GET /v2/{project_id}/kafka/{instance_id}/tags
 
 .. table:: **Table 1** Path Parameters
 
-   =========== ========= ====== ============
-   Parameter   Mandatory Type   Description
-   =========== ========= ====== ============
-   project_id  Yes       String Project ID.
-   instance_id Yes       String Instance ID.
-   =========== ========= ====== ============
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | Parameter   | Mandatory | Type   | Description                                                                                               |
+   +=============+===========+========+===========================================================================================================+
+   | project_id  | Yes       | String | Project ID. For details about how to obtain it, see :ref:`Obtaining a Project ID <kafka-api-0036212547>`. |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | instance_id | Yes       | String | Instance ID.                                                                                              |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
 
 Request Parameters
 ------------------
@@ -46,21 +47,29 @@ Response Parameters
 
 .. table:: **Table 3** TagEntity
 
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------+
-   | Parameter             | Type                  | Description                                                                                          |
-   +=======================+=======================+======================================================================================================+
-   | key                   | String                | Tag key, which can contain a maximum of 36 Unicode characters.                                       |
-   |                       |                       |                                                                                                      |
-   |                       |                       | The key cannot be left blank or be an empty string.                                                  |
-   |                       |                       |                                                                                                      |
-   |                       |                       | It cannot contain nonprintable ASCII (0-31) characters and the following special characters: =*<>,|/ |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------+
-   | value                 | String                | Tag value, which can contain a maximum of 43 Unicode characters.                                     |
-   |                       |                       |                                                                                                      |
-   |                       |                       | The value cannot be left blank or be an empty string.                                                |
-   |                       |                       |                                                                                                      |
-   |                       |                       | It cannot contain nonprintable ASCII (0-31) characters and the following special characters: =*<>,|/ |
-   +-----------------------+-----------------------+------------------------------------------------------------------------------------------------------+
+   +-----------------------+-----------------------+-------------------------------------------------------------------------+
+   | Parameter             | Type                  | Description                                                             |
+   +=======================+=======================+=========================================================================+
+   | key                   | String                | Tag key, which:                                                         |
+   |                       |                       |                                                                         |
+   |                       |                       | -  Must be specified.                                                   |
+   |                       |                       |                                                                         |
+   |                       |                       | -  Must be unique for the same instance.                                |
+   |                       |                       |                                                                         |
+   |                       |                       | -  Can contain 1 to 128 characters.                                     |
+   |                       |                       |                                                                         |
+   |                       |                       | -  Can contain letters, digits, spaces, and special characters \_.:=+-@ |
+   |                       |                       |                                                                         |
+   |                       |                       | -  Cannot start or end with a space.                                    |
+   +-----------------------+-----------------------+-------------------------------------------------------------------------+
+   | value                 | String                | Tag value.                                                              |
+   |                       |                       |                                                                         |
+   |                       |                       | -  Can contain 0 to 255 characters.                                     |
+   |                       |                       |                                                                         |
+   |                       |                       | -  Can contain letters, digits, spaces, and special characters \_.:=+-@ |
+   |                       |                       |                                                                         |
+   |                       |                       | -  Cannot start or end with a space.                                    |
+   +-----------------------+-----------------------+-------------------------------------------------------------------------+
 
 Example Requests
 ----------------

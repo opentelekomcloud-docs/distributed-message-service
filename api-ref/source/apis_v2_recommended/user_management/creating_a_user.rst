@@ -17,39 +17,50 @@ POST /v2/{project_id}/instances/{instance_id}/users
 
 .. table:: **Table 1** Path Parameters
 
-   =========== ========= ====== ============
-   Parameter   Mandatory Type   Description
-   =========== ========= ====== ============
-   project_id  Yes       String Project ID.
-   instance_id Yes       String Instance ID.
-   =========== ========= ====== ============
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | Parameter   | Mandatory | Type   | Description                                                                                               |
+   +=============+===========+========+===========================================================================================================+
+   | project_id  | Yes       | String | Project ID. For details about how to obtain it, see :ref:`Obtaining a Project ID <kafka-api-0036212547>`. |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | instance_id | Yes       | String | Instance ID.                                                                                              |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
 
 Request Parameters
 ------------------
 
 .. table:: **Table 2** Request body parameters
 
-   +-----------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------------+
-   | Parameter       | Mandatory       | Type            | Description                                                                                                     |
-   +=================+=================+=================+=================================================================================================================+
-   | user_name       | No              | String          | Username.                                                                                                       |
-   +-----------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------------+
-   | user_passwd     | No              | String          | User password.                                                                                                  |
-   |                 |                 |                 |                                                                                                                 |
-   |                 |                 |                 | The password must be different from the username. The password must meet the following complexity requirements: |
-   |                 |                 |                 |                                                                                                                 |
-   |                 |                 |                 | -  Contains 8 to 32 characters.                                                                                 |
-   |                 |                 |                 |                                                                                                                 |
-   |                 |                 |                 | -  Contains at least two of the following character types:                                                      |
-   |                 |                 |                 |                                                                                                                 |
-   |                 |                 |                 |    -  Lowercase letters                                                                                         |
-   |                 |                 |                 |                                                                                                                 |
-   |                 |                 |                 |    -  Uppercase letters                                                                                         |
-   |                 |                 |                 |                                                                                                                 |
-   |                 |                 |                 |    -  Digits                                                                                                    |
-   |                 |                 |                 |                                                                                                                 |
-   |                 |                 |                 |    -  Special characters :literal:`\`~!@#$%^&*()-_=+|[{}]:'"",<.>/?`                                            |
-   +-----------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------------+
+   +-----------------+-----------------+-----------------+--------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter       | Mandatory       | Type            | Description                                                                                                                    |
+   +=================+=================+=================+================================================================================================================================+
+   | user_name       | No              | String          | Username.                                                                                                                      |
+   |                 |                 |                 |                                                                                                                                |
+   |                 |                 |                 | This parameter is mandatory for creating a user.                                                                               |
+   +-----------------+-----------------+-----------------+--------------------------------------------------------------------------------------------------------------------------------+
+   | user_desc       | No              | String          | User description.                                                                                                              |
+   |                 |                 |                 |                                                                                                                                |
+   |                 |                 |                 | Minimum: **0**                                                                                                                 |
+   |                 |                 |                 |                                                                                                                                |
+   |                 |                 |                 | Maximum: **200**                                                                                                               |
+   +-----------------+-----------------+-----------------+--------------------------------------------------------------------------------------------------------------------------------+
+   | user_passwd     | No              | String          | Password.                                                                                                                      |
+   |                 |                 |                 |                                                                                                                                |
+   |                 |                 |                 | This parameter is mandatory for creating a user.                                                                               |
+   |                 |                 |                 |                                                                                                                                |
+   |                 |                 |                 | The password must be different from the username. The password must meet the following complexity requirements:                |
+   |                 |                 |                 |                                                                                                                                |
+   |                 |                 |                 | -  Can contain 8 to 32 characters.                                                                                             |
+   |                 |                 |                 |                                                                                                                                |
+   |                 |                 |                 | -  Must contain at least three of the following character types:                                                               |
+   |                 |                 |                 |                                                                                                                                |
+   |                 |                 |                 |    -  Lowercase letters                                                                                                        |
+   |                 |                 |                 |                                                                                                                                |
+   |                 |                 |                 |    -  Uppercase letters                                                                                                        |
+   |                 |                 |                 |                                                                                                                                |
+   |                 |                 |                 |    -  Digits                                                                                                                   |
+   |                 |                 |                 |                                                                                                                                |
+   |                 |                 |                 |    -  Special characters include (:literal:`\`~!@#$ %^&*()-_=+|[{}]:'",<.>/?`) and spaces, and cannot start with a hyphen (-). |
+   +-----------------+-----------------+-----------------+--------------------------------------------------------------------------------------------------------------------------------+
 
 Response Parameters
 -------------------
@@ -79,7 +90,7 @@ Response Parameters
 Example Requests
 ----------------
 
-Creating a user.
+Creating a user whose username is test and password is Cxxx3
 
 .. code-block:: text
 
@@ -87,7 +98,7 @@ Creating a user.
 
    {
      "user_name" : "test",
-     "user_passwd" : "Cloud@123"
+     "user_passwd" : "Cxxx3"
    }
 
 Example Responses
