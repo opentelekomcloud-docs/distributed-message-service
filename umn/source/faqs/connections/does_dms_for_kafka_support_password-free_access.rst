@@ -5,4 +5,4 @@
 Does DMS for Kafka Support Password-Free Access?
 ================================================
 
-Yes. No password is required for accessing a Kafka instance with SASL disabled. For details, see :ref:`Accessing a Kafka Instance Without SASL <kafka-ug-180604020>`.
+Yes. No password is required when accessing a Kafka instance in plaintext. For details, see :ref:`Connecting to Kafka Using the Client (Plaintext Access) <kafka-ug-180604020>`.

@@ -5,4 +5,6 @@
 Which Kafka Versions Are Supported?
 ===================================
 
-Kafka v1.1.0, v2.3.0, and v2.7.
+Kafka v2.3.0, v2.7, and v3.x.
+
+For details about how to create a Kafka instance, see :ref:`Creating a Kafka Instance <kafka-ug-180604013>`.

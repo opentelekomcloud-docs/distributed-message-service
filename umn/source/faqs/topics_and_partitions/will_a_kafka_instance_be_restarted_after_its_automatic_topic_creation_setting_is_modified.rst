@@ -5,4 +5,4 @@
 Will a Kafka Instance Be Restarted After Its Automatic Topic Creation Setting Is Modified?
 ==========================================================================================
 
-Yes. A Kafka instance will be restarted if you enable or disable automatic topic creation for it.
+Enabling or disabling automatic topic creation may cause instance restarts. For details, see the information displayed on the Kafka console.

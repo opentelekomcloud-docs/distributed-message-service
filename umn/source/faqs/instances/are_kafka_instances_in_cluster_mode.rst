@@ -5,4 +5,4 @@
 Are Kafka Instances in Cluster Mode?
 ====================================
 
-Yes. A Kafka instance is a cluster that consists of three or more brokers.
+Kafka instances are classified into single-node and cluster types. A single-node instance has only one broker in single-node mode. A cluster instance consists of three or more brokers in cluster mode.

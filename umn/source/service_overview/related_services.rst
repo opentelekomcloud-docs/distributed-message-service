@@ -15,7 +15,7 @@ Related Services
 
    Kafka instances run in VPCs and use the IP addresses and bandwidth of VPC. Security groups of VPCs enhance the security of network access to the Kafka instances.
 
--  ECS
+-  Elastic Cloud Server (ECS)
 
    An ECS is a basic computing unit that consists of vCPUs, memory, OS, and EVS disks. Kafka instances run on ECSs. A broker corresponds to an ECS.
 
@@ -23,11 +23,15 @@ Related Services
 
    EVS provides block storage services for ECSs. All Kafka data, such as messages, metadata, and logs, is stored in EVS disks.
 
--  Cloud Eye
+-  Identity and Access Management (IAM)
+
+   IAM enables you to easily manage users and control their access to cloud services and resources. Grant different users different Kafka permissions required to perform a given task based on their job responsibilities.
+
+-  Cloud Eye (CES)
 
    Cloud Eye is an open platform that provides monitoring, alarm reporting, and alarm notification for your resources in real time.
 
-   For details about DMS metrics monitored by Cloud Eye, see :ref:`Kafka Metrics <dms-ug-180413002>`.
+   For details about DMS metrics monitored by Cloud Eye, see :ref:`Kafka Metrics <kafka-ug-180413002>`.
 
    .. note::
 

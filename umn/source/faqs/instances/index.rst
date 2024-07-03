@@ -13,14 +13,17 @@ Instances
 -  :ref:`Which Kafka Versions Are Supported? <kafka-faq-200426008>`
 -  :ref:`What Is the ZooKeeper Address of a Kafka Instance? <kafka-faq-200426009>`
 -  :ref:`Are Kafka Instances in Cluster Mode? <kafka-faq-200426010>`
--  :ref:`Can I Modify the Connection Address for Accessing a Kafka Instance? <kafka-faq-200426011>`
+-  :ref:`Can I Modify the Port for Accessing a Kafka Instance? <kafka-faq-200426011>`
 -  :ref:`How Long Are Kafka SSL Certificates Valid for? <kafka-faq-200426012>`
 -  :ref:`How Do I Synchronize Data from One Kafka Instance to Another? <kafka-faq-200426013>`
 -  :ref:`How Do I Change the SASL_SSL Setting of a Kafka Instance? <kafka-faq-200426014>`
+-  :ref:`How Do I Modify the SASL Mechanism? <kafka_faq_0052>`
+-  :ref:`How Do I Change the Security Protocol? <kafka_faq_0062>`
+-  :ref:`Will a Kafka Instance Be Restarted After Its Enterprise Project Is Modified? <kafka-faq-0008>`
 -  :ref:`Are Kafka Brokers and ZooKeeper Deployed on the Same VM or on Different VMs? <kafka-faq-0015>`
 -  :ref:`Which Cipher Suites Are Supported by Kafka? <kafka-faq-0020>`
--  :ref:`Can I Change an Instance from Single-AZ Deployment to Multi-AZ Deployment? <kafka-faq-0023>`
--  :ref:`Does DMS for Kafka Support Cross-AZ Disaster Recovery? Where Can I View the AZs Configured for an Existing Instance? <kafka-faq-0025>`
+-  :ref:`Can I Change Single-AZ Deployment to Multi-AZ Deployment for an Instance? <kafka-faq-0023>`
+-  :ref:`Does DMS for Kafka Support Cross-AZ Disaster Recovery? Where Can I Check Whether an Existing Instance is Across-AZs? <kafka-faq-0025>`
 -  :ref:`Do Kafka Instances Support Disk Encryption? <kafka-faq-0030>`
 -  :ref:`Can I Change the VPC and Subnet After a Kafka Instance Is Created? <kafka-faq-0036>`
 -  :ref:`Where Can I Find Kafka Streams Use Cases? <kafka-faq-0037>`
@@ -39,14 +42,17 @@ Instances
    which_kafka_versions_are_supported
    what_is_the_zookeeper_address_of_a_kafka_instance
    are_kafka_instances_in_cluster_mode
-   can_i_modify_the_connection_address_for_accessing_a_kafka_instance
+   can_i_modify_the_port_for_accessing_a_kafka_instance
    how_long_are_kafka_ssl_certificates_valid_for
    how_do_i_synchronize_data_from_one_kafka_instance_to_another
    how_do_i_change_the_sasl_ssl_setting_of_a_kafka_instance
+   how_do_i_modify_the_sasl_mechanism
+   how_do_i_change_the_security_protocol
+   will_a_kafka_instance_be_restarted_after_its_enterprise_project_is_modified
    are_kafka_brokers_and_zookeeper_deployed_on_the_same_vm_or_on_different_vms
    which_cipher_suites_are_supported_by_kafka
-   can_i_change_an_instance_from_single-az_deployment_to_multi-az_deployment
-   does_dms_for_kafka_support_cross-az_disaster_recovery_where_can_i_view_the_azs_configured_for_an_existing_instance
+   can_i_change_single-az_deployment_to_multi-az_deployment_for_an_instance
+   does_dms_for_kafka_support_cross-az_disaster_recovery_where_can_i_check_whether_an_existing_instance_is_across-azs
    do_kafka_instances_support_disk_encryption
    can_i_change_the_vpc_and_subnet_after_a_kafka_instance_is_created
    where_can_i_find_kafka_streams_use_cases
