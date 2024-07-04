@@ -17,13 +17,15 @@ GET /v2/{project_id}/instances/{instance_id}/management/groups/{group}
 
 .. table:: **Table 1** Path Parameters
 
-   =========== ========= ====== ====================
-   Parameter   Mandatory Type   Description
-   =========== ========= ====== ====================
-   project_id  Yes       String Project ID.
-   instance_id Yes       String Instance ID.
-   group       Yes       String Consumer group name.
-   =========== ========= ====== ====================
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | Parameter   | Mandatory | Type   | Description                                                                                               |
+   +=============+===========+========+===========================================================================================================+
+   | project_id  | Yes       | String | Project ID. For details about how to obtain it, see :ref:`Obtaining a Project ID <kafka-api-0036212547>`. |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | instance_id | Yes       | String | Instance ID.                                                                                              |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | group       | Yes       | String | Consumer group name.                                                                                      |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
 
 Request Parameters
 ------------------
@@ -109,13 +111,13 @@ Response Parameters
    +========================+=========+==================================================================================================+
    | partition              | Integer | Partition number.                                                                                |
    +------------------------+---------+--------------------------------------------------------------------------------------------------+
-   | lag                    | Integer | Number of remaining messages that can be retrieved, that is, the number of accumulated messages. |
+   | lag                    | Long    | Number of remaining messages that can be retrieved, that is, the number of accumulated messages. |
    +------------------------+---------+--------------------------------------------------------------------------------------------------+
    | topic                  | String  | Topic name.                                                                                      |
    +------------------------+---------+--------------------------------------------------------------------------------------------------+
-   | message_current_offset | Integer | Consumer offset.                                                                                 |
+   | message_current_offset | Long    | Consumer offset.                                                                                 |
    +------------------------+---------+--------------------------------------------------------------------------------------------------+
-   | message_log_end_offset | Integer | Log end offset (LEO).                                                                            |
+   | message_log_end_offset | Long    | Log end offset (LEO).                                                                            |
    +------------------------+---------+--------------------------------------------------------------------------------------------------+
 
 Example Requests

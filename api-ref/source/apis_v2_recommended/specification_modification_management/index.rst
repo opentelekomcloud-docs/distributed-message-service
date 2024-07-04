@@ -5,12 +5,12 @@
 Specification Modification Management
 =====================================
 
--  :ref:`Modifying Instance Specifications <resizeinstance>`
--  :ref:`Querying Product Information for Instance Specification Modification <showinstanceextendproductinfo>`
+-  :ref:`Increasing Instance Specifications <resizeengineinstance>`
+-  :ref:`Querying Product Information for Instance Specification Modification <showengineinstanceextendproductinfo>`
 
 .. toctree::
    :maxdepth: 1
    :hidden: 
 
-   modifying_instance_specifications
+   increasing_instance_specifications
    querying_product_information_for_instance_specification_modification

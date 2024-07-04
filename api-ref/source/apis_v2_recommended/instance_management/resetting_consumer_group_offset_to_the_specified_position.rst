@@ -8,7 +8,7 @@ Resetting Consumer Group Offset to the Specified Position
 Function
 --------
 
-Kafka instances do not support resetting the consumer offset online. Before resetting, stop the client for which the offset is to be reset.> After a client is stopped, the server considers the client offline only after the time period specified in **ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG** (1000 ms by default).
+Kafka instances do not support resetting the consumer offset online. Before resetting, stop the client for which the offset is to be reset.After a client is stopped, the server considers the client offline only after the time period specified in **ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG** (1000 ms by default).
 
 URI
 ---
@@ -17,13 +17,15 @@ POST /v2/{project_id}/instances/{instance_id}/management/groups/{group}/reset-me
 
 .. table:: **Table 1** Path Parameters
 
-   =========== ========= ====== ====================
-   Parameter   Mandatory Type   Description
-   =========== ========= ====== ====================
-   project_id  Yes       String Project ID.
-   instance_id Yes       String Instance ID.
-   group       Yes       String Consumer group name.
-   =========== ========= ====== ====================
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | Parameter   | Mandatory | Type   | Description                                                                                               |
+   +=============+===========+========+===========================================================================================================+
+   | project_id  | Yes       | String | Project ID. For details about how to obtain it, see :ref:`Obtaining a Project ID <kafka-api-0036212547>`. |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | instance_id | Yes       | String | Instance ID.                                                                                              |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | group       | Yes       | String | Consumer group name.                                                                                      |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
 
 Request Parameters
 ------------------
@@ -33,11 +35,11 @@ Request Parameters
    +-----------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------------------+
    | Parameter       | Mandatory       | Type            | Description                                                                                                         |
    +=================+=================+=================+=====================================================================================================================+
-   | topic           | Yes             | String          | Topic name.                                                                                                         |
+   | topic           | No              | String          | Topic name.                                                                                                         |
    +-----------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------------------+
-   | partition       | No              | Integer         | Partition number. The default value is **-1**, indicating that all partitions are reset.                            |
+   | partition       | Yes             | Integer         | Partition number. The default value is **-1**, indicating that all partitions are reset.                            |
    +-----------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------------------+
-   | message_offset  | No              | Integer         | Resetting consumer group offset to the specified position.                                                          |
+   | message_offset  | No              | Long            | Resetting consumer group offset to the specified position.                                                          |
    |                 |                 |                 |                                                                                                                     |
    |                 |                 |                 | -  If this position is earlier than the current earliest offset, the offset will be reset to the earliest offset.   |
    |                 |                 |                 |                                                                                                                     |
@@ -45,7 +47,7 @@ Request Parameters
    |                 |                 |                 |                                                                                                                     |
    |                 |                 |                 | **Either message_offset or timestamp must be specified.**                                                           |
    +-----------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------------------+
-   | timestamp       | No              | Integer         | Specified time that the offset is to be reset to. The value is a Unix timestamp, in millisecond.                    |
+   | timestamp       | No              | Long            | Specified time that the offset is to be reset to. The value is a Unix timestamp, in millisecond.                    |
    |                 |                 |                 |                                                                                                                     |
    |                 |                 |                 | -  If this time is earlier than the current earliest timestamp, the offset will be reset to the earliest timestamp. |
    |                 |                 |                 |                                                                                                                     |

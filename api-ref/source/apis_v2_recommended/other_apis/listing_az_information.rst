@@ -27,39 +27,31 @@ Response Parameters
 
 .. table:: **Table 1** Response body parameters
 
-   +-----------------+----------------------------------------------------------------------------------------+---------------+
-   | Parameter       | Type                                                                                   | Description   |
-   +=================+========================================================================================+===============+
-   | region_id       | String                                                                                 | Region ID.    |
-   +-----------------+----------------------------------------------------------------------------------------+---------------+
-   | available_zones | Array of :ref:`available_zones <listavailablezones__response_available_zones>` objects | Array of AZs. |
-   +-----------------+----------------------------------------------------------------------------------------+---------------+
+   +-----------------+----------------------------------------------------------------------------------------------+---------------+
+   | Parameter       | Type                                                                                         | Description   |
+   +=================+==============================================================================================+===============+
+   | region_id       | String                                                                                       | Region ID.    |
+   +-----------------+----------------------------------------------------------------------------------------------+---------------+
+   | available_zones | Array of :ref:`AvailableZonesResp <listavailablezones__response_availablezonesresp>` objects | Array of AZs. |
+   +-----------------+----------------------------------------------------------------------------------------------+---------------+
 
-.. _listavailablezones__response_available_zones:
+.. _listavailablezones__response_availablezonesresp:
 
-.. table:: **Table 2** available_zones
+.. table:: **Table 2** AvailableZonesResp
 
-   +-----------------------+---------+--------------------------------------------------+
-   | Parameter             | Type    | Description                                      |
-   +=======================+=========+==================================================+
-   | soldOut               | Boolean | Whether resources are sold out.                  |
-   +-----------------------+---------+--------------------------------------------------+
-   | id                    | String  | AZ ID.                                           |
-   +-----------------------+---------+--------------------------------------------------+
-   | code                  | String  | AZ code.                                         |
-   +-----------------------+---------+--------------------------------------------------+
-   | name                  | String  | AZ name.                                         |
-   +-----------------------+---------+--------------------------------------------------+
-   | port                  | String  | AZ port.                                         |
-   +-----------------------+---------+--------------------------------------------------+
-   | resource_availability | String  | Whether there are available resources in the AZ. |
-   +-----------------------+---------+--------------------------------------------------+
-   | default_az            | Boolean | Whether the AZ is the default AZ.                |
-   +-----------------------+---------+--------------------------------------------------+
-   | remain_time           | Long    | Remaining time.                                  |
-   +-----------------------+---------+--------------------------------------------------+
-   | ipv6_enable           | Boolean | Whether IPv6 is supported.                       |
-   +-----------------------+---------+--------------------------------------------------+
+   +-----------------------+--------+---------------------------------------------------+
+   | Parameter             | Type   | Description                                       |
+   +=======================+========+===================================================+
+   | id                    | String | AZ ID.                                            |
+   +-----------------------+--------+---------------------------------------------------+
+   | code                  | String | AZ code.                                          |
+   +-----------------------+--------+---------------------------------------------------+
+   | name                  | String | AZ name.                                          |
+   +-----------------------+--------+---------------------------------------------------+
+   | port                  | String | AZ port.                                          |
+   +-----------------------+--------+---------------------------------------------------+
+   | resource_availability | String | Indicates whether the AZ has available resources. |
+   +-----------------------+--------+---------------------------------------------------+
 
 Example Requests
 ----------------
@@ -75,32 +67,26 @@ Example Responses
 
 The AZ information is queried successfully.
 
-.. code-block::
+-  The instance is queried. An example returned result is as follows.
 
-   {
-     "region_id" : "xxx",
-     "available_zones" : [ {
-       "soldOut" : false,
-       "id" : "d539378ec1314c85b76fefa3f7071458",
-       "code" : "xxx",
-       "name" : "AZ 2.",
-       "port" : "8003",
-       "resource_availability" : "true",
-       "default_az" : true,
-       "remain_time" : 9223372036854776000,
-       "ipv6_enable" : false
-     }, {
-       "soldOut" : false,
-       "id" : "9f1c5806706d4c1fb0eb72f0a9b18c77",
-       "code" : "xxx",
-       "name" : "AZ 3.",
-       "port" : "443",
-       "resource_availability" : "true",
-       "default_az" : false,
-       "remain_time" : 9223372036854776000,
-       "ipv6_enable" : false
-     } ]
-   }
+   .. code-block::
+
+      {
+        "region_id" : "xxx",
+        "available_zones" : [ {
+          "id" : "d539378ec1314c85b76fefa3f7071458",
+          "code" : "xxx",
+          "name" : "AZ 2.",
+          "port" : "8003",
+          "resource_availability" : "true"
+        }, {
+          "id" : "9f1c5806706d4c1fb0eb72f0a9b18c77",
+          "code" : "xxx",
+          "name" : "AZ 3.",
+          "port" : "443",
+          "resource_availability" : "true"
+        } ]
+      }
 
 Status Codes
 ------------

@@ -8,7 +8,7 @@ Resetting the Password
 Function
 --------
 
-This API is used to reset the password.
+This API is used to reset the password for an instance with SSL enabled.
 
 URI
 ---
@@ -17,12 +17,13 @@ POST /v2/{project_id}/instances/{instance_id}/password
 
 .. table:: **Table 1** Path Parameters
 
-   =========== ========= ====== ============
-   Parameter   Mandatory Type   Description
-   =========== ========= ====== ============
-   project_id  Yes       String Project ID.
-   instance_id Yes       String Instance ID.
-   =========== ========= ====== ============
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | Parameter   | Mandatory | Type   | Description                                                                                               |
+   +=============+===========+========+===========================================================================================================+
+   | project_id  | Yes       | String | Project ID. For details about how to obtain it, see :ref:`Obtaining a Project ID <kafka-api-0036212547>`. |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
+   | instance_id | Yes       | String | Instance ID.                                                                                              |
+   +-------------+-----------+--------+-----------------------------------------------------------------------------------------------------------+
 
 Request Parameters
 ------------------
@@ -32,7 +33,7 @@ Request Parameters
    +-----------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------------+
    | Parameter       | Mandatory       | Type            | Description                                                                                                     |
    +=================+=================+=================+=================================================================================================================+
-   | new_password    | No              | String          | The password can contain 8 to 32 characters, and must contain at least three types of the following characters: |
+   | new_password    | Yes             | String          | The password can contain 8 to 32 characters, and must contain at least three types of the following characters: |
    |                 |                 |                 |                                                                                                                 |
    |                 |                 |                 | -  Uppercase letters                                                                                            |
    |                 |                 |                 |                                                                                                                 |
@@ -50,6 +51,8 @@ None
 
 Example Requests
 ----------------
+
+Resetting a password
 
 .. code-block:: text
 
