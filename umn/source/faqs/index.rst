@@ -6,6 +6,7 @@ FAQs
 ====
 
 -  :ref:`Instances <kafka-faq-191030002>`
+-  :ref:`Specification Modification <kafka_faq_0053>`
 -  :ref:`Connections <kafka-faq-191030001>`
 -  :ref:`Topics and Partitions <kafka-faq-191030003>`
 -  :ref:`Consumer Groups <kafka-faq-200423001>`
@@ -17,6 +18,7 @@ FAQs
    :hidden: 
 
    instances/index
+   specification_modification/index
    connections/index
    topics_and_partitions/index
    consumer_groups/index

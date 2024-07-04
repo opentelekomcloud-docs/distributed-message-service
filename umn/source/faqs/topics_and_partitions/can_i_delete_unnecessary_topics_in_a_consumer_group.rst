@@ -5,4 +5,4 @@
 Can I Delete Unnecessary Topics in a Consumer Group?
 ====================================================
 
-Yes, just simply unsubscribe from it on the Kafka client.
+Just simply unsubscribe from them on the Kafka client.

@@ -24,7 +24,7 @@ Solutions and Troubleshooting Methods
 
 **Scenario 1:** Heartbeat requests are not sent in time.
 
-**Solution**: Set the value of **session.timeout.ms** to three times the value of **heartbeat.interval.ms**.
+**Solution**: On the consumer client, set the value of **session.timeout.ms** to three times the value of **heartbeat.interval.ms**.
 
 **Scenario 2:** The interval between retrievals is too long.
 
@@ -32,3 +32,5 @@ Solutions and Troubleshooting Methods
 
 #. Check the time required for processing a single message and whether the time required for processing a specified number (**max.poll.records**) of messages exceeds the time specified by **max.poll.interval.ms**.
 #. Check whether message processing requires network connections, such as writing data to the database and calling backend APIs, and whether the backend is normal in rebalancing scenarios.
+
+**Solution**: On the consumer client, decrease the value of **max.poll.records**.

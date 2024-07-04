@@ -19,7 +19,7 @@ DMS provides easy-to-use message queuing based on Apache Kafka. Services can be 
 
    .. note::
 
-      Kafka instances are compatible with Apache Kafka v1.1.0, v2.3.0, and v2.7. Keep the client and server versions the same.
+      Kafka instances are compatible with Apache Kafka v1.1.0, v2.3.0, v2.7, and v3.x. Keep the client and server versions the same.
 
 -  Security
 
@@ -35,11 +35,15 @@ DMS provides easy-to-use message queuing based on Apache Kafka. Services can be 
 
    Kafka runs in clusters, enabling failover and fault tolerance so that services can run smoothly.
 
-   Kafka instance brokers can be deployed across AZs to enhance service availability.
+   Kafka instance brokers can be deployed across AZs to enhance service availability. Data is synchronized between different AZs based on Kafka's in-sync replica (ISR) mechanism. A topic must have multiple data copies and distribute them across ISRs. When ISR replication is normal, the recovery point objective (RPO) is close to 0.
 
 -  Simple O&M
 
    The cloud service platform provides a whole set of monitoring and alarm services, eliminating the need for 24/7 attendance. Kafka instance metrics are monitored and reported, including the number of partitions, topics, and accumulated messages. You can configure alarm rules and receive SMS or email notifications on how your services are running in real time.
+
+-  Massive accumulation and scaling
+
+   Kafka features high scalability because it runs in a distributed system, or cluster. Users can configure up to 200 partitions for a topic. The storage space, broker quantity and flavor can be also expanded. This means that billions of messages can be accumulated, suitable for scenarios requiring high concurrency, high performance, and large-scale access.
 
 -  Flexible specifications
 

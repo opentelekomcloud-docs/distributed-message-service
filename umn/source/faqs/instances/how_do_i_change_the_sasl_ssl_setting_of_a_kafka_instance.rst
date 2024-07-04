@@ -5,4 +5,4 @@
 How Do I Change the SASL_SSL Setting of a Kafka Instance?
 =========================================================
 
-The SASL_SSL setting cannot be changed once the instance has been created. Be careful when configuring this setting during instance creation. If you need to change the setting, you must create another instance.
+The SASL_SSL setting can be changed for cluster instances (see :ref:`Configuring Plaintext or Ciphertext Access to Kafka Instances <kafka_ug_0044>`), but cannot be changed for single-node instances.

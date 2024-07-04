@@ -5,6 +5,6 @@
 Why Do I Fail to Create Topics?
 ===============================
 
-Possible cause: The aggregate number of partitions of created topics has reached the upper limit. The maximum number of partitions varies with instance specifications. For details, see :ref:`Specifications <kafka-specification>`.
+Possible cause: The aggregate number of partitions of created topics has reached the upper limit. The upper limit on partitions varies by instance specifications. For details, see :ref:`Specifications <kafka-specification>`.
 
-Solution: :ref:`Delete unnecessary topics <kafka-ug-180604019>`.
+Solution: :ref:`Scale up <kafka-ug-181221001>` the instance or :ref:`delete unnecessary topics <kafka-ug-180604019>`.

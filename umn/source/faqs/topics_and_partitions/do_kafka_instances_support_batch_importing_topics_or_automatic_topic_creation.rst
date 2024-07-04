@@ -9,5 +9,5 @@ Automatic topic creation is supported, but batch topic import is not supported. 
 
 Enable automatic topic creation using one of the following methods:
 
--  :ref:`When creating an instance, enable automatic topic creation <dms-ug-180604013>`.
--  After an instance is created, :ref:`enable automatic topic creation on the Basic Information tab page <kafka-ug-180604017>`.
+-  :ref:`When creating an instance, enable automatic topic creation <kafka-ug-180604013>`.
+-  After an instance is created, :ref:`enable automatic topic creation on the Basic Information tab page <kafka_ug_0043>`.
