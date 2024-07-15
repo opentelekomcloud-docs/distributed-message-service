@@ -5,7 +5,7 @@
 Go
 ==
 
-This section describes how to access a Kafka instance using Go 1.16.5 on the Linux CentOS, how to obtain the demo code, and how to produce and consume messages.
+This section takes Linux CentOS as an example to describe how to access a Kafka instance using a Kafka client in Go 1.16.5, including how to obtain the demo code, and produce and consume messages.
 
 Before getting started, ensure that you have collected the information listed in :ref:`Collecting Connection Information <kafka-config>`.
 
@@ -22,10 +22,22 @@ Preparing the Environment
 
    .. code-block:: console
 
-      [root@ecs-test sarama]# go version
+      [root@ecs-test confluent-kafka-go]# go version
       go version go1.16.5 linux/amd64
 
-   If Go is not installed, `download <https://golang.org/doc/install?download=go1.16.5.linux-amd64.tar.gz>`__ and install it.
+   If Go is not installed, do as follows to install it:
+
+   .. code-block::
+
+      # Download the Go installation package.
+      wget https://go.dev/dl/go1.16.5.linux-amd64.tar.gz
+
+      # Decompress it to the /usr/local directory. The /usr/local directory can be changed as required.
+      sudo tar -C /usr/local -xzf go1.16.5.linux-amd64.tar.gz
+
+      # Set the environment variable.
+      echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.profile
+      source ~/.profile
 
 -  Run the following command to obtain the code used in the demo:
 
@@ -36,10 +48,6 @@ Preparing the Environment
 Producing Messages
 ------------------
 
-.. note::
-
-   Replace the following information in bold with the actual values.
-
 -  With SASL
 
    .. code-block::
@@ -61,7 +69,7 @@ Producing Messages
           topics   = "topic_name"
           user     = "username"
           password = "password"
-          caFile   = "phy_ca.crt"     //Certificate file. For details about how to obtain an SSL certificate, see section "Collecting Connection Information."
+          caFile   = "phy_ca.crt"     // Obtain the SSL certificate by referring to section "Collecting Connection Information". If Security Protocol is set to SASL_PLAINTEXT, delete this parameter.
       )
 
       func main() {
@@ -73,7 +81,8 @@ Producing Messages
               "sasl.mechanism":    "PLAIN",
               "sasl.username":     user,
               "sasl.password":     password,
-              "ssl.ca.location":   caFile,
+              "ssl.ca.location":   caFile,     // If Security Protocol is set to SASL_PLAINTEXT, delete this parameter.
+              "ssl.endpoint.identification.algorithm": "none"
           }
           producer, err := kafka.NewProducer(config)
           if err != nil {
@@ -125,6 +134,19 @@ Producing Messages
           data, _, _ := reader.ReadLine()
           return data
       }
+
+   The parameters in the example code are described as follows. For details about how to obtain the parameter values, see :ref:`Collecting Connection Information <kafka-config>`.
+
+   -  **brokers**: instance connection address and port
+   -  **topics**: topic name
+   -  **user/password**: The username and password set when ciphertext access is enabled for the first time, or the ones set in user creation. For security purposes, you are advised to encrypt the username and password.
+   -  **caFile**: certificate file This parameter is mandatory if **Security Protocol** is set to **SASL_SSL**.
+   -  **security.protocol**: Kafka security protocol. Obtain it from the **Basic Information** page on the Kafka console. For Kafka instances that were created much earlier, if **Security Protocol** is not displayed on the instance details page, SASL_SSL is used by default.
+
+      -  When **Security Protocol** is set to **SASL_SSL**, SASL is used for authentication. Data is encrypted with SSL certificates for high-security transmission. You need to configure the instance username, password, and certificate file.
+      -  When **Security Protocol** is set to **SASL_PLAINTEXT**, SASL is used for authentication. Data is transmitted in plaintext with high performance. You need to configure the instance username and password.
+
+   -  **sasl.mechanism**: SASL authentication mechanism. View it on the **Basic Information** page of the Kafka instance console. If both SCRAM-SHA-512 and PLAIN are enabled, use either of them in connection configurations. For instances that were created much earlier, if **SASL Mechanism** is not displayed on the instance details page, PLAIN is used by default.
 
 -  Without SASL
 
@@ -203,14 +225,15 @@ Producing Messages
           data, _, _ := reader.ReadLine()
           return data
       }
+
+   The parameters in the example code are described as follows. For details about how to obtain the parameter values, see :ref:`Collecting Connection Information <kafka-config>`.
+
+   -  **brokers**: instance connection address and port
+   -  **topics**: topic name
 
 Consuming Messages
 ------------------
 
-.. note::
-
-   Replace the following information in bold with the actual values.
-
 -  With SASL
 
    .. code-block::
@@ -232,7 +255,7 @@ Consuming Messages
           topics   = "topic_name"
           user     = "username"
           password = "password"
-          caFile   = "phy_ca.crt"     //Certificate file. For details about how to obtain an SSL certificate, see section "Collecting Connection Information."
+          caFile   = "phy_ca.crt"     // Obtain the SSL certificate by referring to section "Collecting Connection Information". If Security Protocol is set to SASL_PLAINTEXT, delete this parameter.
       )
 
       func main() {
@@ -246,7 +269,8 @@ Consuming Messages
               "sasl.mechanism":    "PLAIN",
               "sasl.username":     user,
               "sasl.password":     password,
-              "ssl.ca.location":   caFile,
+              "ssl.ca.location":   caFile,     // If Security Protocol is set to SASL_PLAINTEXT, delete this parameter.
+              "ssl.endpoint.identification.algorithm": "none"
           }
 
           consumer, err := kafka.NewConsumer(config)
@@ -282,6 +306,20 @@ Consuming Messages
               log.Panicf("Error closing consumer: %v", err)
           }
       }
+
+   The parameters in the example code are described as follows. For details about how to obtain the parameter values, see :ref:`Collecting Connection Information <kafka-config>`.
+
+   -  **brokers**: instance connection address and port
+   -  **group**: custom consumer group name. If the specified consumer group does not exist, Kafka automatically creates one.
+   -  **topics**: topic name
+   -  **user/password**: The username and password set when ciphertext access is enabled for the first time, or the ones set in user creation. For security purposes, you are advised to encrypt the username and password.
+   -  **caFile**: certificate file This parameter is mandatory if **Security Protocol** is set to **SASL_SSL**.
+   -  **security.protocol**: Kafka security protocol. Obtain it from the **Basic Information** page on the Kafka console. For Kafka instances that were created much earlier, if **Security Protocol** is not displayed on the instance details page, SASL_SSL is used by default.
+
+      -  When **Security Protocol** is set to **SASL_SSL**, SASL is used for authentication. Data is encrypted with SSL certificates for high-security transmission. You need to configure the instance username, password, and certificate file.
+      -  When **Security Protocol** is set to **SASL_PLAINTEXT**, SASL is used for authentication. Data is transmitted in plaintext with high performance. You need to configure the instance username and password.
+
+   -  **sasl.mechanism**: SASL authentication mechanism. View it on the **Basic Information** page of the Kafka instance console. If both SCRAM-SHA-512 and PLAIN are enabled, use either of them in connection configurations. For instances that were created much earlier, if **SASL Mechanism** is not displayed on the instance details page, PLAIN is used by default.
 
 -  Without SASL
 
@@ -346,3 +384,9 @@ Consuming Messages
               log.Panicf("Error closing consumer: %v", err)
           }
       }
+
+   The parameters in the example code are described as follows. For details about how to obtain the parameter values, see :ref:`Collecting Connection Information <kafka-config>`.
+
+   -  **brokers**: instance connection address and port
+   -  **group**: custom consumer group name. If the specified consumer group does not exist, Kafka automatically creates one.
+   -  **topics**: topic name

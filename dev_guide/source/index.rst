@@ -11,5 +11,4 @@ Distributed Message Service - Developer Guide
    python
    go
    obtaining_kafka_clients
-   recommendations_on_client_usage
    change_history

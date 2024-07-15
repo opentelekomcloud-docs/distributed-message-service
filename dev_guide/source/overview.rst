@@ -5,9 +5,9 @@
 Overview
 ========
 
-Kafka instances are compatible with Apache Kafka and can be accessed using `open-source Kafka clients <https://cwiki.apache.org/confluence/display/KAFKA/Clients>`__. To access an instance in SASL mode, you will also need certificates.
+Kafka instances are compatible with Apache Kafka and can be accessed using `open-source Kafka clients <https://cwiki.apache.org/confluence/display/KAFKA/Clients>`__. In addition, if **Security Protocol** is set to **SASL_SSL**, use the DMS certificate.
 
-This document describes how to collect instance connection information, such as the instance connection address, certificate required for SASL connection, and information required for public access. It also provides examples of accessing an instance in Java and Python.
+This document describes how to collect instance connection information, such as the instance connection address and topic name. It also provides examples of accessing an instance in Java, Python, and Go.
 
 The examples only demonstrate how to invoke Kafka APIs for producing and consuming messages. For more information about the APIs provided by Kafka, visit the `Kafka official website <https://kafka.apache.org/documentation/#api>`__.
 
@@ -16,19 +16,16 @@ Client Network Environment
 
 A client can access a Kafka instance in any of the following modes:
 
-#. Within a Virtual Private Network (VPC)
+-  If the client runs an Elastic Cloud Server (ECS) and is in the same region and VPC as the Kafka instance, the client can access the instance using a private network IP address.
 
-   If the client runs an Elastic Cloud Server (ECS) and is in the same region and VPC as the Kafka instance, the client can access the instance using an IP address within a subnet in the VPC.
+-  If the client runs an ECS, and is in the same region but not in the same VPC as the Kafka instance, the client can access the instance using one of the following methods:
 
-#. Using a VPC peering connection
+   -  Establish a VPC peering connection to allow two VPCs to communicate with each other. For details, see `VPC Peering Connection <https://docs.otc.t-systems.com/en-us/usermanual/vpc/vpc_peering_0000.html>`__. Modify the security group of your Kafka instance as required: Allow external access over port 9092 (in plaintext) or 9093 (in ciphertext).
+   -  Access a Kafka instance on a Kafka client over a private network across VPCs using a VPC endpoint. For details, see `Accessing Kafka Across VPCs Using VPCEP <https://docs.otc.t-systems.com/en-us/usermanual/dms/kafka-ug-0001.html>`__. Modify the security group to allow port 9011 for external access.
 
-   If the client runs an ECS and is in the same region but not the same VPC as the Kafka instance, the client can access the instance using an IP address within a subnet in the VPC after a VPC peering connection has been established.
+-  If the client is not in the same network environment or region as the Kafka instance, the client can access the instance using a public network IP address.
 
-#. Over public networks
-
-   If the client is not in the same network environment or region as the Kafka instance, the client can access the instance using a public network IP address.
-
-   For public access, modify the inbound rules of the security group configured for the Kafka instance, allowing access over port 9094 or 9095.
+   To use public access, modify the security group of your Kafka instance as required: Allow external access over port 9094 (in plaintext) or 9095 (in ciphertext).
 
 .. note::
 
