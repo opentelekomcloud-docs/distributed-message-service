@@ -30,8 +30,6 @@ The following describes example producer and consumer configuration files. If ci
 
    Producer configuration file (the **dms.sdk.producer.properties** file in the :ref:`message production code <kafka-java-demo__li6268103683712>`)
 
-   The information in bold is specific to different Kafka instances and must be modified. Other parameters can also be added.
-
    .. code-block::
 
       #The topic name is in the specific production and consumption code.
@@ -77,8 +75,6 @@ The following describes example producer and consumer configuration files. If ci
       security.protocol=SASL_PLAINTEXT
 
 -  Consumer configuration file (the **dms.sdk.consumer.properties** file in the :ref:`message consumption code <kafka-java-demo__li843695925415>`)
-
-   The information in bold is specific to different Kafka instances and must be modified. Other parameters can also be added.
 
    .. code-block::
 
