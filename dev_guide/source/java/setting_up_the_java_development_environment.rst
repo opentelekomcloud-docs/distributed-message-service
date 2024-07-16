@@ -44,7 +44,7 @@ Procedure
       +-----------------------------+----------------------------------------+--------------------------------------------------------------------+
       | dms.sdk.producer.properties | .\\src\\main\\resources                | Configuration information for producing messages                   |
       +-----------------------------+----------------------------------------+--------------------------------------------------------------------+
-      | client.truststore.jks       | .\\src\\main\\resources                | SSL certificate, used for SASL connection                          |
+      | client.jks                  | .\\src\\main\\resources                | SSL certificate, used for SASL_SSL connection                      |
       +-----------------------------+----------------------------------------+--------------------------------------------------------------------+
       | DmsConsumerTest.java        | .\\src\\test\\java\\com\\dms\\consumer | Test code of consuming messages                                    |
       +-----------------------------+----------------------------------------+--------------------------------------------------------------------+
@@ -89,40 +89,7 @@ Procedure
 
 #. Specify Kafka configurations.
 
-   The following is a configuration example for producing messages. Replace the information in bold with the actual values.
-
-   .. code-block::
-
-      #The information in bold is specific to different Kafka instances and must be modified. Other parameters can also be added.
-      #The topic name is in the specific production and consumption code.
-      #######################
-      #Information about Kafka brokers. ip:port are the connection addresses and ports used by the instance. The values can be obtained by referring to the "Collecting Connection Information" section. Example: bootstrap.servers=100.xxx.xxx.87:909x,100.xxx.xxx.69:909x,100.xxx.xxx.155:909x
-      bootstrap.servers=ip1:port1,ip2:port2,ip3:port3
-      #Producer acknowledgement
-      acks=all
-      #Method of turning the key into bytes
-      key.serializer=org.apache.kafka.common.serialization.StringSerializer
-      #Method of turning the value into bytes
-      value.serializer=org.apache.kafka.common.serialization.StringSerializer
-      #Memory available to the producer for buffering
-      buffer.memory=33554432
-      #Number of retries
-      retries=0
-      #######################
-      #Comment out the following parameters if SASL access is not enabled.
-      #######################
-      #Configure the JAAS username and password. username and password are set when you enable Kafka SASL_SSL during instance creation or when you create a SASL_SSL user.
-      sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
-          username="username" \
-          password="password";
-      #SASL mechanism
-      sasl.mechanism=PLAIN
-      #Encryption protocol. Currently, only SASL_SSL is supported.
-      security.protocol=SASL_SSL
-      #Location of ssl.truststore
-      ssl.truststore.location=E:\\temp\\client.truststore.jks
-      #Password of ssl.truststore, which must be set to dms@kafka and cannot be changed.
-      ssl.truststore.password=dms@kafka
+   This section uses the example of producing messages. For details, see :ref:`Producer configuration file <kafka-java-demo__li106711612652>`.
 
 #. In the down left corner of IDEA, click **Terminal**. In terminal, run the **mvn test** command to see how the demo project goes.
 

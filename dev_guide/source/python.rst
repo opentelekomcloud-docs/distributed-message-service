@@ -5,7 +5,7 @@
 Python
 ======
 
-This section describes how to access a Kafka premium instance using a Kafka client in Python on the Linux CentOS, including how to install the client, and produce and consume messages.
+This section takes Linux CentOS as an example to describe how to access a Kafka instance using a Kafka client in Python, including how to install the client, and produce and consume messages.
 
 Before getting started, ensure that you have collected the information listed in :ref:`Collecting Connection Information <kafka-config>`.
 
@@ -37,10 +37,6 @@ Preparing the Environment
 Producing Messages
 ------------------
 
-.. note::
-
-   Replace the following information in bold with the actual values.
-
 -  With SASL
 
    .. code-block::
@@ -51,14 +47,15 @@ Producing Messages
       conf = {
           'bootstrap_servers': ["ip1:port1","ip2:port2","ip3:port3"],
           'topic_name': 'topic_name',
-          'sasl_plain_username': 'username',
-          'sasl_plain_password': 'password'
+          'sasl_username': 'username',
+          'sasl_password': 'password'
       }
 
       context = ssl.create_default_context()
       context = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
+      ## If Security Protocol is set to SASL_PLAINTEXT, comment out the following parameters:
       context.verify_mode = ssl.CERT_REQUIRED
-      ## Certificate file. For details about how to obtain an SSL certificate, see section "Collecting Connection Information."
+      ## The certificate file. Obtain the SSL certificate by referring to "Collecting Connection Information". If Security Protocol is set to SASL_PLAINTEXT, comment out the following parameters:
       context.load_verify_locations("phy_ca.crt")
 
       print('start producer')
@@ -66,13 +63,25 @@ Producing Messages
                               sasl_mechanism="PLAIN",
                               ssl_context=context,
                               security_protocol='SASL_SSL',
-                              sasl_plain_username=conf['sasl_plain_username'],
-                              sasl_plain_password=conf['sasl_plain_password'])
+                              sasl_plain_username=conf['sasl_username'],
+                              sasl_plain_password=conf['sasl_password'])
 
       data = bytes("hello kafka!", encoding="utf-8")
       producer.send(conf['topic_name'], data)
       producer.close()
       print('end producer')
+
+   The parameters in the example code are described as follows. For details about how to obtain the parameter values, see :ref:`Collecting Connection Information <kafka-config>`.
+
+   -  **bootstrap_servers**: instance connection address and port
+   -  **topic_name**: topic name
+   -  **sasl_plain_username/sasl_plain_password**: The username and password set when ciphertext access is enabled for the first time, or the ones set in user creation. For security purposes, you are advised to encrypt the username and password.
+   -  **context.load_verify_locations**: certificate file. This parameter is mandatory when **Security Protocol** is set to **SASL_SSL**. CRT certificates are used for accessing instances in Python.
+   -  **sasl_mechanism**: SASL authentication mechanism. View it on the **Basic Information** page of the Kafka instance console. If both SCRAM-SHA-512 and PLAIN are enabled, use either of them in connection configurations. For instances that were created much earlier, if **SASL Mechanism** is not displayed on the instance details page, PLAIN is used by default.
+   -  **security_protocol**: Kafka security protocol. Obtain it from the **Basic Information** page on the Kafka console. For Kafka instances that were created much earlier, if **Security Protocol** is not displayed on the instance details page, SASL_SSL is used by default.
+
+      -  When **Security Protocol** is set to **SASL_SSL**, SASL is used for authentication. Data is encrypted with SSL certificates for high-security transmission. You need to configure the instance username, password, and certificate file.
+      -  When **Security Protocol** is set to **SASL_PLAINTEXT**, SASL is used for authentication. Data is transmitted in plaintext with high performance. You need to configure the instance username and password.
 
 -  Without SASL
 
@@ -93,6 +102,11 @@ Producing Messages
       producer.close()
       print('end producer')
 
+   The parameters in the example code are described as follows. For details about how to obtain the parameter values, see :ref:`Collecting Connection Information <kafka-config>`.
+
+   -  **bootstrap_servers**: instance connection address and port
+   -  **topic_name**: topic name
+
 Consuming Messages
 ------------------
 
@@ -106,15 +120,16 @@ Consuming Messages
       conf = {
           'bootstrap_servers': ["ip1:port1","ip2:port2","ip3:port3"],
           'topic_name': 'topic_name',
-          'sasl_plain_username': 'username',
-          'sasl_plain_password': 'password',
+          'sasl_username': 'username',
+          'sasl_password': 'password',
           'consumer_id': 'consumer_id'
       }
 
       context = ssl.create_default_context()
       context = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
+      ## If Security Protocol is set to SASL_PLAINTEXT, comment out the following parameters:
       context.verify_mode = ssl.CERT_REQUIRED
-      ## Certificate file. For details about how to obtain an SSL certificate, see section "Collecting Connection Information."
+      ## The certificate file. Obtain the SSL certificate by referring to "Collecting Connection Information". If Security Protocol is set to SASL_PLAINTEXT, comment out the following parameters:
       context.load_verify_locations("phy_ca.crt")
 
       print('start consumer')
@@ -124,17 +139,28 @@ Consuming Messages
                               sasl_mechanism="PLAIN",
                               ssl_context=context,
                               security_protocol='SASL_SSL',
-                              sasl_plain_username=conf['sasl_plain_username'],
-                              sasl_plain_password=conf['sasl_plain_password'])
+                              sasl_plain_username=conf['sasl_username'],
+                              sasl_plain_password=conf['sasl_password'])
 
       for message in consumer:
           print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,message.offset, message.key,message.value))
 
       print('end consumer')
 
--  Without SASL
+   The parameters in the example code are described as follows. For details about how to obtain the parameter values, see :ref:`Collecting Connection Information <kafka-config>`.
 
-   Replace the information in bold with the actual values.
+   -  **bootstrap_servers**: instance connection address and port
+   -  **topic_name**: topic name
+   -  **sasl_plain_username/sasl_plain_password**: The username and password set when ciphertext access is enabled for the first time, or the ones set in user creation. For security purposes, you are advised to encrypt the username and password.
+   -  **consumer_id**: custom consumer group name. If the specified consumer group does not exist, Kafka automatically creates one.
+   -  **context.load_verify_locations**: certificate file. This parameter is mandatory when **Security Protocol** is set to **SASL_SSL**. CRT certificates are used for accessing instances in Python.
+   -  **sasl_mechanism**: SASL authentication mechanism. View it on the **Basic Information** page of the Kafka instance console. If both SCRAM-SHA-512 and PLAIN are enabled, use either of them in connection configurations. For instances that were created much earlier, if **SASL Mechanism** is not displayed on the instance details page, PLAIN is used by default.
+   -  **security_protocol**: Kafka security protocol. Obtain it from the **Basic Information** page on the Kafka console. For Kafka instances that were created much earlier, if **Security Protocol** is not displayed on the instance details page, SASL_SSL is used by default.
+
+      -  When **Security Protocol** is set to **SASL_SSL**, SASL is used for authentication. Data is encrypted with SSL certificates for high-security transmission. You need to configure the instance username, password, and certificate file.
+      -  When **Security Protocol** is set to **SASL_PLAINTEXT**, SASL is used for authentication. Data is transmitted in plaintext with high performance. You need to configure the instance username and password.
+
+-  Without SASL
 
    .. code-block::
 
@@ -155,3 +181,9 @@ Consuming Messages
           print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,message.offset, message.key,message.value))
 
       print('end consumer')
+
+   The parameters in the example code are described as follows. For details about how to obtain the parameter values, see :ref:`Collecting Connection Information <kafka-config>`.
+
+   -  **bootstrap_servers**: instance connection address and port
+   -  **topic_name**: topic name
+   -  **consumer_id**: custom consumer group name. If the specified consumer group does not exist, Kafka automatically creates one.
