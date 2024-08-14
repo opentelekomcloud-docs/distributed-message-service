@@ -5,9 +5,6 @@
 Deleting Kafka Instances
 ========================
 
-Scenario
---------
-
 Delete one or more Kafka instances at a time on the DMS console.
 
 .. important::
@@ -19,9 +16,8 @@ Prerequisites
 
 The status of the Kafka instance you want to delete is **Running** or **Faulty**.
 
-
-Deleting Kafka Instances
-------------------------
+Procedure
+---------
 
 #. Log in to the console.
 

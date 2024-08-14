@@ -5,14 +5,10 @@
 Exporting the Kafka Instance List
 =================================
 
-Scenario
---------
+You can export a list of instances on the DMS console.
 
-This section describes how to export the Kafka instance list from the console.
-
-
-Exporting the Kafka Instance List
----------------------------------
+Procedure
+---------
 
 #. Log in to the console.
 #. Click |image1| in the upper left corner to select a region.

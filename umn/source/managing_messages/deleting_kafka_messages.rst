@@ -5,10 +5,7 @@
 Deleting Kafka Messages
 =======================
 
-Scenario
---------
-
-This section describes how to delete messages on the console.
+This section describes how to delete messages stored in a topic on the console.
 
 .. important::
 
@@ -27,9 +24,8 @@ Before deleting a message, set the **auto.offset.reset** parameter in the code o
 
    If this parameter is set to **latest**, the producer may start to send messages to new partitions (if any) before the consumer resets to the initial offset. As a result, some messages will be lost.
 
-
-Deleting Kafka Messages
------------------------
+Procedure
+---------
 
 #. Log in to the console.
 
@@ -62,18 +58,18 @@ Deleting Kafka Messages
 
    .. table:: **Table 1** Parameters for deleting a message
 
-      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                         | Description                                                                                                                                       |
-      +===================================+===================================================================================================================================================+
-      | Partition                         | Select the ID of the partition where the message is located.                                                                                      |
-      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Offset                            | Enter the offset. Data before this offset will be deleted.                                                                                        |
-      |                                   |                                                                                                                                                   |
-      |                                   | .. note::                                                                                                                                         |
-      |                                   |                                                                                                                                                   |
-      |                                   |    -  If **Offset** is set to **-1**, all messages in the partition will be deleted.                                                              |
-      |                                   |    -  If the offset you entered is not between the earliest offset and the latest offset of the specified partition, no messages will be deleted. |
-      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                                                                                                                                                     |
+      +===================================+=================================================================================================================================================================================================================================+
+      | Partition                         | Select the ID of the partition where the message is located.                                                                                                                                                                    |
+      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Offset                            | Enter an offset. The data after the earliest offset and before this offset will be deleted. For example, if the earliest offset is 2 and the entered offset is 5, the messages whose offset ranges from 2 to 4 will be deleted. |
+      |                                   |                                                                                                                                                                                                                                 |
+      |                                   | .. note::                                                                                                                                                                                                                       |
+      |                                   |                                                                                                                                                                                                                                 |
+      |                                   |    -  If **Offset** is set to **-1**, all messages in the partition will be deleted.                                                                                                                                            |
+      |                                   |    -  If the offset you entered is not between the earliest offset and the latest offset of the specified partition, no messages will be deleted.                                                                               |
+      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    To delete messages from multiple partitions, click **Add Partition** and specify the partition and offset for the messages to be deleted. 10 partitions can be deleted at most at a time.
 

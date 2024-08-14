@@ -55,9 +55,8 @@ This section describes the alarm rules of some metrics and how to configure them
    |                         |                           |                  | Alarm severity: major                                                                                                                                                                                             |                                                                                                    |                                                                                                                                                                                                                                                                                                                            |
    +-------------------------+---------------------------+------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-
-Configuring a Kafka Alarm Rule
-------------------------------
+Procedure
+---------
 
 #. Log in to the console.
 
@@ -69,11 +68,12 @@ Configuring a Kafka Alarm Rule
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
 
-#. In the row containing the desired instance, click **View Metric**.
+#. Go to the monitoring page in either of the following ways:
 
-   You are redirected to the Cloud Eye console page displaying metrics of the selected instance.
+   -  Click **View Metric** in the row containing the desired Kafka instance.
+   -  Click the desired Kafka instance to go to the instance details page. Choose **Monitoring** in the navigation pane.
 
-#. Hover the mouse pointer over a metric and click |image2| to create an alarm rule for the metric.
+#. Hover the mouse pointer over a metric and click |image2| to create an alarm rule for the metric. The **Create Alarm Rule** page is displayed.
 
 #. Specify the alarm details.
 
@@ -81,7 +81,7 @@ Configuring a Kafka Alarm Rule
 
    a. Set the alarm name and description.
 
-   b. Specify the alarm policy and alarm severity.
+   b. Set the alarm policy.
 
       As shown in the following figure, if the original disk capacity usage is equal to or higher than 85% for three consecutive periods, an alarm is generated. If the alarm is not handled on time, an alarm notification is sent.
 
@@ -91,7 +91,9 @@ Configuring a Kafka Alarm Rule
 
          **Figure 1** Setting the alarm policy and alarm severity
 
-   c. Set the alarm notification configurations. If you enable **Alarm Notification**, specify **Notification Window**, **Notification Object**, and **Trigger Condition**.
+   c. Set the alarm notification configurations.
+
+      If you enable **Alarm Notification**, specify **Notification Window**, **Notification Object**, and **Trigger Condition**.
 
    d. Click **Create**.
 

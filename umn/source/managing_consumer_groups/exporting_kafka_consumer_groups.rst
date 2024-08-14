@@ -5,14 +5,10 @@
 Exporting Kafka Consumer Groups
 ===============================
 
-Scenario
---------
+You can export a list of consumer groups in a Kafka instance.
 
-Export the consumer group list from the console.
-
-
-Exporting Kafka Consumer Groups
--------------------------------
+Procedure
+---------
 
 #. Log in to the console.
 #. Click |image1| in the upper left corner to select a region.

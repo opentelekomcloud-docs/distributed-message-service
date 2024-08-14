@@ -5,13 +5,10 @@
 Creating a Kafka Instance
 =========================
 
-Scenario
---------
-
 Kafka instances are tenant-exclusive, and physically isolated in deployment. You can customize the computing capabilities and storage space of a Kafka instance as required.
 
-Prerequisites
--------------
+Preparing Instance Dependencies
+-------------------------------
 
 Before creating a Kafka instance, prepare the resources listed in :ref:`Table 1 <kafka-ug-180604013__table121034152119>`.
 
@@ -30,7 +27,7 @@ Before creating a Kafka instance, prepare the resources listed in :ref:`Table 1 
    |                       |                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                    |
    |                       | Before accessing a Kafka instance, configure security groups based on the access mode. For details, see :ref:`Table 2 <kafka-ug-180604012__table161395381402>`. |                                                                                                                                                                                                                                                                                                                                                    |
    +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | EIP                   | To create a Kafka instance and access it over a public network, create EIPs in advance.                                                                         | For details about how to create an EIP, see `Assigning an EIP <https://docs.otc.t-systems.com/en-us/usermanual/eip/eip_0002.html>`__.                                                                                                                                                                                                              |
+   | EIP                   | To access a Kafka instance on a client over a public network, create EIPs in advance.                                                                           | For details about how to create an EIP, see `Assigning an EIP <https://docs.otc.t-systems.com/en-us/usermanual/eip/eip_0002.html>`__.                                                                                                                                                                                                              |
    |                       |                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                    |
    |                       | Note the following when creating EIPs:                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                    |
    |                       |                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                    |
@@ -38,14 +35,13 @@ Before creating a Kafka instance, prepare the resources listed in :ref:`Table 1 
    |                       | -  The number of EIPs must be the same as the number of Kafka instance brokers.                                                                                 |                                                                                                                                                                                                                                                                                                                                                    |
    |                       | -  **The Kafka console cannot identify IPv6 EIPs.**                                                                                                             |                                                                                                                                                                                                                                                                                                                                                    |
    +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | KMS key               | To encrypt the disk for a Kafka instance, prepare a KMS key.                                                                                                    | For details about how to create a KMS key, see `Creating a Key <https://docs.otc.t-systems.com/en-us/usermanual/kms/dew_01_0178.html>`__.                                                                                                                                                                                                          |
+   | KMS key               | To encrypt the disk for a Kafka instance, create a KMS key.                                                                                                     | For details about how to create a KMS key, see `Creating a Key <https://docs.otc.t-systems.com/en-us/usermanual/kms/dew_01_0178.html>`__.                                                                                                                                                                                                          |
    |                       |                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                    |
    |                       | The KMS key must be created in the same region as the Kafka instance.                                                                                           |                                                                                                                                                                                                                                                                                                                                                    |
    +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-
-Creating a Kafka Instance
--------------------------
+Procedure
+---------
 
 #. Log in to the console.
 
@@ -57,7 +53,17 @@ Creating a Kafka Instance
 
 #. Click **Create Instance** in the upper right corner of the page.
 
-#. Specify **Region**, **Project**, and **AZ**.
+#. Select a region.
+
+   DMS for Kafka instances in different regions cannot communicate with each other over an intranet. Select a nearest location for low latency and fast access.
+
+#. Select a **Project**.
+
+   Projects isolate compute, storage, and network resources across geographical regions. For each region, a preset project is available.
+
+#. Select an **AZ**.
+
+   An AZ is a physical region where resources use independent power supply and networks. AZs are physically isolated but interconnected through an internal network.
 
    Select one AZ or at least three AZs.
 
@@ -69,80 +75,73 @@ Creating a Kafka Instance
 
    This parameter is for enterprise users. An enterprise project manages cloud resources. The enterprise project management service unifies cloud resources in projects, and resources and members in a project. The default project is **default**.
 
-#. Configure the following instance parameters:
+#. Configure the following instance specifications:
 
    **Specifications**: Select **Cluster** or **Single-node**.
 
-   -  If you select **Cluster**, specify the version, broker flavor and quantity, disk type, and storage space to be supported by the cluster Kafka instance as required. Cluster instances support Kafka versions 2.3.0, 2.7, and 3.x.
+   -  If you select **Cluster**, specify the version, broker flavor and quantity, disk type, and storage space to be supported by the cluster Kafka instance as required.
+
+      a. **Version**: Cluster instances support Kafka 2.3.0, 2.7, and 3.x. **The version cannot be changed once the instance is created.**
+
+      b. **CPU Architecture**: The x86 architecture is supported.
+
+      c. **Broker Flavor**: Select a broker flavor that best fit your needs.
+
+         Maximum number of partitions per broker x Number of brokers = Maximum number of partitions of an instance. If the total number of partitions of all topics exceeds the upper limit of partitions, topic creation fails.
+
+      d. For **Brokers**, specify the broker quantity. A 3.x instance can only have three brokers (not changeable).
+
+      e. **Storage space per broker**: Disk type and size for storing the instance data. **The disk type cannot be changed once the Kafka instance is created.**
+
+         The storage space is consumed by message replicas, logs, and metadata. Specify the storage space based on the expected service message size, the number of replicas, and the reserved disk space. Each Kafka broker reserves 33 GB disk space for storing logs and metadata.
+
+         Disks are formatted when an instance is created. As a result, the actual available disk space is 93% to 95% of the total disk space.
+
+         The disk type can be high I/O or ultra-high I/O. For more information, see `Disk Types and Performance <https://docs.otc.t-systems.com/en-us/usermanual/evs/en-us_topic_0014580744.html>`__.
+
+         Each broker of a 3.x instance can only have 100 GB storage space (not changeable).
+
+      f. **Disk Encryption**: Specify whether to enable disk encryption.
+
+         Enabling disk encryption improves data security, but slows down disk read/write. Disk encryption depends on Key Management Service (KMS). If you enable disk encryption, select a KMS key. **This parameter cannot be modified once the Kafka instance is created.**
+
+      g. **Capacity Threshold Policy**: Policy used when the disk usage reaches the threshold. The capacity threshold is 95%.
+
+         -  **Automatically delete**: Messages can be created and retrieved, but 10% of the earliest messages will be deleted to ensure sufficient disk space. This policy is suitable for scenarios where no service interruption can be tolerated. Data may be lost.
+         -  **Stop production**: New messages cannot be created, but existing messages can still be retrieved. This policy is suitable for scenarios where no data loss can be tolerated.
+
    -  Single-node: Create a Kafka 2.7 instance with one broker. For details about single-node instances, see :ref:`Comparing Single-node and Cluster Kafka Instances <kafka-pd-0052>`.
 
-   **If you select Cluster, specify the version, broker flavor and quantity, disk type, and storage space to be supported by the Kafka instance as required.**
+      a. **Version**: Kafka version, which can only be 2.7.
 
-   a. **Version**: Cluster instances support Kafka 2.3.0, 2.7, and 3.x. **The version cannot be changed once the instance is created.**
+      b. **CPU Architecture**: The x86 architecture is supported.
 
-   b. **CPU Architecture**: The x86 architecture is supported.
+      c. **Broker Flavor**: Select a broker flavor that best fit your needs.
 
-   c. **Broker Flavor**: Select a broker flavor that best fit your needs.
+      d. **Brokers**: The instance can have only one broker.
 
-      Maximum number of partitions per broker x Number of brokers = Maximum number of partitions of an instance. If the total number of partitions of all topics exceeds the upper limit of partitions, topic creation fails.
+      e. **Storage space per broker**: Disk type and size for storing the instance data. **The disk type cannot be changed once the Kafka instance is created.**
 
-   d. For **Brokers**, specify the broker quantity. A 3.x instance can only have three brokers (not changeable).
+         The storage space is consumed by message replicas, logs, and metadata. Specify the storage space based on the expected service message size, the number of replicas, and the reserved disk space. Each Kafka broker reserves 33 GB disk space for storing logs and metadata.
 
-   e. **Storage space per broker**: Disk type and size for storing the instance data.
+         Disks are formatted when an instance is created. As a result, the actual available disk space is 93% to 95% of the total disk space.
 
-      **The disk type cannot be changed once the Kafka instance is created.**
+         The disk type can be high I/O or ultra-high I/O. For more information, see `Disk Types and Performance <https://docs.otc.t-systems.com/en-us/usermanual/evs/en-us_topic_0014580744.html>`__.
 
-      The storage space is consumed by message replicas, logs, and metadata. Specify the storage space based on the expected service message size, the number of replicas, and the reserved disk space. Each Kafka broker reserves 33 GB disk space for storing logs and metadata.
+      f. **Disk Encryption**: Specify whether to enable disk encryption.
 
-      Disks are formatted when an instance is created. As a result, the actual available disk space is 93% to 95% of the total disk space.
+         Enabling disk encryption improves data security, but slows down disk read/write. Disk encryption depends on Key Management Service (KMS). If you enable disk encryption, select a KMS key. **This parameter cannot be modified once the Kafka instance is created.**
 
-      The disk supports high I/O and ultra-high I/O types. For more information, see `Disk Types and Performance <https://docs.otc.t-systems.com/en-us/usermanual/evs/en-us_topic_0014580744.html>`__.
+      g. **Capacity Threshold Policy**: Policy used when the disk usage reaches the threshold. The capacity threshold is 95%.
 
-      Each broker of a 3.x instance can only have 100 GB storage space (not changeable).
-
-   f. **Disk Encryption**: Specify whether to enable disk encryption.
-
-      Enabling disk encryption improves data security, but slows down disk read/write. Disk encryption depends on Key Management Service (KMS). If you enable disk encryption, select a KMS key. **This parameter cannot be modified once the Kafka instance is created.**
-
-   g. **Capacity Threshold Policy**: Policy used when the disk usage reaches the threshold. The capacity threshold is 95%.
-
-      -  **Automatically delete**: Messages can be created and retrieved, but 10% of the earliest messages will be deleted to ensure sufficient disk space. This policy is suitable for scenarios where no service interruption can be tolerated. Data may be lost.
-      -  **Stop production**: New messages cannot be created, but existing messages can still be retrieved. This policy is suitable for scenarios where no data loss can be tolerated.
-
-   **If you select Single-node, a v2.7 instance with one broker will be created.**
-
-   a. **Version**: Kafka version, which can only be 2.7.
-
-   b. **CPU Architecture**: The x86 architecture is supported.
-
-   c. **Broker Flavor**: Select a broker flavor that best fit your needs.
-
-   d. **Brokers**: The instance can have only one broker.
-
-   e. **Storage space per broker**: Disk type and size for storing the instance data.
-
-      **The disk type cannot be changed once the Kafka instance is created.**
-
-      The storage space is consumed by message replicas, logs, and metadata. Specify the storage space based on the expected service message size, the number of replicas, and the reserved disk space. Each Kafka broker reserves 33 GB disk space for storing logs and metadata.
-
-      Disks are formatted when an instance is created. As a result, the actual available disk space is 93% to 95% of the total disk space.
-
-      The disk supports high I/O and ultra-high I/O types. For more information, see `Disk Types and Performance <https://docs.otc.t-systems.com/en-us/usermanual/evs/en-us_topic_0014580744.html>`__.
-
-   f. **Disk Encryption**: Specify whether to enable disk encryption.
-
-      Enabling disk encryption improves data security, but slows down disk read/write. Disk encryption depends on Key Management Service (KMS). If you enable disk encryption, select a KMS key. **This parameter cannot be modified once the Kafka instance is created.**
-
-   g. **Capacity Threshold Policy**: Policy used when the disk usage reaches the threshold. The capacity threshold is 95%.
-
-      -  **Automatically delete**: Messages can be created and retrieved, but 10% of the earliest messages will be deleted to ensure sufficient disk space. This policy is suitable for scenarios where no service interruption can be tolerated. Data may be lost.
-      -  **Stop production**: New messages cannot be created, but existing messages can still be retrieved. This policy is suitable for scenarios where no data loss can be tolerated.
+         -  **Automatically delete**: Messages can be created and retrieved, but 10% of the earliest messages will be deleted to ensure sufficient disk space. This policy is suitable for scenarios where no service interruption can be tolerated. Data may be lost.
+         -  **Stop production**: New messages cannot be created, but existing messages can still be retrieved. This policy is suitable for scenarios where no data loss can be tolerated.
 
 
-   .. figure:: /_static/images/en-us_image_0000001756349630.png
-      :alt: **Figure 1** Single-node instances
+      .. figure:: /_static/images/en-us_image_0000001756349630.png
+         :alt: **Figure 1** Single-node instance specifications
 
-      **Figure 1** Single-node instances
+         **Figure 1** Single-node instance specifications
 
 #. Configure the instance network parameters.
 
@@ -208,49 +207,65 @@ Creating a Kafka Instance
 
    .. table:: **Table 3** Ciphertext access parameters
 
-      +-----------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter             | Value                 | Description                                                                                                                                                                                                                |
-      +=======================+=======================+============================================================================================================================================================================================================================+
-      | Security Protocol     | SASL_SSL              | SASL is used for authentication. Data is encrypted with SSL certificates for high-security transmission.                                                                                                                   |
-      |                       |                       |                                                                                                                                                                                                                            |
-      |                       |                       | SCRAM-SHA-512 is enabled by default. To use PLAIN, enable **SASL/PLAIN**.                                                                                                                                                  |
-      |                       |                       |                                                                                                                                                                                                                            |
-      |                       |                       | **What are SCRAM-SHA-512 and PLAIN mechanisms?**                                                                                                                                                                           |
-      |                       |                       |                                                                                                                                                                                                                            |
-      |                       |                       | -  SCRAM-SHA-512: uses the hash algorithm to generate credentials for usernames and passwords to verify identities. SCRAM-SHA-512 is more secure than PLAIN.                                                               |
-      |                       |                       | -  PLAIN: a simple username and password verification mechanism.                                                                                                                                                           |
-      +-----------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      |                       | SASL_PLAINTEXT        | SASL is used for authentication. Data is transmitted in plaintext for high performance.                                                                                                                                    |
-      |                       |                       |                                                                                                                                                                                                                            |
-      |                       |                       | SCRAM-SHA-512 is enabled by default. To use PLAIN, enable **SASL/PLAIN**. SCRAM-SHA-512 authentication is recommended for plaintext transmission.                                                                          |
-      +-----------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | SASL/PLAIN            | ``-``                 | -  If **SASL/PLAIN** is disabled, the SCRAM-SHA-512 mechanism is used for username and password authentication.                                                                                                            |
-      |                       |                       | -  If **SASL/PLAIN** is enabled, both the SCRAM-SHA-512 and PLAIN mechanisms are supported. You can select either of them as required.                                                                                     |
-      |                       |                       |                                                                                                                                                                                                                            |
-      |                       |                       | The **SASL/PLAIN** setting cannot be changed once ciphertext access is enabled.                                                                                                                                            |
-      +-----------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Username and Password | ``-``                 | Username and password used by the client to connect to the Kafka instance.                                                                                                                                                 |
-      |                       |                       |                                                                                                                                                                                                                            |
-      |                       |                       | A username should contain 4 to 64 characters, start with a letter, and contain only letters, digits, hyphens (-), and underscores (_).                                                                                     |
-      |                       |                       |                                                                                                                                                                                                                            |
-      |                       |                       | A password must meet the following requirements:                                                                                                                                                                           |
-      |                       |                       |                                                                                                                                                                                                                            |
-      |                       |                       | -  Contains 8 to 32 characters.                                                                                                                                                                                            |
-      |                       |                       | -  Contains at least three types of the following characters: uppercase letters, lowercase letters, digits, and special characters \`~! @#$\ ``%^&*()-_=+\|[{}];:'",<.>?`` and spaces, and cannot start with a hyphen (-). |
-      |                       |                       | -  Cannot be the username spelled forwards or backwards.                                                                                                                                                                   |
-      |                       |                       |                                                                                                                                                                                                                            |
-      |                       |                       | The username cannot be changed once ciphertext access is enabled.                                                                                                                                                          |
-      +-----------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      +---------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                 | Value                 | Description                                                                                                                                                                                                              |
+      +===========================+=======================+==========================================================================================================================================================================================================================+
+      | Security Protocol         | SASL_SSL              | SASL is used for authentication. Data is encrypted with SSL certificates for high-security transmission.                                                                                                                 |
+      |                           |                       |                                                                                                                                                                                                                          |
+      |                           |                       | SCRAM-SHA-512 is enabled by default. To use PLAIN, enable **SASL/PLAIN**.                                                                                                                                                |
+      |                           |                       |                                                                                                                                                                                                                          |
+      |                           |                       | **What are SCRAM-SHA-512 and PLAIN mechanisms?**                                                                                                                                                                         |
+      |                           |                       |                                                                                                                                                                                                                          |
+      |                           |                       | -  SCRAM-SHA-512: uses the hash algorithm to generate credentials for usernames and passwords to verify identities. SCRAM-SHA-512 is more secure than PLAIN.                                                             |
+      |                           |                       | -  PLAIN: a simple username and password verification mechanism.                                                                                                                                                         |
+      +---------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      |                           | SASL_PLAINTEXT        | SASL is used for authentication. Data is transmitted in plaintext for high performance.                                                                                                                                  |
+      |                           |                       |                                                                                                                                                                                                                          |
+      |                           |                       | SCRAM-SHA-512 is enabled by default. To use PLAIN, enable **SASL/PLAIN**. SCRAM-SHA-512 authentication is recommended for plaintext transmission.                                                                        |
+      +---------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Cross-VPC Access Protocol | ``-``                 | -  When **Plaintext Access** is enabled and **Ciphertext Access** is disabled, **PLAINTEXT** is used for **Cross-VPC Access Protocol**.                                                                                  |
+      |                           |                       | -  When **Ciphertext Access** is enabled and **Security Protocol** is **SASL_SSL**, **SASL_SSL** is used for **Cross-VPC Access Protocol**.                                                                              |
+      |                           |                       | -  When **Ciphertext Access** is enabled and **Security Protocol** is **SASL_PLAINTEXT**, **SASL_PLAINTEXT** is used for **Cross-VPC Access Protocol**.                                                                  |
+      |                           |                       |                                                                                                                                                                                                                          |
+      |                           |                       | Fixed once the instance is created.                                                                                                                                                                                      |
+      +---------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | SASL/PLAIN                | ``-``                 | -  If **SASL/PLAIN** is disabled, the SCRAM-SHA-512 mechanism is used for username and password authentication.                                                                                                          |
+      |                           |                       | -  If **SASL/PLAIN** is enabled, both the SCRAM-SHA-512 and PLAIN mechanisms are supported. You can select either of them as required.                                                                                   |
+      |                           |                       |                                                                                                                                                                                                                          |
+      |                           |                       | The **SASL/PLAIN** setting cannot be changed once ciphertext access is enabled.                                                                                                                                          |
+      +---------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Username and Password     | ``-``                 | Username and password used by the client to connect to the Kafka instance.                                                                                                                                               |
+      |                           |                       |                                                                                                                                                                                                                          |
+      |                           |                       | A username should contain 4 to 64 characters, start with a letter, and contain only letters, digits, hyphens (-), and underscores (_).                                                                                   |
+      |                           |                       |                                                                                                                                                                                                                          |
+      |                           |                       | A password must meet the following requirements:                                                                                                                                                                         |
+      |                           |                       |                                                                                                                                                                                                                          |
+      |                           |                       | -  Contains 8 to 32 characters.                                                                                                                                                                                          |
+      |                           |                       | -  Cannot start with a hyphen (-) and must contain at least three of the following character types: uppercase letters, lowercase letters, digits, spaces, and special characters \`~! @#$\ ``%^&*()-_=+\|[{}];:'",<.>?`` |
+      |                           |                       | -  Cannot be the username spelled forwards or backwards.                                                                                                                                                                 |
+      |                           |                       |                                                                                                                                                                                                                          |
+      |                           |                       | The username cannot be changed once ciphertext access is enabled.                                                                                                                                                        |
+      +---------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. Click **Advanced Settings** to configure more parameters.
 
-   a. Configure **Automatic Topic Creation**.
+   a. Configure **Smart Connect**.
+
+      Smart Connect is used for data synchronization between heterogeneous systems. You can configure Smart Connect tasks to synchronize data between Kafka and another cloud service or between two Kafka instances.
+
+      **Enabling Smart Connect creates two brokers.**
+
+      .. note::
+
+         Single-node instances do not have this parameter. Kafka 3.x instances do not support this parameter.
+
+   b. Configure **Automatic Topic Creation**.
 
       This setting is disabled by default. You can enable or disable it as required.
 
-      If this option is enabled, a topic will be automatically created when a message is produced in or consumed from a topic that does not exist. By default, the topic has parameters listed in :ref:`Table 4 <kafka-ug-180604013__table46677586328>`.
+      If this option is enabled, a topic will be automatically created when a message is produced in or consumed from a topic that does not exist. The default topic parameters are listed in :ref:`Table 4 <kafka-ug-180604013__table46677586328>`.
 
-      After you change the value of the **log.retention.hours**, **default.replication.factor**, or **num.partitions** parameter, the value will be used in later topics that are automatically created. For example, assume that **num.partitions** is changed to 5, an automatically created topic has parameters listed in :ref:`Table 4 <kafka-ug-180604013__table46677586328>`.
+      After you change the value of the **log.retention.hours** (retention period), **default.replication.factor** (replica quantity), or **num.partitions** (partition quantity) parameter, the value will be used in later topics that are automatically created. For example, assume that **num.partitions** is changed to 5, an automatically created topic has parameters listed in :ref:`Table 4 <kafka-ug-180604013__table46677586328>`.
 
       .. _kafka-ug-180604013__table46677586328:
 
@@ -268,7 +283,7 @@ Creating a Kafka Instance
          Max. Message Size (bytes) 10,485,760    10,485,760
          ========================= ============= ==============
 
-   b. Specify **Tags**.
+   c. Specify **Tags**.
 
       Tags are used to identify cloud resources. When you have multiple cloud resources of the same type, you can use tags to classify them based on usage, owner, or environment.
 
@@ -277,7 +292,7 @@ Creating a Kafka Instance
 
       Up to 20 tags can be added to each Kafka instance. For details about the requirements on tags, see :ref:`Configuring Kafka Instance Tags <tagmanagement>`.
 
-   c. Enter a **Description** of the instance for 0-1024 characters.
+   d. Enter a **Description** of the instance for 0-1024 characters.
 
 #. Click **Create**.
 

@@ -45,7 +45,7 @@ Process Flow
 Example Custom Policies
 -----------------------
 
-You can create custom policies to supplement the system-defined policies of DMS for Kafka. For details about actions supported in custom policies, see "Permissions Policies and Supported Actions" in *Distributed Message Service API Reference*
+You can create custom policies to supplement the system-defined policies of DMS for Kafka. For details about actions supported in custom policies, see `Permissions Policies and Supported Actions <https://docs.otc.t-systems.com/en-us/api/dms/api-grant-policy.html>`__"Permissions Policies and Supported Actions" in *Distributed Message Service API Reference*
 
 To create a custom policy, choose either visual editor or JSON.
 

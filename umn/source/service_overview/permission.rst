@@ -5,7 +5,7 @@
 Permission
 ==========
 
-You can use Identity and Access Management (IAM) to manage DMS for Kafka permissions and control access to your resources. IAM provides identity authentication, permissions management, and access control.
+If you need to grant your enterprise personnel permission to access your DMS resources, use Identity and Access Management (IAM). IAM provides identity authentication, fine-grained permissions management, and access control. IAM helps you secure access to your cloud resources.
 
 You can create IAM users for your employees, and assign permissions to these users on a principle of least privilege (PoLP) basis to control their access to specific resource types. For example, you can create IAM users for software developers and assign specific permissions to allow them to use Kafka instance resources but prevent them from being able to delete resources or perform any high-risk operations.
 
@@ -25,7 +25,7 @@ DMS is a project-level service deployed and accessed in specific physical region
 You can grant permissions by using roles and policies.
 
 -  Roles: A type of coarse-grained authorization mechanism that provides only a limited number of service-level roles. When using roles to grant permissions, you also need to assign dependency roles. However, roles are not an ideal choice for fine-grained authorization and secure access control.
--  Policies: A fine-grained authorization strategy that defines permissions required to perform operations on specific cloud resources under certain conditions. This mechanism allows for more flexible policy-based authorization for more secure access control. For example, you can grant DMS for Kafka users only the permissions for managing instances. Most policies define permissions based on APIs. For the API actions supported by DMS for Kafka, see "Permissions Policies and Supported Actions" in the *Distributed Message Service API Reference*.
+-  Policies: A fine-grained authorization strategy that defines permissions required to perform operations on specific cloud resources under certain conditions. This mechanism allows for more flexible policy-based authorization for more secure access control. For example, you can grant DMS for Kafka users only the permissions for managing instances. Most policies define permissions based on APIs. For the API actions supported by DMS for Kafka, see `Permissions Policies and Supported Actions <https://docs.otc.t-systems.com/en-us/api/dms/api-grant-policy.html>`__.
 
 :ref:`Table 1 <productdescprivilegemanagement__en-us_topic_0170871404_table8486434381>` lists all the system-defined policies supported by DMS for Kafka.
 
@@ -33,45 +33,53 @@ You can grant permissions by using roles and policies.
 
 .. table:: **Table 1** System-defined policies supported by DMS for Kafka
 
-   +--------------------+---------------------------------------------------------------------------------------------------------------------+-----------------------+------------+
-   | Role/Policy Name   | Description                                                                                                         | Type                  | Dependency |
-   +====================+=====================================================================================================================+=======================+============+
-   | DMS FullAccess     | Administrator permissions for DMS. Users granted these permissions can perform all operations on DMS.               | System-defined policy | None       |
-   +--------------------+---------------------------------------------------------------------------------------------------------------------+-----------------------+------------+
-   | DMS UserAccess     | Common user permissions for DMS, excluding permissions for creating, modifying, deleting, and scaling up instances. | System-defined policy | None       |
-   +--------------------+---------------------------------------------------------------------------------------------------------------------+-----------------------+------------+
-   | DMS ReadOnlyAccess | Read-only permissions for DMS. Users granted these permissions can only view DMS data.                              | System-defined policy | None       |
-   +--------------------+---------------------------------------------------------------------------------------------------------------------+-----------------------+------------+
-   | DMS VPCAccess      | VPC operation permissions to assign to DMS agencies.                                                                | System-defined policy | None       |
-   +--------------------+---------------------------------------------------------------------------------------------------------------------+-----------------------+------------+
-   | DMS KMSAccess      | KMS operation permissions to assign to DMS agencies.                                                                | System-defined policy | None       |
-   +--------------------+---------------------------------------------------------------------------------------------------------------------+-----------------------+------------+
+   +----------------------------+---------------------------------------------------------------------------------------------------------------------+-----------------------+------------+
+   | Role/Policy Name           | Description                                                                                                         | Type                  | Dependency |
+   +============================+=====================================================================================================================+=======================+============+
+   | DMS FullAccess             | Administrator permissions for DMS. Users granted these permissions can perform all operations on DMS.               | System-defined policy | None       |
+   +----------------------------+---------------------------------------------------------------------------------------------------------------------+-----------------------+------------+
+   | DMS UserAccess             | Common user permissions for DMS, excluding permissions for creating, modifying, deleting, and scaling up instances. | System-defined policy | None       |
+   +----------------------------+---------------------------------------------------------------------------------------------------------------------+-----------------------+------------+
+   | DMS ReadOnlyAccess         | Read-only permissions for DMS. Users granted these permissions can only view DMS data.                              | System-defined policy | None       |
+   +----------------------------+---------------------------------------------------------------------------------------------------------------------+-----------------------+------------+
+   | DMS VPCAccess              | VPC operation permissions to assign to DMS agencies.                                                                | System-defined policy | None       |
+   +----------------------------+---------------------------------------------------------------------------------------------------------------------+-----------------------+------------+
+   | DMS KMSAccess              | KMS operation permissions to assign to DMS agencies.                                                                | System-defined policy | None       |
+   +----------------------------+---------------------------------------------------------------------------------------------------------------------+-----------------------+------------+
+   | DMS ELBAccess              | ELB operation permissions to assign to DMS agencies.                                                                | System-defined policy | None       |
+   +----------------------------+---------------------------------------------------------------------------------------------------------------------+-----------------------+------------+
+   | DMSAgencyCheckAccessPolicy | IAM operation permissions to assign to DMS agencies.                                                                | System-defined policy | None       |
+   +----------------------------+---------------------------------------------------------------------------------------------------------------------+-----------------------+------------+
 
 .. note::
 
    System-defined policies contain OBS actions. Due to data caching, the policies take effect five minutes after they are attached to a user, user group, or enterprise project.
 
-:ref:`Table 2 <productdescprivilegemanagement__en-us_topic_0170871404_table12985122891519>` lists the common operations supported by each DMS for Kafka system policy. Select the policies as required.
+:ref:`Table 2 <productdescprivilegemanagement__table78481752192710>` lists the common operations supported by each DMS for Kafka system policy. Select the policies as required.
 
-.. _productdescprivilegemanagement__en-us_topic_0170871404_table12985122891519:
+.. _productdescprivilegemanagement__table78481752192710:
 
-.. table:: **Table 2** Common operations supported by each system-defined policy of DMS for Kafka
+.. table:: **Table 2** Common operations supported by system-defined policies
 
-   +-----------------------------------+----------------+----------------+--------------------+---------------+---------------+
-   | Operation                         | DMS FullAccess | DMS UserAccess | DMS ReadOnlyAccess | DMS VPCAccess | DMS KMSAccess |
-   +===================================+================+================+====================+===============+===============+
-   | Creating instances                | Y              | x              | x                  | x             | x             |
-   +-----------------------------------+----------------+----------------+--------------------+---------------+---------------+
-   | Modifying instances               | Y              | x              | x                  | x             | x             |
-   +-----------------------------------+----------------+----------------+--------------------+---------------+---------------+
-   | Deleting instances                | Y              | x              | x                  | x             | x             |
-   +-----------------------------------+----------------+----------------+--------------------+---------------+---------------+
-   | Modifying instance specifications | Y              | x              | x                  | x             | x             |
-   +-----------------------------------+----------------+----------------+--------------------+---------------+---------------+
-   | Restarting instances              | Y              | Y              | x                  | x             | x             |
-   +-----------------------------------+----------------+----------------+--------------------+---------------+---------------+
-   | Querying instance information     | Y              | Y              | Y                  | x             | x             |
-   +-----------------------------------+----------------+----------------+--------------------+---------------+---------------+
+   +-----------------------------------+----------------+----------------+--------------------+---------------+---------------+---------------+----------------------------+
+   | Operation                         | DMS FullAccess | DMS UserAccess | DMS ReadOnlyAccess | DMS VPCAccess | DMS KMSAccess | DMS ELBAccess | DMSAgencyCheckAccessPolicy |
+   +===================================+================+================+====================+===============+===============+===============+============================+
+   | Creating an instance              | Y              | x              | x                  | x             | x             | x             | x                          |
+   +-----------------------------------+----------------+----------------+--------------------+---------------+---------------+---------------+----------------------------+
+   | Modifying instances               | Y              | x              | x                  | x             | x             | x             | x                          |
+   +-----------------------------------+----------------+----------------+--------------------+---------------+---------------+---------------+----------------------------+
+   | Deleting instances                | Y              | x              | x                  | x             | x             | x             | x                          |
+   +-----------------------------------+----------------+----------------+--------------------+---------------+---------------+---------------+----------------------------+
+   | Modifying instance specifications | Y              | x              | x                  | x             | x             | x             | x                          |
+   +-----------------------------------+----------------+----------------+--------------------+---------------+---------------+---------------+----------------------------+
+   | Enabling Smart Connect            | Y              | x              | x                  | x             | x             | x             | x                          |
+   +-----------------------------------+----------------+----------------+--------------------+---------------+---------------+---------------+----------------------------+
+   | Creating a Smart Connect task     | Y              | Y              | x                  | x             | x             | x             | x                          |
+   +-----------------------------------+----------------+----------------+--------------------+---------------+---------------+---------------+----------------------------+
+   | Restarting instances              | Y              | Y              | x                  | x             | x             | x             | x                          |
+   +-----------------------------------+----------------+----------------+--------------------+---------------+---------------+---------------+----------------------------+
+   | Querying instance information     | Y              | Y              | Y                  | x             | x             | x             | x                          |
+   +-----------------------------------+----------------+----------------+--------------------+---------------+---------------+---------------+----------------------------+
 
 Fine-grained Authorization
 --------------------------

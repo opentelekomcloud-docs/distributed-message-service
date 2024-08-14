@@ -5,9 +5,6 @@
 Modifying Kafka Instance Specifications
 =======================================
 
-Scenario
---------
-
 After creating a Kafka instance, you can increase its specifications. :ref:`Table 1 <kafka-ug-181221001__table13500164702214>` lists available modification options. Only one object can be modified per operation: broker quantity, bandwidth, storage space, or broker flavor.
 
 .. _kafka-ug-181221001__table13500164702214:
@@ -96,12 +93,10 @@ When you scale up the broker flavor, a rolling restart is performed on brokers. 
 
    **Figure 2** Process of increasing a broker flavor
 
-
-Modifying Kafka Instance Specifications
----------------------------------------
+Procedure
+---------
 
 #. Log in to the console.
-
 #. Click |image1| in the upper left corner to select a region.
 
    .. note::
@@ -109,14 +104,10 @@ Modifying Kafka Instance Specifications
       Select the region where your Kafka instance is located.
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
-
 #. In the row containing the desired instance, choose **More** > **Modify Specifications** in the **Operation** column.
-
 #. Specify the storage space, number of brokers, or broker flavor as required.
 
-   **To modify old specifications, perform the following steps:**
-
-   -  Increase the bandwidth.
+   -  **Increase the bandwidth (for earlier instances).**
 
       a. Specify a new bandwidth and click **Next**.
       b. Confirm the configurations and click **Submit**.
@@ -132,7 +123,7 @@ Modifying Kafka Instance Specifications
 
          After increasing the bandwidth, add the IP address of the new broker to the client connection configuration to improve reliability.
 
-   -  Expand the storage space.
+   -  **Expand the storage space (for earlier instances).**
 
       a. Specify a new storage space and click **Next**.
       b. Confirm the configurations and click **Submit**.
@@ -144,9 +135,7 @@ Modifying Kafka Instance Specifications
 
             Instances in the **Change failed** state cannot be restarted, modified, or deleted. After the instance status automatically changes from **Change failed** to **Running**, you can continue to perform operations on the instance. If the status does not change to **Running**, contact customer service.
 
-   **To modify new specifications, perform the following steps:**
-
-   -  Expand the storage space.
+   -  **Expand the storage space (for later instances).**
 
       a. For **Change By**, select **Storage**. For **Storage Space per Broker**, specify a new storage space, and click **Next**. The storage space range varies by instance specifications. For details, see :ref:`Table 1 <kafka-specification__table152020206204>`.
       b. Confirm the configurations and click **Submit**.
@@ -158,7 +147,7 @@ Modifying Kafka Instance Specifications
 
             Instances in the **Change failed** state cannot be restarted, modified, or deleted. After the instance status automatically changes from **Change failed** to **Running**, you can continue to perform operations on the instance. If the status does not change to **Running**, contact customer service.
 
-   -  Add brokers.
+   -  **Increase the broker quantity (for later instances).**
 
       a. For **Change By**, select **Brokers**. Then, enter the number of brokers and click **Next**. The broker quantity range varies by instance specifications. For details, see :ref:`Table 1 <kafka-specification__table152020206204>`. If public access has been enabled, configure EIPs for the new brokers. Then click **Next**.
       b. Confirm the configurations and click **Submit**.
@@ -174,7 +163,7 @@ Modifying Kafka Instance Specifications
 
          After adding brokers, add the IP addresses of the new brokers to the client connection configuration to improve reliability.
 
-   -  Increase the broker flavor.
+   -  **Increase the broker flavor (for later instances).**
 
       a. For **Change By**, select **Broker Flavor**.
 

@@ -7,7 +7,7 @@ Changing Kafka Message Retention Period
 
 Aging time is a period that messages in the topic are retained for. Consumers must retrieve messages before this period ends. Otherwise, the messages will be deleted and can no longer be retrieved.
 
-After creating a topic, you can change its aging time based on service requirements. Changing the aging time does not affect services. The default aging time is 72 hours.
+The topic retention period is 72 hours by default, and can be changed later as required. Changing the aging time does not affect services.
 
 You can change the aging time in either of the following ways:
 
@@ -18,9 +18,8 @@ You can change the aging time in either of the following ways:
 
    The **log.retention.hours** parameter takes effect only for topics that have no aging time configured. If there is aging time configured for a topic, it overrides the **log.retention.hours** parameter. For example, if the aging time of Topic01 is set to 60 hours and **log.retention.hours** is set to 72 hours, the actual aging time of Topic01 is 60 hours.
 
-
-Changing Kafka Message Retention Period
----------------------------------------
+Procedure
+---------
 
 #. Log in to the console.
 #. Click |image1| in the upper left corner to select a region.

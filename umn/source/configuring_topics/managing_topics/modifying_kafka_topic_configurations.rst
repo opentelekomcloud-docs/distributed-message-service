@@ -7,6 +7,10 @@ Modifying Kafka Topic Configurations
 
 This section describes how to modify following configurations of a Kafka topic on the console.
 
+.. note::
+
+   Modifying **Synchronous Replication**, **Synchronous Flushing**, **Message Timestamp**, or **Max. Message Size** does not require instance restart.
+
 .. table:: **Table 1** Kafka topic configuration parameters
 
    +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -31,12 +35,8 @@ This section describes how to modify following configurations of a Kafka topic o
    |                                   | If this value is increased and the consumer version is earlier than 0.10.2, the consumers' fetch size must also be increased so that they can obtain the latest value. |
    +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-.. note::
-
-   Modifying **Synchronous Replication**, **Synchronous Flushing**, **Message Timestamp**, or **Max. Message Size** does not require instance restart.
-
-Modifying Topic Configurations
-------------------------------
+Procedure
+---------
 
 #. Log in to the console.
 #. Click |image1| in the upper left corner to select a region.

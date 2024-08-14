@@ -25,11 +25,11 @@ Instance Metrics
    +--------------------+----------------------+-----------------------------------------------------------------------------+-----------------+------------------+------------------------------+
    | Metric ID          | Metric Name          | Description                                                                 | Value Range     | Monitored Object | Monitoring Period (Raw Data) |
    +====================+======================+=============================================================================+=================+==================+==============================+
-   | current_partitions | Partitions           | Number of used partitions in the instance                                   | 0~100000        | Kafka instance   | 1 minute                     |
+   | current_partitions | Partitions           | Number of used partitions in the instance                                   | 0-100,000       | Kafka instance   | 1 minute                     |
    |                    |                      |                                                                             |                 |                  |                              |
    |                    |                      | Unit: count                                                                 |                 |                  |                              |
    +--------------------+----------------------+-----------------------------------------------------------------------------+-----------------+------------------+------------------------------+
-   | current_topics     | Topics               | Number of created topics in the instance                                    | 0~100000        | Kafka instance   | 1 minute                     |
+   | current_topics     | Topics               | Number of created topics in the instance                                    | 0-100,000       | Kafka instance   | 1 minute                     |
    |                    |                      |                                                                             |                 |                  |                              |
    |                    |                      | Unit: count                                                                 |                 |                  |                              |
    +--------------------+----------------------+-----------------------------------------------------------------------------+-----------------+------------------+------------------------------+
@@ -40,6 +40,10 @@ Instance Metrics
 
 Broker Metrics
 --------------
+
+Enabling Smart Connect for a Kafka instance creates two or more brokers. On the **By Broker** tab page, select "connector" for **Node Type** for Smart Connect broker metrics, or select "broker" for **Node Type** for Kafka instance broker metrics.
+
+Metrics of Smart Connect brokers: disk capacity usage, memory usage, JVM heap memory usage, node alive status, and connections.
 
 .. table:: **Table 2** Broker metrics
 
@@ -272,6 +276,35 @@ Consumer Group Metrics
    |                            |                             |    -  On the Cloud Eye console, this metric is available only when **Queues** is set to **All queues** on the **Consumer Groups** tab page.                                                                                         |                     |                                    |                              |
    |                            |                             |    -  On the **Monitoring** page of the DMS console, this metric is available only when **Topic** is set to **All topics** on the **By Consumer Group** tab page.                                                                   |                     |                                    |                              |
    +----------------------------+-----------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------+------------------------------------+------------------------------+
+
+Smart Connect Metrics
+---------------------
+
+.. table:: **Table 5** Smart Connect metrics
+
+   +-----------------------------+------------------------------+----------------------------------------------------------------------------------------+--------------------+----------------------------------------+------------------------------+
+   | Metric ID                   | Metric Name                  | Description                                                                            | Value Range        | Monitored Object                       | Monitoring Period (Raw Data) |
+   +=============================+==============================+========================================================================================+====================+========================================+==============================+
+   | kafka_wait_synchronize_data | Kafka Data to Sync           | Data to synchronize in the Kafka migration task                                        | >= 0               | Smart Connect task of a Kafka instance | 1 minute                     |
+   |                             |                              |                                                                                        |                    |                                        |                              |
+   |                             |                              | Unit: count                                                                            |                    |                                        |                              |
+   +-----------------------------+------------------------------+----------------------------------------------------------------------------------------+--------------------+----------------------------------------+------------------------------+
+   | kafka_synchronize_rate      | Kafka Data Synced per Minute | Data synchronized per minute in the Kafka migration task                               | >= 0               | Smart Connect task of a Kafka instance | 1 minute                     |
+   |                             |                              |                                                                                        |                    |                                        |                              |
+   |                             |                              | Unit: count                                                                            |                    |                                        |                              |
+   +-----------------------------+------------------------------+----------------------------------------------------------------------------------------+--------------------+----------------------------------------+------------------------------+
+   | task_status                 | Task Status                  | Status of the current task                                                             | -  **0**: abnormal | Smart Connect task of a Kafka instance | 1 minute                     |
+   |                             |                              |                                                                                        | -  **1**: normal   |                                        |                              |
+   +-----------------------------+------------------------------+----------------------------------------------------------------------------------------+--------------------+----------------------------------------+------------------------------+
+   | message_delay               | Message Delay                | Time elapsed between when a message is sent from the source and received by the target | >= 0               | Smart Connect task of a Kafka instance | 1 minute                     |
+   |                             |                              |                                                                                        |                    |                                        |                              |
+   |                             |                              | Unit: ms                                                                               |                    |                                        |                              |
+   +-----------------------------+------------------------------+----------------------------------------------------------------------------------------+--------------------+----------------------------------------+------------------------------+
+
+.. note::
+
+   -  A Smart Connect task that bidirectionally copies Kafka data is split into two tasks for monitoring: *Smart Connect task name*\ **\_source_0** and *Smart Connect task name*\ **\_source_1**.
+   -  If all messages in a topic have aged before the next synchronization, there is no Kafka data to be synchronized. However, since the Kafka data synchronization metric uses the offset value that contains aged data, **Kafka Data Synced per Minute** will display the number of aged messages.
 
 Dimension
 ---------

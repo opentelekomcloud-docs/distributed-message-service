@@ -5,12 +5,7 @@
 Viewing and Modifying Basic Information of a Kafka Instance
 ===========================================================
 
-Scenario
---------
-
-This section describes how to view the details, and modify the basic information of a Kafka instance on the console.
-
-After creating a Kafka instance, you can modify some parameters of it as required, including the instance name, description, security group, and capacity threshold policy.
+After creating a Kafka instance, you can view the details or modify some parameters of it on the console as required. These parameters include the instance name, description, security group, and capacity threshold policy.
 
 .. note::
 

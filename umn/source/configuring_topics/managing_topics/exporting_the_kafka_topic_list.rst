@@ -12,8 +12,8 @@ Prerequisites
 
 :ref:`A topic <kafka-ug-180604018>` has been created.
 
-Exporting the Topic List
-------------------------
+Procedure
+---------
 
 #. Log in to the console.
 

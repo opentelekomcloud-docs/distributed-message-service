@@ -5,14 +5,10 @@
 Viewing Kafka Messages
 ======================
 
-Scenario
---------
-
 You can view the offset of different partitions, the message size, creation time, and body of messages in topics.
 
-
-Viewing Kafka Messages
-----------------------
+Procedure
+---------
 
 #. Log in to the console.
 

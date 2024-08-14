@@ -5,7 +5,7 @@
 Getting Started with Kafka for Message Production and Consumption
 =================================================================
 
-This section takes the example of creating a Kafka 2.7 instance (ciphertext access and SASL_SSL) and accessing it on the client (private network, within a virtual private cloud (VPC)) for message production and consumption to get you quickly started with Distributed Message Service (DMS).
+This section takes the example of creating a Kafka instance (ciphertext access and SASL_SSL) and accessing it on the client (private network, within a virtual private cloud (VPC)) for message production and consumption to get you quickly started with Distributed Message Service (DMS).
 
 
 .. figure:: /_static/images/en-us_image_0000001927807598.png
@@ -40,21 +40,25 @@ This section takes the example of creating a Kafka 2.7 instance (ciphertext acce
 Step 1: Preparations
 --------------------
 
-#. Before creating a Kafka instance, ensure that your account has permissions to perform operations on Kafka instances.
+#. Grant Kafka instance permissions.
 
-   To achieve fine-grained management of your cloud resources, create IAM user groups and users and grant specified permissions to the users. For more information, see :ref:`Creating a User and Granting DMS for Kafka Permissions <createuserandgrantpolicy>`.
+   To achieve fine-grained management of your cloud resources, create Identity and Access Management (IAM) user groups and users and grant specified permissions to the users. For more information, see :ref:`Creating a User and Granting DMS for Kafka Permissions <createuserandgrantpolicy>`.
 
 #. .. _kafka-qs-0409001__li79912171816:
 
-   Before creating a Kafka instance, ensure that a VPC and a subnet are available.
+   Create a VPC and subnet.
 
-   Configure the VPC and subnet for Kafka instances as required. You can use the current account's existing VPC and subnet, or create new ones. For details about how to create a VPC and a subnet, see `Creating a VPC <https://docs.otc.t-systems.com/en-us/usermanual/vpc/en-us_topic_0013935842.html>`__. Note that the VPC must be in the same region as the Kafka instance.
+   Before creating a Kafka instance, ensure that a VPC and a subnet are available. For details about how to create a VPC and a subnet, see `Creating a VPC <https://docs.otc.t-systems.com/en-us/usermanual/vpc/en-us_topic_0013935842.html>`__.
+
+   .. important::
+
+      The VPC must be created in the same region as the Kafka instance.
 
 #. .. _kafka-qs-0409001__li15466154716411:
 
-   Before creating a Kafka instance, ensure that a security group is available.
+   Create a security group and add security group rules.
 
-   Configure the security group for Kafka instances as required. You can use the current account's existing security groups, or create new ones. For details about how to create a security group, see `Creating a Security Group <https://docs.otc.t-systems.com/en-us/usermanual/vpc/en-us_topic_0013748715.html>`__.
+   Before creating a Kafka instance, ensure that a security group is available. For details about how to create a security group, see `Creating a Security Group <https://docs.otc.t-systems.com/en-us/usermanual/vpc/en-us_topic_0013748715.html>`__.
 
    To connect to Kafka instances, add the security group rules described in :ref:`Table 1 <kafka-qs-0409001__table161395381402>`. Other rules can be added based on site requirements.
 
@@ -72,9 +76,9 @@ Step 1: Preparations
 
       After a security group is created, it has a default inbound rule that allows communication among ECSs within the security group and a default outbound rule that allows all outbound traffic. If you access your Kafka instance using the private network within a VPC, you do not need to add the rules described in :ref:`Table 1 <kafka-qs-0409001__table161395381402>`.
 
-#. Before connecting to a Kafka instance, ensure that you have created an elastic cloud server (ECS) that has an EIP, installed the JDK, configured environment variables, and downloaded an open-source Kafka client. The following steps describe how to complete these preparations.
+#. Construct a client for message production and consumption.
 
-   A Linux ECS is taken as an example. For more information on how to install JDK and configure the environment variables for a Windows ECS, please search the Internet.
+   This section uses a Linux elastic cloud server (ECS) as the client. Before creating a Kafka instance, create an ECS with an EIP, install the JDK, configure environment variables, and download an open-source Kafka client.
 
    a. Log in to the console, click |image1| in the upper left corner, click **Elastic Cloud Server** under **Computing**, and then create an ECS.
 
@@ -108,10 +112,10 @@ Step 1: Preparations
 
          .. code-block::
 
-            export JAVA_HOME=/opt/java/jdk1.8.0_321
+            export JAVA_HOME=/root/jdk1.8.0_321
             export PATH=$JAVA_HOME/bin:$PATH
 
-         Change **/opt/java/jdk1.8.0_321** to the path where you install JDK.
+         Change **/root/jdk1.8.0_321** to the path where you install JDK.
 
       #. Press **Esc**. Enter the following line and press **Enter**. Save the **.bash_profile** file and exit.
 
@@ -156,7 +160,7 @@ Step 2: Create a Kafka Instance
 
 #. Log in to the DMS console, then click **Create Instance** in the upper right corner of the page.
 
-#. Specify the basic instance settings. For details, see :ref:`Table 2 <kafka-qs-0409001__table035715811538>`.
+#. Set basic instance information. :ref:`Table 2 <kafka-qs-0409001__table035715811538>` lists the configuration details.
 
    .. _kafka-qs-0409001__table035715811538:
 
@@ -236,33 +240,31 @@ Step 2: Create a Kafka Instance
 
    .. table:: **Table 4** Setting the instance access mode
 
-      +------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------+
-      | Parameter              | Sub-Parameter         | Description                                                                                                   |
-      +========================+=======================+===============================================================================================================+
-      | Private Network Access | Plaintext Access      | Disable it.                                                                                                   |
-      +------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------+
-      |                        | Ciphertext Access     | When this parameter is enabled, SASL authentication is required when a client connects to the Kafka instance. |
-      |                        |                       |                                                                                                               |
-      |                        |                       | a. **Ciphertext Access** is enabled.                                                                          |
-      |                        |                       | b. **SASL_SSL** is selected. **Username** and **Password** can be set.                                        |
-      |                        |                       | c. **SASL/PLAIN** is enabled.                                                                                 |
-      +------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------+
-      | Public Network Access  | ``-``                 | Skip it.                                                                                                      |
-      +------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------+
+      +------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter              | Sub-Parameter         | Description                                                                                                                                                                                                                   |
+      +========================+=======================+===============================================================================================================================================================================================================================+
+      | Private Network Access | Plaintext Access      | Disable it.                                                                                                                                                                                                                   |
+      +------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      |                        | Ciphertext Access     | When this parameter is enabled, SASL authentication is required when a client connects to the Kafka instance.                                                                                                                 |
+      |                        |                       |                                                                                                                                                                                                                               |
+      |                        |                       | a. **Ciphertext Access** is enabled.                                                                                                                                                                                          |
+      |                        |                       |                                                                                                                                                                                                                               |
+      |                        |                       | b. **SASL_SSL** is selected. **Username** and **Password** can be set. Enter "test" for the username. The username cannot be changed once ciphertext access is enabled.                                                       |
+      |                        |                       |                                                                                                                                                                                                                               |
+      |                        |                       |    A username should contain 4 to 64 characters, start with a letter, and contain only letters, digits, hyphens (-), and underscores (_).                                                                                     |
+      |                        |                       |                                                                                                                                                                                                                               |
+      |                        |                       |    A password must meet the following requirements:                                                                                                                                                                           |
+      |                        |                       |                                                                                                                                                                                                                               |
+      |                        |                       |    -  Contains 8 to 32 characters.                                                                                                                                                                                            |
+      |                        |                       |    -  Contains at least three types of the following characters: uppercase letters, lowercase letters, digits, and special characters \`~! @#$\ ``%^&*()-_=+\|[{}];:'",<.>?`` and spaces, and cannot start with a hyphen (-). |
+      |                        |                       |    -  Cannot be the username spelled forwards or backwards.                                                                                                                                                                   |
+      |                        |                       |                                                                                                                                                                                                                               |
+      |                        |                       | c. **SASL/PLAIN** is enabled.                                                                                                                                                                                                 |
+      +------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Public Network Access  | ``-``                 | Skip it.                                                                                                                                                                                                                      |
+      +------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-#. Click **Advanced Settings**. For more information, see :ref:`Table 5 <kafka-qs-0409001__table124961443104913>`.
-
-   .. _kafka-qs-0409001__table124961443104913:
-
-   .. table:: **Table 5** Advanced settings
-
-      ======================== ===========
-      Parameter                Description
-      ======================== ===========
-      Automatic Topic Creation Skip it.
-      Tags                     Skip it.
-      Description              Skip it.
-      ======================== ===========
+#. Skip **Advanced Settings**.
 
 #. Click **Create**.
 
@@ -273,11 +275,23 @@ Step 2: Create a Kafka Instance
    It takes 3 to 15 minutes to create an instance. During this period, the instance status is **Creating**.
 
    -  If the instance is created successfully, its status changes to **Running**.
-   -  If the instance is in the **Creation failed** state, delete it. Then create a new one. If the instance creation fails again, contact customer service.
+   -  If the instance is in the **Creation failed** state, delete it, and create a new one. If the instance creation fails again, contact customer service.
 
       .. note::
 
          Instances that fail to be created do not occupy other resources.
+
+#. After the instance is created, click its name to go to the instance details page.
+
+#. .. _kafka-qs-0409001__li1363923115616:
+
+   In the **Connection** area, view and record the connection address.
+
+
+   .. figure:: /_static/images/en-us_image_0000001987139953.png
+      :alt: **Figure 2** Kafka instance addresses (private network) for intra-VPC access
+
+      **Figure 2** Kafka instance addresses (private network) for intra-VPC access
 
 .. _kafka-qs-0409001__section1794732717149:
 
@@ -292,11 +306,11 @@ Step 3: Create a Topic
 
 #. .. _kafka-qs-0409001__li11652913193216:
 
-   Enter the topic name, specify other parameters by referring to :ref:`Table 6 <kafka-qs-0409001__table186364410350>`, and click **OK**.
+   Enter the topic name, specify other parameters by referring to :ref:`Table 5 <kafka-qs-0409001__table186364410350>`, and click **OK**.
 
    .. _kafka-qs-0409001__table186364410350:
 
-   .. table:: **Table 6** Topic parameters
+   .. table:: **Table 5** Topic parameters
 
       +-----------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Parameter                         | Description                                                                                                                                                                                                                          |
@@ -305,12 +319,12 @@ Step 3: Create a Topic
       |                                   |                                                                                                                                                                                                                                      |
       |                                   | The name must be different from preset topics:                                                                                                                                                                                       |
       |                                   |                                                                                                                                                                                                                                      |
-      |                                   | -  \_consumer_offsets                                                                                                                                                                                                                |
-      |                                   | -  \_transaction_state                                                                                                                                                                                                               |
-      |                                   | -  \_trace                                                                                                                                                                                                                           |
-      |                                   | -  \_connect-status                                                                                                                                                                                                                  |
-      |                                   | -  \_connect-configs                                                                                                                                                                                                                 |
-      |                                   | -  \_connect-offsets                                                                                                                                                                                                                 |
+      |                                   | -  \__consumer_offsets                                                                                                                                                                                                               |
+      |                                   | -  \__transaction_state                                                                                                                                                                                                              |
+      |                                   | -  \__trace                                                                                                                                                                                                                          |
+      |                                   | -  \__connect-status                                                                                                                                                                                                                 |
+      |                                   | -  \__connect-configs                                                                                                                                                                                                                |
+      |                                   | -  \__connect-offsets                                                                                                                                                                                                                |
       |                                   |                                                                                                                                                                                                                                      |
       |                                   | Cannot be changed once the topic is created.                                                                                                                                                                                         |
       |                                   |                                                                                                                                                                                                                                      |
@@ -343,20 +357,6 @@ Step 3: Create a Topic
 
 Step 4: Connect to a Kafka Instance to Produce and Consume Messages
 -------------------------------------------------------------------
-
-#. .. _kafka-qs-0409001__li9594336133814:
-
-   Obtain the instance connection address.
-
-   a. In the navigation pane, click **Basic Information**.
-
-   b. In the **Connection** area, view the connection address.
-
-
-      .. figure:: /_static/images/en-us_image_0000001926137265.png
-         :alt: **Figure 2** Kafka instance addresses (private network) for intra-VPC access
-
-         **Figure 2** Kafka instance addresses (private network) for intra-VPC access
 
 #. Prepare the file for production and consumption configuration.
 
@@ -395,7 +395,7 @@ Step 4: Connect to a Kafka Instance to Produce and Consume Messages
       Description:
 
       -  **username** and **password** are specified when enabling ciphertext access during instance creation.
-      -  **ssl.truststore.location** is the path for storing the certificate obtained in :ref:`2.b <kafka-qs-0409001__li193810310517>`.
+      -  **ssl.truststore.location** is the path for storing the certificate obtained in :ref:`1.b <kafka-qs-0409001__li193810310517>`.
       -  **ssl.truststore.password** is certified by the server, which must be set to **dms@kafka** and cannot be changed.
       -  **ssl.endpoint.identification.algorithm** decides whether to verify the certificate domain name. In this example, **leave this parameter blank, which indicates disabling domain name verification**.
 
@@ -409,12 +409,12 @@ Step 4: Connect to a Kafka Instance to Produce and Consume Messages
 
    .. code-block::
 
-      ./kafka-console-producer.sh --broker-list ${connection addr} --topic ${topic name} --producer.config ../config/producer.properties
+      ./kafka-console-producer.sh --broker-list ${connection address} --topic ${topic name} --producer.config ../config/producer.properties
 
    Description:
 
-   -  *{connection addr}*: the address obtained in :ref:`1 <kafka-qs-0409001__li9594336133814>`.
-   -  *{topic name}*: the topic name obtained in :ref:`4 <kafka-qs-0409001__li11652913193216>`.
+   -  *{connection address}*: the connection address obtained in :ref:`10 <kafka-qs-0409001__li1363923115616>`
+   -  *{topic name}*: the topic name obtained in :ref:`4 <kafka-qs-0409001__li11652913193216>`
 
    For example, **192.xxx.xxx.xxx:9093**, **192.xxx.xxx.xxx:9093**, **192.xxx.xxx.xxx:9093** are the connection addresses of the Kafka instance.
 
@@ -422,7 +422,7 @@ Step 4: Connect to a Kafka Instance to Produce and Consume Messages
 
    .. code-block:: console
 
-      [root@ecs-kafka bin]#./kafka-console-producer.sh --broker-list 192.xxx.xxx.xxx:9093,192.xxx.xxx.xxx:9093,192.xxx.xxx.xxx:9093  --topic topic-demo --producer.config ../config/producer.properties
+      [root@ecs-kafka bin]#./kafka-console-producer.sh --broker-list 192.xxx.xxx.xxx:9093,192.xxx.xxx.xxx:9093,192.xxx.xxx.xxx:9093  --topic topic-01 --producer.config ../config/producer.properties
       >Hello
       >DMS
       >Kafka!
@@ -434,18 +434,18 @@ Step 4: Connect to a Kafka Instance to Produce and Consume Messages
 
    .. code-block::
 
-      ./kafka-console-consumer.sh --bootstrap-server ${connection addr} --topic ${topic name} --from-beginning  --consumer.config ../config/consumer.properties
+      ./kafka-console-consumer.sh --bootstrap-server ${connection address} --topic ${topic name} --from-beginning  --consumer.config ../config/consumer.properties
 
    Description:
 
-   -  *{connection addr}*: the address obtained in :ref:`1 <kafka-qs-0409001__li9594336133814>`.
-   -  *{topic name}*: the topic name obtained in :ref:`4 <kafka-qs-0409001__li11652913193216>`.
+   -  *{connection address}*: the connection address obtained in :ref:`10 <kafka-qs-0409001__li1363923115616>`
+   -  *{topic name}*: the topic name obtained in :ref:`4 <kafka-qs-0409001__li11652913193216>`
 
    Sample:
 
    .. code-block:: console
 
-      [root@ecs-kafka bin]#  ./kafka-console-consumer.sh --bootstrap-server 192.xxx.xxx.xxx:9093,192.xxx.xxx.xxx:9093,192.xxx.xxx.xxx:9093 --topic topic-demo --from-beginning --consumer.config ../config/consumer.properties
+      [root@ecs-kafka bin]#  ./kafka-console-consumer.sh --bootstrap-server 192.xxx.xxx.xxx:9093,192.xxx.xxx.xxx:9093,192.xxx.xxx.xxx:9093 --topic topic-01 --from-beginning --consumer.config ../config/consumer.properties
       Hello
       Kafka!
       DMS

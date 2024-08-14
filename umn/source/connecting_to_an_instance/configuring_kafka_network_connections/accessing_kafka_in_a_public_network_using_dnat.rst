@@ -5,10 +5,12 @@
 Accessing Kafka in a Public Network Using DNAT
 ==============================================
 
-Scenario
---------
+Enable public access in either of the following ways:
 
-You can use destination NAT (DNAT) to access a Kafka instance so that the instance can provide services on the public network through port mapping.
+-  On the Kafka console, access Kafka instances using EIPs. For details, see :ref:`Configuring Kafka Public Access <kafka-ug-0319001>`.
+-  Configure port mapping from EIPs to specified instance ports using destination NAT (DNAT).
+
+This section describes how to access Kafka over a public network using DNAT.
 
 Prerequisites
 -------------
@@ -114,8 +116,8 @@ Step 3: Add a DNAT Rule
 
    After all DNAT rules are created, click the **DNAT Rules** tab to view the created DNAT rules and record the EIPs corresponding to the private IP addresses.
 
-Step 4: Bind EIPs on the Kafka Console
---------------------------------------
+Step 4: Map EIPs to the Port 9011 of Private IP Addresses
+---------------------------------------------------------
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
 

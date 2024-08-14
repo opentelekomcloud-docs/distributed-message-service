@@ -5,11 +5,10 @@
 Viewing Sample Code of Kafka Production and Consumption
 =======================================================
 
-On the console, view sample code for creating and retrieving messages in Java, Go, and Python.
+Distributed Message Service allows you to view sample Java, Go, and Python code of producing and consuming messages on the console. You can quickly complete Kafka client integration.
 
-
-Viewing Sample Code of Kafka Production and Consumption
--------------------------------------------------------
+Procedure
+---------
 
 #. Log in to the console.
 

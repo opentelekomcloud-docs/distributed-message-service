@@ -5,7 +5,7 @@
 Process of Using Kafka
 ======================
 
-The following figure shows the process of using a Kafka instance to produce and consume messages.
+Distributed Message Service is a message queuing service that is based on the open-source Apache Kafka. It provides Kafka instances with isolated computing, storage, and bandwidth resources. The following figure shows the process of message production and consumption using a Kafka instance.
 
 
 .. figure:: /_static/images/en-us_image_0000001921463342.png
@@ -28,7 +28,3 @@ The following figure shows the process of using a Kafka instance to produce and 
 #. :ref:`Connecting to an Instance <kafka-ug190605003>`
 
    The client uses commands to connect to Kafka instances in a private or public network, and produces and consumes messages.
-
-#. :ref:`Managing Messages <kafka-ug-0720002>`
-
-   View messages on the console.

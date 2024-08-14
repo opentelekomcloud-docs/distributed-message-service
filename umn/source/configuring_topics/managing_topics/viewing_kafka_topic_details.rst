@@ -5,10 +5,10 @@
 Viewing Kafka Topic Details
 ===========================
 
-On the console, you can view the details of a Kafka instance including subscriptions to a topic, offsets and number of messages in each partition, and producer addresses.
+On the Kafka console, you can view basic information, partition and producer information, and subscriptions of a topic.
 
-Viewing Topic Details
----------------------
+Procedure
+---------
 
 #. Log in to the console.
 
@@ -22,7 +22,7 @@ Viewing Topic Details
 
 #. Click the desired Kafka instance to view its details.
 
-#. In the navigation pane, choose the **Topics** tab.
+#. In the navigation pane, choose **Topics**.
 
 #. Click a topic to view its details.
 
@@ -55,7 +55,7 @@ Viewing Topic Details
 
       .. note::
 
-         -  The producer information is displayed only when a producer is producing a message into the topic.
+         -  The producer information is displayed only when a producer is producing messages into topics.
          -  For topics created much earlier, **Producer** tab page is not displayed on the topic details page. See the console.
 
 .. |image1| image:: /_static/images/en-us_image_0143929918.png

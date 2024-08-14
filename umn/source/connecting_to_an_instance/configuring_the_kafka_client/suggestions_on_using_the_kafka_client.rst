@@ -34,7 +34,7 @@ Topics
 
 Recommended topic configurations: Use 3 replicas, enable synchronous replication, and set the minimum number of in-sync replicas to 2. The number of in-sync replicas cannot be the same as the number of replicas of the topic. Otherwise, if one replica is unavailable, messages cannot be produced.
 
-You can enable or disable automatic topic creation. If automatic topic creation is enabled, the system automatically creates a topic when a message is created in or retrieved from a topic that does not exist. This topic has the following default settings: 3 partitions, 3 replicas, aging time 72 hours, synchronous replication and flushing disabled, **CreateTime** message timestamp, and maximum 10,485,760 bytes message size.
+You can enable or disable automatic topic creation. If automatic topic creation is enabled, the system automatically creates a topic when a message is produced in or consumed from a topic that does not exist. This topic has the following default settings: 3 partitions, 3 replicas, aging time 72 hours, synchronous replication and flushing disabled, **CreateTime** message timestamp, and maximum 10,485,760 bytes message size.
 
 Others
 ------

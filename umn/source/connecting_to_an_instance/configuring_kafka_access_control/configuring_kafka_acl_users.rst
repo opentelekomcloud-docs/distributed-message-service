@@ -2,10 +2,10 @@
 
 .. _kafka-ug-0003:
 
-Configuring Kafka Users
-=======================
+Configuring Kafka ACL Users
+===========================
 
-DMS supports access control list (ACL) for topics. You can differentiate user permissions by granting users different permissions in a topic.
+Kafka instances with ciphertext access enabled support access control list (ACL) for topics. You can isolate users by granting them different permissions in a topic.
 
 This section describes how to create users, reset the password, and delete users with ciphertext access enabled. For details about how to grant topic permissions for users, see :ref:`Configuring Kafka Topic Permissions <kafka-ug-0002>`.
 
@@ -41,11 +41,27 @@ Creating a User
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
 
-#. Click the desired Kafka instance to view its details.
+#. Click the desired instance to go to the instance details page.
 
 #. On the **Users** page, click **Create User**.
 
-#. In the displayed **Create User** dialog box, set the username and password, and click **OK**.
+#. Set user information by referring to :ref:`Configuring Kafka ACL Users <kafka-ug-0003>`.
+
+   .. table:: **Table 1** User creation parameters
+
+      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                                                                                                                                               |
+      +===================================+===========================================================================================================================================================================================================================+
+      | Username                          | The username used to access a Kafka instance, you can customize a name that complies with the rules: 4-64 characters; starts with a letter; can contain only letters, digits, hyphens (-), and underscores (_).           |
+      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Password                          | The password used to access a Kafka instance. A password must meet the following requirements:                                                                                                                            |
+      |                                   |                                                                                                                                                                                                                           |
+      |                                   | -  Contains 8 to 32 characters.                                                                                                                                                                                           |
+      |                                   | -  Contains at least three of the following character types: uppercase letters, lowercase letters, digits, and special characters \`~! @#$\ ``%^&*()-_=+\|[{}];:'",<.>?`` and spaces, and cannot start with a hyphen (-). |
+      |                                   | -  Cannot be the username spelled forward or backward.                                                                                                                                                                    |
+      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+#. Click **OK**.
 
    After the user is created, grant permissions to the user by referring to :ref:`Configuring Kafka Topic Permissions <kafka-ug-0002>`.
 
@@ -114,10 +130,11 @@ Deleting a User
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
 #. Click the desired Kafka instance to view its details.
+#. In the navigation pane, choose **Users**.
 #. Delete a user in either of the following ways:
 
-   -  On the **Users** page, click **Delete** in the row containing the desired user.
-   -  On the **Users** page, select one or more users and click **Delete** above the list.
+   -  In the row containing the desired user, click **Delete**.
+   -  Select one or more users and click **Delete** above the list.
 
    .. note::
 

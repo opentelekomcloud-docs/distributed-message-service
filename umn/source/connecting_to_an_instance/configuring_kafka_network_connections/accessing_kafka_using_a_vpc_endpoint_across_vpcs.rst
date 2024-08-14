@@ -5,16 +5,10 @@
 Accessing Kafka Using a VPC Endpoint Across VPCs
 ================================================
 
-Context
--------
-
 VPCs are logically isolated from each other. If a Kafka instance and a Kafka client are in different VPCs within a region, they cannot communicate with each other. In this case, you can use one of the following methods to access a Kafka instance across VPCs:
 
 -  Establish a VPC peering connection to allow two VPCs to communicate with each other. For details, see `VPC Peering Connection <https://docs.otc.t-systems.com/en-us/usermanual/vpc/vpc_peering_0000.html>`__.
 -  Use VPC Endpoint (VPCEP) to establish a cross-VPC connection.
-
-Scenario
---------
 
 The following describes how to use VPCEP to implement cross-VPC access.
 
@@ -28,15 +22,6 @@ VPCEP provides two types of resources: VPC endpoint services and VPC endpoints.
    :alt: **Figure 1** Working principle of accessing a Kafka instance across VPCs
 
    **Figure 1** Working principle of accessing a Kafka instance across VPCs
-
-Procedure
----------
-
-
-.. figure:: /_static/images/en-us_image_0000001382159745.png
-   :alt: **Figure 2** Process for accessing a Kafka instance across VPCs
-
-   **Figure 2** Process for accessing a Kafka instance across VPCs
 
 Creating a VPC Endpoint Service
 -------------------------------
@@ -59,17 +44,17 @@ Creating a VPC Endpoint Service
 
 
    .. figure:: /_static/images/en-us_image_0000001328948884.png
-      :alt: **Figure 3** Cross-VPC access-related listeners IP addresses and corresponding port IDs of the Kafka instance
+      :alt: **Figure 2** Cross-VPC access-related listeners IP addresses and corresponding port IDs of the Kafka instance
 
-      **Figure 3** Cross-VPC access-related listeners IP addresses and corresponding port IDs of the Kafka instance
+      **Figure 2** Cross-VPC access-related listeners IP addresses and corresponding port IDs of the Kafka instance
 
 #. In the **Network** section on the **Basic Information** tab page, view the VPC to which the Kafka instance belongs.
 
 
    .. figure:: /_static/images/en-us_image_0000001244372389.png
-      :alt: **Figure 4** Viewing the VPC to which the Kafka instance belongs
+      :alt: **Figure 3** Viewing the VPC to which the Kafka instance belongs
 
-      **Figure 4** Viewing the VPC to which the Kafka instance belongs
+      **Figure 3** Viewing the VPC to which the Kafka instance belongs
 
 #. .. _kafka-ug-0001__li19701310122315:
 
@@ -77,9 +62,9 @@ Creating a VPC Endpoint Service
 
 
    .. figure:: /_static/images/en-us_image_0000001328950348.png
-      :alt: **Figure 5** Obtaining the VPC ID
+      :alt: **Figure 4** Obtaining the VPC ID
 
-      **Figure 5** Obtaining the VPC ID
+      **Figure 4** Obtaining the VPC ID
 
 #. .. _kafka-ug-0001__li11323122315289:
 
@@ -108,8 +93,10 @@ Creating a VPC Endpoint Service
 
    Repeat :ref:`8 <kafka-ug-0001__li11323122315289>` to create VPC endpoint services for other port IDs obtained in :ref:`5 <kafka-ug-0001__li1470016488194>` and record the VPC endpoint service names.
 
-(Optional) Adding a Whitelist Record
-------------------------------------
+(Optional) Adding a Whitelist
+-----------------------------
+
+The VPC endpoint service can be used across accounts through a whitelist.
 
 If the Kafka client and Kafka instance belong to different accounts, add the ID of the account to which the Kafka client belongs to the whitelist of the endpoint service. For details, see `Add a Whitelist Record <https://docs.otc.t-systems.com/en-us/usermanual/vpcep/vpcep_02_02034.html>`__.
 
@@ -141,9 +128,9 @@ Creating a VPC Endpoint
 
 
    .. figure:: /_static/images/en-us_image_0000001380194201.png
-      :alt: **Figure 6** Checking the VPC endpoint status
+      :alt: **Figure 5** Checking the VPC endpoint status
 
-      **Figure 6** Checking the VPC endpoint status
+      **Figure 5** Checking the VPC endpoint status
 
 #. .. _kafka-ug-0001__li1942253845112:
 
@@ -153,16 +140,16 @@ Creating a VPC Endpoint
 
 
    .. figure:: /_static/images/en-us_image_0000001328954164.png
-      :alt: **Figure 7** Viewing the private IP address
+      :alt: **Figure 6** Viewing the private IP address
 
-      **Figure 7** Viewing the private IP address
+      **Figure 6** Viewing the private IP address
 
 #. .. _kafka-ug-0001__li923645116109:
 
    Repeat :ref:`1 <kafka-ug-0001__li182701720183719>` to :ref:`7 <kafka-ug-0001__li1942253845112>` to create a VPC endpoint for each VPC endpoint service created in :ref:`9 <kafka-ug-0001__li7368125918119>`, and view and record the private IP addresses of the VPC endpoint services.
 
-Changing the advertised.listeners IP Addresses
-----------------------------------------------
+Modifying Parameter advertised.listeners IP
+-------------------------------------------
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
 
@@ -177,9 +164,9 @@ Changing the advertised.listeners IP Addresses
    .. _kafka-ug-0001__fig6446112151915:
 
    .. figure:: /_static/images/en-us_image_0000001380118889.png
-      :alt: **Figure 8** Changing the advertised.listeners IP addresses
+      :alt: **Figure 7** Changing the advertised.listeners IP addresses
 
-      **Figure 8** Changing the advertised.listeners IP addresses
+      **Figure 7** Changing the advertised.listeners IP addresses
 
 Verifying Connectivity
 ----------------------
@@ -188,7 +175,7 @@ Check whether messages can be created and retrieved by referring to :ref:`Connec
 
 Notes:
 
--  The address for connecting to a Kafka instance is in the format of "*advertised.listeners IP*\ **:9011**". For example, the addresses for connecting to the Kafka instance shown in :ref:`Figure 8 <kafka-ug-0001__fig6446112151915>` are **10.158.0.151:9011,10.158.0.162:9011,10.158.0.164:9011**.
+-  The address for connecting to a Kafka instance is in the format of "*advertised.listeners IP*\ **:9011**". For example, the addresses for connecting to the Kafka instance shown in :ref:`Figure 7 <kafka-ug-0001__fig6446112151915>` are **10.158.0.151:9011,10.158.0.162:9011,10.158.0.164:9011**.
 -  Configure inbound rules for the security group of the Kafka instance to allow access from **198.19.128.0/17** over port **9011**.
 -  If a network access control list (ACL) has been configured for the subnet of this instance, configure inbound rules for the network ACL to allow access from **198.19.128.0/17** and from the subnet used by the VPC endpoint.
 
