@@ -5,4 +5,4 @@
 How Do I Synchronize Data from One Kafka Instance to Another?
 =============================================================
 
-Unfortunately, you cannot synchronize two Kafka instances in real time. To migrate services from one instance to another, create messages to both instances. After all messages in the original instance have been retrieved or aged, you can migrate services to the new instance.
+On the Kafka console, you can create a Smart Connect task for instance data replication. For details, see :ref:`Replicating Kafka Instance Data <kafka-ug-0034>`.

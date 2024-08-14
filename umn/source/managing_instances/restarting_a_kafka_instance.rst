@@ -5,10 +5,7 @@
 Restarting a Kafka Instance
 ===========================
 
-Scenario
---------
-
-Restart one or more Kafka instances at a time on the DMS console.
+You can restart one or more Kafka instances in batches on the DMS console.
 
 .. important::
 
@@ -19,9 +16,8 @@ Prerequisites
 
 The status of the Kafka instance you want to restart is either **Running** or **Faulty**.
 
-
-Restarting a Kafka Instance
----------------------------
+Procedure
+---------
 
 #. Log in to the console.
 

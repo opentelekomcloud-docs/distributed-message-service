@@ -5,9 +5,9 @@
 Configuring Automatic Topic Creation
 ====================================
 
-Automatic topic creation: A topic will be automatically created when a message is produced in or consumed from a topic that does not exist. By default, the topic has parameters listed in :ref:`Table 1 <kafka_ug_0043__table101881121219>`.
+**Automatic Topic Creation** indicates that a topic will be automatically created when a message is produced in or consumed from a topic that does not exist. By default, the topic has parameters listed in :ref:`Table 1 <kafka_ug_0043__table101881121219>`.
 
-After you change the value of the **log.retention.hours**, **default.replication.factor**, or **num.partitions** parameter, the value will be used in later topics that are automatically created. For example, assume that **num.partitions** is changed to 5, an automatically created topic has parameters listed in :ref:`Table 1 <kafka_ug_0043__table101881121219>`.
+After you change the value of the **log.retention.hours** (retention period), **default.replication.factor** (replica quantity), or **num.partitions** (partition quantity) parameter, the value will be used in later topics that are automatically created. For example, assume that **num.partitions** is changed to 5, an automatically created topic has parameters listed in :ref:`Table 1 <kafka_ug_0043__table101881121219>`.
 
 .. _kafka_ug_0043__table101881121219:
 
@@ -25,9 +25,8 @@ After you change the value of the **log.retention.hours**, **default.replication
    Max. Message Size (bytes) 10,485,760    10,485,760
    ========================= ============= ==============
 
-
-Configuring Automatic Topic Creation
-------------------------------------
+Procedure
+---------
 
 #. Log in to the console.
 

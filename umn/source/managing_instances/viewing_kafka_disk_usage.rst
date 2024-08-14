@@ -5,15 +5,14 @@
 Viewing Kafka Disk Usage
 ========================
 
-This section describes how to view the disk usage of each broker on the Kafka console.
+This section describes how to view the disk usage of each broker of a Kafka instance on the console.
 
 .. note::
 
    This function is unavailable for single-node instances.
 
-
-Viewing Kafka Disk Usage
-------------------------
+Procedure
+---------
 
 #. Log in to the console.
 
@@ -29,14 +28,14 @@ Viewing Kafka Disk Usage
 
 #. Go to the **Disk Usage Statistics** page.
 
+   You can query topics that use the most disk space or topics that have used a specified amount or percentage of disk space.
+
+   In the upper right corner of the page, click **View Metric**. On the displayed Cloud Eye page, you can view metrics of Kafka instances.
+
 
    .. figure:: /_static/images/en-us_image_0000001377028284.png
       :alt: **Figure 1** Viewing disk usage
 
       **Figure 1** Viewing disk usage
-
-   You can query topics that use the most disk space or topics that have used a specified amount or percentage of disk space.
-
-   In the upper right corner of the page, click **View Metric**. On the displayed Cloud Eye page, you can view metrics of Kafka instances.
 
 .. |image1| image:: /_static/images/en-us_image_0143929918.png

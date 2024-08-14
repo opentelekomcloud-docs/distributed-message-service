@@ -37,9 +37,8 @@ After you initiate certain instance operations listed in :ref:`Table 1 <kafka-ug
    | Configure topic permission        | Grants permissions to users in a topic.                   |
    +-----------------------------------+-----------------------------------------------------------+
 
-
-Viewing Kafka Background Tasks
-------------------------------
+Procedure
+---------
 
 #. Log in to the console.
 

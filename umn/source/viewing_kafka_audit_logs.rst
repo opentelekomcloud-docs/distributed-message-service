@@ -5,9 +5,6 @@
 Viewing Kafka Audit Logs
 ========================
 
-Scenario
---------
-
 With Cloud Trace Service (CTS), you can record operations associated with DMS for later query, audit, and backtrack operations.
 
 Prerequisite
@@ -84,6 +81,14 @@ DMS Operations Supported by CTS
    | Successfully deleting a background task                                   | kafka         | deleteDMSBackendJobSuccess             |
    +---------------------------------------------------------------------------+---------------+----------------------------------------+
    | Failing to delete a background task                                       | kafka         | deleteDMSBackendJobFailure             |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Successfully enabling Smart Connect                                       | kafka         | createConnectorTaskSuccess             |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Successfully creating a Smart Connect task                                | kafka         | createConnectorSinkTaskSuccess         |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Failing to enable Smart Connect                                           | kafka         | createConnectorTaskFailure             |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Failing to create a Smart Connect task                                    | kafka         | createConnectorSinkTaskFailure         |
    +---------------------------------------------------------------------------+---------------+----------------------------------------+
    | Successfully creating a topic for a Kafka instance                        | kafka         | Kafka_create_topicSuccess              |
    +---------------------------------------------------------------------------+---------------+----------------------------------------+

@@ -5,14 +5,11 @@
 Reassigning Kafka Partitions
 ============================
 
-Scenario
---------
-
 Partition reassignment is to reassign replicas of a partition to different brokers to solve the problem of unbalanced broker load.
 
 Partition reassignment is required in the following scenarios:
 
--  After the broker quantity is increased for an instance, the replicas of the original topic partitions are migrated to the new brokers.
+-  After you add brokers to an instance, new topics are created on new brokers, and the original topics are still on the original brokers, resulting in unbalanced partitions. To migrate the replicas of the original topic partitions to the new brokers, reassign partitions.
 -  The leader partition is degraded to be a follower on a heavily loaded broker.
 -  The number of replicas is increased or decreased.
 
@@ -25,19 +22,19 @@ The DMS for Kafka console provides automatic and manual reassignment. Automatic 
 Operation Impact
 ----------------
 
--  Partition reassignment on topics with a large amount of data consumes a large amount of network and storage bandwidth. As a result, service requests may time out or the latency may increase. Therefore, you are advised to perform reassignment during off-peak hours. Compare the current instance load based on the instance specifications to decide whether the remaining instance capacity can support partition reassignment. Do not reassign partitions when there is insufficient bandwidth or when the CPU usage is greater than 90%. To view data volume and CPU usage of a topic, see **Message Size** and **CPU Usage** on the monitoring page. For details, see :ref:`Viewing Kafka Monitoring Metrics <kafka-ug-190605001>`.
+-  Partition reassignment on topics with a large amount of data consumes a large amount of network and storage bandwidth. As a result, service requests may time out or the latency may increase. Therefore, you are advised to perform reassignment during off-peak hours. Compare the current instance load based on the instance specifications to decide whether the remaining instance capacity can support partition reassignment. Do not reassign partitions when there is insufficient bandwidth or when the CPU usage is greater than 90%. To view data volume and CPU usage of a topic, see **Message Size** and **CPU Usage** on the monitoring page. For details, see :ref:`Viewing Kafka Metrics <kafka-ug-190605001>`.
 -  A throttle refers to the upper limit of the bandwidth for replication of a topic, to ensure that other topics on the instance are not affected. Note that throttles apply to replication triggered by both normal message production and partition reassignment. If the throttle is too small, normal message production may be affected, and partition reassignment may never complete. If partitions are continuously reassigned, contact customer service.
 -  You cannot delete topics whose reassignment tasks have started. Otherwise, the tasks will never complete.
 -  You cannot modify the partition quantity of topics whose reassignment tasks have started.
 -  Reassignment tasks cannot be manually stopped. Please wait until they complete.
 -  If partition reassignment has been scheduled, reassignment cannot be scheduled again for any topic in this instance until this reassignment is executed.
 -  After partition reassignment, the metadata of the topic changes. If the producer does not support the retry mechanism, a few requests will fail, causing some messages to fail to be produced.
--  Reassignment takes a long time if the topic has a large amount of data. You are advised to :ref:`decrease the topic retention period <kafka-ug-200506001>` based on the topic consumption so that historical data of the topic can be deleted in a timely manner to accelerate the migration. To view data volume of a topic, see **Message Size** on the monitoring page. For details, see :ref:`Viewing Kafka Monitoring Metrics <kafka-ug-190605001>`.
+-  Reassignment takes a long time if the topic has a large amount of data. You are advised to :ref:`decrease the topic retention period <kafka-ug-200506001>` based on the topic consumption so that historical data of the topic can be deleted in a timely manner to accelerate the migration. To view data volume of a topic, see **Message Size** on the monitoring page. For details, see :ref:`Viewing Kafka Metrics <kafka-ug-190605001>`.
 
 Preparing for Partition Reassignment
 ------------------------------------
 
--  To reduce the amount of data to be migrated, :ref:`decrease the topic aging time <kafka-ug-200506001>` without affecting services and wait for messages to age. After the reassignment is complete, you can restore the aging time. To view data volume of a topic, see **Message Size** on the monitoring page. For details, see :ref:`Viewing Kafka Monitoring Metrics <kafka-ug-190605001>`.
+-  To reduce the amount of data to be migrated, decrease the topic retention period without affecting services and wait for messages to age. After the reassignment is complete, you can restore the retention period. To change the topic retention period, see :ref:`Changing Kafka Message Retention Period <kafka-ug-200506001>`.
 -  The target broker should have sufficient disk space. To check available disk space of each broker, see :ref:`Viewing Kafka Disk Usage <kafka-ug-0004>`. If the remaining disk capacity of the target broker is close to the amount of data to be migrated to the broker, :ref:`expand the disk capacity <kafka-ug-181221001>` before the reassignment.
 
 Auto Reassignment
@@ -55,7 +52,7 @@ Auto Reassignment
 
 #. Click the desired Kafka instance to view the instance details.
 
-#. In the navigation pane, choose the **Topics** tab.
+#. In the navigation pane, choose **Topics**.
 
 #. Reassign partitions using either of the following methods:
 
@@ -125,7 +122,7 @@ Manual Reassignment
 
 #. Click the desired Kafka instance to view the instance details.
 
-#. In the navigation pane, choose the **Topics** tab.
+#. In the navigation pane, choose **Topics**.
 
 #. Reassign partitions using either of the following methods:
 

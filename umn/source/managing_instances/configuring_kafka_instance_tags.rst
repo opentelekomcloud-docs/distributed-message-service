@@ -23,15 +23,15 @@ A tag consists of a tag key and a tag value. :ref:`Table 1 <tagmanagement__table
    |                                   | -  Can contain 1 to 128 characters.                                               |
    |                                   | -  Can contain letters, digits, spaces, and special characters \_.:=+-@ : = + - @ |
    |                                   | -  Cannot start or end with a space.                                              |
+   |                                   | -  Cannot start with **\_sys\_**.                                                 |
    +-----------------------------------+-----------------------------------------------------------------------------------+
    | Tag value                         | -  Can contain 0 to 255 characters.                                               |
    |                                   | -  Can contain letters, digits, spaces, and special characters \_.:=+-@ : = + - @ |
-   |                                   | -  Cannot start or end with a space.                                              |
+   |                                   | -  Cannot start or end with a space in instance creation.                         |
    +-----------------------------------+-----------------------------------------------------------------------------------+
 
-
-Configuring Kafka Instance Tags
--------------------------------
+Procedure
+---------
 
 #. Log in to the console.
 

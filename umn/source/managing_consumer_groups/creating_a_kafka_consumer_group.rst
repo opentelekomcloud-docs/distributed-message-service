@@ -5,23 +5,34 @@
 Creating a Kafka Consumer Group
 ===============================
 
-Create a consumer group on the console.
+A consumer subscribes to a topic. A consumer group consists of one or more consumers. Within a consumer group, each consumer can consume multiple partitions at the same time. Each partition can be consumed by one consumer at a time.
+
+
+.. figure:: /_static/images/en-us_image_0000001998520149.png
+   :alt: **Figure 1** Example consumption
+
+   **Figure 1** Example consumption
 
 **auto.create.groups.enable**: a consumer group is automatically created when a consumer attempts to enter a group that does not exist.
 
--  This operation is optional when **auto.create.groups.enable** is **true** in :ref:`Configuring Parameters <kafka-ug-0007>`.
 -  A consumer group is required before consuming messages when **auto.create.groups.enable** is **false** in :ref:`Configuring Parameters <kafka-ug-0007>`. Otherwise, consumption will fail.
+-  A consumer group is created automatically before consuming messages when **auto.create.groups.enable** is **true** in :ref:`Configuring Parameters <kafka-ug-0007>`.
+
+Create a consumer group on the console.
 
 .. note::
 
-   -  If **auto.create.groups.enable** is set to **true**, the consumer group status is **EMPTY**, and no offset has been submitted, the system automatically deletes the consumer group 10 minutes later.
-   -  If **auto.create.groups.enable** is set to **false**, the system does not automatically delete consumer groups. You can manually delete them.
-   -  If a consumer group has never committed an offset, the group will be deleted after the Kafka instance restarts.
-   -  Creating a consumer group on the console does not require instance restart.
+   Creating a consumer group on the console does not require an instance restart.
 
+Notes and Constraints
+---------------------
 
-Creating a Kafka Consumer Group
--------------------------------
+-  If **auto.create.groups.enable** is set to **true**, the consumer group status is **EMPTY**, and no offset has been submitted, the system automatically deletes the consumer group 10 minutes later.
+-  If **auto.create.groups.enable** is set to **false**, the system does not automatically delete consumer groups. You can manually delete them.
+-  If a consumer group has never committed an offset, the group will be deleted after the Kafka instance restarts.
+
+Procedure
+---------
 
 #. Log in to the console.
 
