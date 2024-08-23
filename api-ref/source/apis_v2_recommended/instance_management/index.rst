@@ -17,7 +17,7 @@ Instance Management
 -  :ref:`Querying All Consumer Groups <listinstanceconsumergroups>`
 -  :ref:`Querying a Specific Consumer Group <showgroup>`
 -  :ref:`Deleting a Consumer Group from a Kafka Instance <deletegroup>`
--  :ref:`Batch Deleting Consumer Groups of a Kafka Instance <batchdeletegroup>`
+-  :ref:`Deleting Consumer Groups of a Kafka Instance in Batches <batchdeletegroup>`
 -  :ref:`Creating a Consumer Group <createkafkaconsumergroup>`
 -  :ref:`Initiating Partition Reassigning for a Kafka Instance <createreassignmenttask>`
 
@@ -37,6 +37,6 @@ Instance Management
    querying_all_consumer_groups
    querying_a_specific_consumer_group
    deleting_a_consumer_group_from_a_kafka_instance
-   batch_deleting_consumer_groups_of_a_kafka_instance
+   deleting_consumer_groups_of_a_kafka_instance_in_batches
    creating_a_consumer_group
    initiating_partition_reassigning_for_a_kafka_instance

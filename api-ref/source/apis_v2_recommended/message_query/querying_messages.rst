@@ -8,7 +8,9 @@ Querying Messages
 Function
 --------
 
-This API is used to query the offset and content of a message. This API queries the message offset based on the timestamp and then queries the message content based on the offset.
+This API is used to query the offset and content of a message.
+
+This API queries the message offset based on the timestamp and then queries the message content based on the offset.
 
 URI
 ---
@@ -66,11 +68,9 @@ GET /v2/{project_id}/instances/{instance_id}/messages
    |                 |                 |                 |                                                                                                               |
    |                 |                 |                 | If **start_time** and **end_time** are not empty, this parameter is invalid.                                  |
    +-----------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------------+
-   | keyword         | No              | String          | Keyword. The value ranges from 0 to 50.                                                                       |
+   | keyword         | No              | String          | Keyword.                                                                                                      |
    |                 |                 |                 |                                                                                                               |
-   |                 |                 |                 | Minimum: **0**                                                                                                |
-   |                 |                 |                 |                                                                                                               |
-   |                 |                 |                 | Maximum: **50**                                                                                               |
+   |                 |                 |                 | The value ranges from 0 to 50.                                                                                |
    +-----------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------------+
 
 Request Parameters

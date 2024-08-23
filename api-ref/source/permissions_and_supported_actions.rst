@@ -11,7 +11,7 @@ By default, new IAM users do not have permissions assigned. You need to add a us
 
 You can grant users permissions by using roles and policies. Roles are a type of coarse-grained authorization mechanism that defines permissions related to user responsibilities. Policies define API-based permissions for operations on specific resources under certain conditions, allowing for more fine-grained, secure access control of cloud resources.
 
-For details about DMS system policies, see section "Permission" in *Distributed Message Service User Guide*.
+For details about DMS system policies, see `Permissions Management <https://docs.otc.t-systems.com/en-us/usermanual/dms/UserPrivilegeManagement.html>`__.
 
 .. note::
 
@@ -32,7 +32,9 @@ DMS for Kafka provides system-defined policies that can be directly used in IAM.
 DMS supports the following actions in custom policies:
 
 -  :ref:`Lifecycle management actions <api-grant-policy__section19410185916427>`, including actions supported by Kafka instance lifecycle management APIs, such as the APIs for creating an instance, querying the instance list, modifying instance information, and batch restarting or deleting instances.
--  :ref:`Instance management actions <api-grant-policy__section8384018382>`, including actions supported by Kafka instance management APIs, such as the APIs for resetting passwords and enabling or disabling automatic topic creation.
+-  :ref:`Instance management actions <api-grant-policy__section8384018382>`, including actions supported by Kafka instance management APIs, such as the APIs for resetting passwords and configuring automatic topic creation.
+-  :ref:`Smart Connect actions <api-grant-policy__section17532240105412>`, including actions supported by Smart Connect APIs, such as the APIs for enabling or disabling Smart Connect, creating a Smart Connect task.
+-  :ref:`Specification modification management action <api-grant-policy__section87441363582>`, supported by the specification modification management API for modifying instance specifications.
 -  :ref:`Topic management actions <api-grant-policy__section11586915535>`, including actions supported by topic management APIs, such as the APIs for creating, querying, and modifying topics.
 -  :ref:`User management actions <api-grant-policy__section56931740695>`, including actions supported by user management APIs, such as the APIs for creating users, querying users, and configuring user permissions.
 -  :ref:`Message query actions <api-grant-policy__section9674351127>`, including actions supported by message query APIs, such as the API for querying messages.
@@ -87,12 +89,54 @@ Instance Management
    | Resetting consumer group offset to the specified position | POST /v2/{project_id}/instances/{instance_id}/management/groups/{group}/reset-message-offset | dms:instance:modify        | Y           | Y                    |
    +-----------------------------------------------------------+----------------------------------------------------------------------------------------------+----------------------------+-------------+----------------------+
 
+.. _api-grant-policy__section17532240105412:
+
+Smart Connect
+-------------
+
+.. table:: **Table 3** Smart Connect
+
+   +------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+--------------------------------------+--------------+---------------------+
+   | Permission                                                                         | API                                                                                  | Action                               | IAM Projects | Enterprise Projects |
+   +====================================================================================+======================================================================================+======================================+==============+=====================+
+   | Enabling Smart Connect                                                             | POST /v2/{project_id}/instances/{instance_id}/connector                              | dms:instance:connector               | Y            | Y                   |
+   +------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+--------------------------------------+--------------+---------------------+
+   | Disabling Smart Connect                                                            | POST /v2/{project_id}/kafka/instances/{instance_id}/delete-connector                 | dms:instance:connector               | Y            | Y                   |
+   +------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+--------------------------------------+--------------+---------------------+
+   | Creating a Smart Connect task                                                      | POST /v2/{project_id}/instances/{instance_id}/connector/tasks                        | dms:instance:createConnectorSinkTask | Y            | Y                   |
+   +------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+--------------------------------------+--------------+---------------------+
+   | Listing Smart Connect tasks                                                        | GET /v2/{project_id}/instances/{instance_id}/connector/tasks                         | dms:instance:listConnectorSinkTask   | Y            | Y                   |
+   +------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+--------------------------------------+--------------+---------------------+
+   | Querying Smart Connect task details                                                | GET /v2/{project_id}/instances/{instance_id}/connector/tasks/{task_id}               | dms:instance:getConnectorSinkTask    | Y            | Y                   |
+   +------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+--------------------------------------+--------------+---------------------+
+   | Deleting Smart Connect tasks                                                       | DELETE /v2/{project_id}/instances/{instance_id}/connector/tasks/{task_id}            | dms:instance:deleteConnectorSinkTask | Y            | Y                   |
+   +------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+--------------------------------------+--------------+---------------------+
+   | Pausing Smart Connect tasks                                                        | PUT /v2/{project_id}/instances/{instance_id}/connector/tasks/{task_id}/pause         | dms:instance:updateConnectorTask     | Y            | Y                   |
+   +------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+--------------------------------------+--------------+---------------------+
+   | Restarting Smart Connect tasks                                                     | PUT /v2/{project_id}/instances/{instance_id}/connector/tasks/{task_id}/resume        | dms:instance:updateConnectorTask     | Y            | Y                   |
+   +------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+--------------------------------------+--------------+---------------------+
+   | Starting a Smart Connect task or restarting a paused or running Smart Connect task | PUT /v2/{project_id}/kafka/instances/{instance_id}/connector/tasks/{task_id}/restart | dms:instance:updateConnectorTask     | Y            | Y                   |
+   +------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+--------------------------------------+--------------+---------------------+
+
+.. _api-grant-policy__section87441363582:
+
+Specification Modification Management
+-------------------------------------
+
+.. table:: **Table 4** Specification modification management
+
+   +-----------------------------------+---------------------------------------------------------------+--------------------+--------------+---------------------+
+   | Permission                        | API                                                           | Action             | IAM Projects | Enterprise Projects |
+   +===================================+===============================================================+====================+==============+=====================+
+   | Modifying instance specifications | POST /v2/{engine}/{project_id}/instances/{instance_id}/extend | dms:instance:scale | Y            | Y                   |
+   +-----------------------------------+---------------------------------------------------------------+--------------------+--------------+---------------------+
+
 .. _api-grant-policy__section11586915535:
 
 Topic Management
 ----------------
 
-.. table:: **Table 3** Topic management
+.. table:: **Table 5** Topic management
 
    +------------------------------------------------+-------------------------------------------------------------+---------------------+--------------+---------------------+
    | Permission                                     | API                                                         | Action              | IAM Projects | Enterprise Projects |
@@ -111,7 +155,7 @@ Topic Management
 User Management
 ---------------
 
-.. table:: **Table 4** User management
+.. table:: **Table 6** User management
 
    +---------------------------+-------------------------------------------------------------------------------+---------------------+--------------+---------------------+
    | Permission                | API                                                                           | Action              | IAM Projects | Enterprise Projects |
@@ -134,7 +178,7 @@ User Management
 Message Query
 -------------
 
-.. table:: **Table 5** Message query
+.. table:: **Table 7** Message query
 
    +-------------------+-------------------------------------------------------+------------------+--------------+---------------------+
    | Permission        | API                                                   | Action           | IAM Projects | Enterprise Projects |
@@ -147,7 +191,7 @@ Message Query
 Background Task Management
 --------------------------
 
-.. table:: **Table 6** Background task management
+.. table:: **Table 8** Background task management
 
    +----------------------------+-----------------------------------------------------------------+-----------------------------------+--------------+---------------------+
    | Permission                 | API                                                             | Action                            | IAM Projects | Enterprise Projects |
@@ -164,7 +208,7 @@ Background Task Management
 Tag Management
 --------------
 
-.. table:: **Table 7** Tag management
+.. table:: **Table 9** Tag management
 
    +-------------------------------+-------------------------------------------------------+---------------------+--------------+---------------------+
    | Permission                    | API                                                   | Action              | IAM Projects | Enterprise Projects |

@@ -30,37 +30,35 @@ Request Parameters
 
 .. table:: **Table 2** Request body parameters
 
-   +-----------------+-----------------+-----------------+--------------------------------------------------------------------------------------------------------------------------------+
-   | Parameter       | Mandatory       | Type            | Description                                                                                                                    |
-   +=================+=================+=================+================================================================================================================================+
-   | user_name       | No              | String          | Username.                                                                                                                      |
-   |                 |                 |                 |                                                                                                                                |
-   |                 |                 |                 | This parameter is mandatory for creating a user.                                                                               |
-   +-----------------+-----------------+-----------------+--------------------------------------------------------------------------------------------------------------------------------+
-   | user_desc       | No              | String          | User description.                                                                                                              |
-   |                 |                 |                 |                                                                                                                                |
-   |                 |                 |                 | Minimum: **0**                                                                                                                 |
-   |                 |                 |                 |                                                                                                                                |
-   |                 |                 |                 | Maximum: **200**                                                                                                               |
-   +-----------------+-----------------+-----------------+--------------------------------------------------------------------------------------------------------------------------------+
-   | user_passwd     | No              | String          | Password.                                                                                                                      |
-   |                 |                 |                 |                                                                                                                                |
-   |                 |                 |                 | This parameter is mandatory for creating a user.                                                                               |
-   |                 |                 |                 |                                                                                                                                |
-   |                 |                 |                 | The password must be different from the username. The password must meet the following complexity requirements:                |
-   |                 |                 |                 |                                                                                                                                |
-   |                 |                 |                 | -  Can contain 8 to 32 characters.                                                                                             |
-   |                 |                 |                 |                                                                                                                                |
-   |                 |                 |                 | -  Must contain at least three of the following character types:                                                               |
-   |                 |                 |                 |                                                                                                                                |
-   |                 |                 |                 |    -  Lowercase letters                                                                                                        |
-   |                 |                 |                 |                                                                                                                                |
-   |                 |                 |                 |    -  Uppercase letters                                                                                                        |
-   |                 |                 |                 |                                                                                                                                |
-   |                 |                 |                 |    -  Digits                                                                                                                   |
-   |                 |                 |                 |                                                                                                                                |
-   |                 |                 |                 |    -  Special characters include (:literal:`\`~!@#$ %^&*()-_=+|[{}]:'",<.>/?`) and spaces, and cannot start with a hyphen (-). |
-   +-----------------+-----------------+-----------------+--------------------------------------------------------------------------------------------------------------------------------+
+   +-----------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter       | Mandatory       | Type            | Description                                                                                                                  |
+   +=================+=================+=================+==============================================================================================================================+
+   | user_name       | No              | String          | Username.                                                                                                                    |
+   |                 |                 |                 |                                                                                                                              |
+   |                 |                 |                 | This parameter is mandatory for creating a user.                                                                             |
+   +-----------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+   | user_desc       | No              | String          | User description.                                                                                                            |
+   +-----------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+   | user_passwd     | No              | String          | Password.                                                                                                                    |
+   |                 |                 |                 |                                                                                                                              |
+   |                 |                 |                 | This parameter is mandatory for creating a user.                                                                             |
+   |                 |                 |                 |                                                                                                                              |
+   |                 |                 |                 | The password must be different from the username.                                                                            |
+   |                 |                 |                 |                                                                                                                              |
+   |                 |                 |                 | The password must meet the following complexity requirements:                                                                |
+   |                 |                 |                 |                                                                                                                              |
+   |                 |                 |                 | -  Can contain 8 to 32 characters.                                                                                           |
+   |                 |                 |                 |                                                                                                                              |
+   |                 |                 |                 | -  Must contain at least three of the following character types:                                                             |
+   |                 |                 |                 |                                                                                                                              |
+   |                 |                 |                 |    -  Lowercase letters                                                                                                      |
+   |                 |                 |                 |                                                                                                                              |
+   |                 |                 |                 |    -  Uppercase letters                                                                                                      |
+   |                 |                 |                 |                                                                                                                              |
+   |                 |                 |                 |    -  Digits                                                                                                                 |
+   |                 |                 |                 |                                                                                                                              |
+   |                 |                 |                 |    -  Special characters include :literal:`\`~!@#$ %^&*()-_=+|[{}]:'",<.>/?` and spaces, and cannot start with a hyphen (-). |
+   +-----------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
 
 Response Parameters
 -------------------

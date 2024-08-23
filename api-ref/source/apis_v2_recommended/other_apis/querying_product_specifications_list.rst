@@ -17,13 +17,11 @@ GET /v2/{engine}/products
 
 .. table:: **Table 1** Path Parameters
 
-   +-----------------+-----------------+-----------------+--------------------+
-   | Parameter       | Mandatory       | Type            | Description        |
-   +=================+=================+=================+====================+
-   | engine          | Yes             | String          | Message engine.    |
-   |                 |                 |                 |                    |
-   |                 |                 |                 | Default: **kafka** |
-   +-----------------+-----------------+-----------------+--------------------+
+   ========= ========= ====== ===============
+   Parameter Mandatory Type   Description
+   ========= ========= ====== ===============
+   engine    Yes       String Message engine.
+   ========= ========= ====== ===============
 
 .. table:: **Table 2** Query Parameters
 
@@ -157,203 +155,205 @@ Example Responses
 
 The product specifications are listed successfully.
 
-.. code-block::
+-  Successful.
 
-   {
-     "engine" : "kafka",
-     "versions" : [ "1.1.0", "2.3.0" ],
-     "products" : [ {
-       "type" : "cluster",
-       "product_id" : "c6.2u4g.cluster",
-       "ecs_flavor_id" : "c6.large.2",
-       "billing_code" : "dms.platinum.c6",
-       "arch_types" : [ "X86" ],
-       "charging_mode" : [ "monthly", "hourly" ],
-       "ios" : [ {
-         "io_spec" : "dms.physical.storage.high.v2",
-         "type" : "evs",
-         "available_zones" : [ "xxx", "xxx" ],
-         "unavailable_zones" : [ "xxx", "xxx" ]
-       }, {
-         "io_spec" : "dms.physical.storage.ultra.v2",
-         "type" : "evs",
-         "available_zones" : [ "xxx", "xxx" ],
-         "unavailable_zones" : [ "xxx", "xxx" ]
-       } ],
-       "support_features" : [ {
-         "name" : "connector_obs",
-         "properties" : {
-           "max_task" : "10",
-           "max_node" : "10",
-           "min_task" : "1",
-           "min_node" : "2"
-         }
-       } ],
-       "properties" : {
-         "max_partition_per_broker" : "250",
-         "max_broker" : "30",
-         "max_storage_per_node" : "10000",
-         "max_consumer_per_broker" : "4000",
-         "min_broker" : "3",
-         "max_bandwidth_per_broker" : "100",
-         "min_storage_per_node" : "200",
-         "max_tps_per_broker" : "30000",
-         "product_alias" : "kafka.2u4g.cluster"
-       }
-     }, {
-       "type" : "cluster",
-       "product_id" : "c6.4u8g.cluster",
-       "ecs_flavor_id" : "c6.xlarge.2",
-       "billing_code" : "dms.platinum.c6",
-       "arch_types" : [ "X86" ],
-       "charging_mode" : [ "monthly", "hourly" ],
-       "ios" : [ {
-         "io_spec" : "dms.physical.storage.high.v2",
-         "type" : "evs",
-         "available_zones" : [ "xxx", "xxx" ],
-         "unavailable_zones" : [ "xxx", "xxx" ]
-       }, {
-         "io_spec" : "dms.physical.storage.ultra.v2",
-         "type" : "evs",
-         "available_zones" : [ "xxx", "xxx" ],
-         "unavailable_zones" : [ "xxx", "xxx" ]
-       } ],
-       "support_features" : [ {
-         "name" : "connector_obs",
-         "properties" : {
-           "max_task" : "10",
-           "max_node" : "10",
-           "min_task" : "1",
-           "min_node" : "2"
-         }
-       } ],
-       "properties" : {
-         "max_partition_per_broker" : "500",
-         "max_broker" : "30",
-         "max_storage_per_node" : "20000",
-         "max_consumer_per_broker" : "4000",
-         "min_broker" : "3",
-         "max_bandwidth_per_broker" : "100",
-         "min_storage_per_node" : "400",
-         "max_tps_per_broker" : "100000",
-         "product_alias" : "kafka.4u8g.cluster"
-       }
-     }, {
-       "type" : "cluster",
-       "product_id" : "c6.8u16g.cluster",
-       "ecs_flavor_id" : "c6.2xlarge.2",
-       "billing_code" : "dms.platinum.c6",
-       "arch_types" : [ "X86" ],
-       "charging_mode" : [ "monthly", "hourly" ],
-       "ios" : [ {
-         "io_spec" : "dms.physical.storage.high.v2",
-         "type" : "evs",
-         "available_zones" : [ "xxx", "xxx" ],
-         "unavailable_zones" : [ "xxx", "xxx" ]
-       }, {
-         "io_spec" : "dms.physical.storage.ultra.v2",
-         "type" : "evs",
-         "available_zones" : [ "xxx", "xxx" ],
-         "unavailable_zones" : [ "xxx", "xxx" ]
-       } ],
-       "support_features" : [ {
-         "name" : "connector_obs",
-         "properties" : {
-           "max_task" : "10",
-           "max_node" : "10",
-           "min_task" : "1",
-           "min_node" : "2"
-         }
-       } ],
-       "properties" : {
-         "max_partition_per_broker" : "1000",
-         "max_broker" : "30",
-         "max_storage_per_node" : "30000",
-         "max_consumer_per_broker" : "4000",
-         "min_broker" : "3",
-         "max_bandwidth_per_broker" : "100",
-         "min_storage_per_node" : "800",
-         "max_tps_per_broker" : "150000",
-         "product_alias" : "kafka.8u16g.cluster"
-       }
-     }, {
-       "type" : "cluster",
-       "product_id" : "c6.12u24g.cluster",
-       "ecs_flavor_id" : "c6.3xlarge.2",
-       "billing_code" : "dms.platinum.c6",
-       "arch_types" : [ "X86" ],
-       "charging_mode" : [ "monthly", "hourly" ],
-       "ios" : [ {
-         "io_spec" : "dms.physical.storage.high.v2",
-         "type" : "evs",
-         "available_zones" : [ "xxx", "xxx" ],
-         "unavailable_zones" : [ "xxx", "xxx" ]
-       }, {
-         "io_spec" : "dms.physical.storage.ultra.v2",
-         "type" : "evs",
-         "available_zones" : [ "xxx", "xxx" ],
-         "unavailable_zones" : [ "xxx", "xxx" ]
-       } ],
-       "support_features" : [ {
-         "name" : "connector_obs",
-         "properties" : {
-           "max_task" : "10",
-           "max_node" : "10",
-           "min_task" : "1",
-           "min_node" : "2"
-         }
-       } ],
-       "properties" : {
-         "max_partition_per_broker" : "1500",
-         "max_broker" : "30",
-         "max_storage_per_node" : "30000",
-         "max_consumer_per_broker" : "4000",
-         "min_broker" : "3",
-         "max_bandwidth_per_broker" : "100",
-         "min_storage_per_node" : "1200",
-         "max_tps_per_broker" : "200000",
-         "product_alias" : "kafka.12u24g.cluster"
-       }
-     }, {
-       "type" : "cluster",
-       "product_id" : "c6.16u32g.cluster",
-       "ecs_flavor_id" : "c6.4xlarge.2",
-       "billing_code" : "dms.platinum.c6",
-       "arch_types" : [ "X86" ],
-       "charging_mode" : [ "monthly", "hourly" ],
-       "ios" : [ {
-         "io_spec" : "dms.physical.storage.high.v2",
-         "type" : "evs",
-         "available_zones" : [ "xxx", "xxx" ],
-         "unavailable_zones" : [ "xxx", "xxx" ]
-       }, {
-         "io_spec" : "dms.physical.storage.ultra.v2",
-         "type" : "evs",
-         "available_zones" : [ "xxx", "xxx" ],
-         "unavailable_zones" : [ "xxx", "xxx" ]
-       } ],
-       "support_features" : [ {
-         "name" : "connector_obs",
-         "properties" : {
-           "max_task" : "10",
-           "max_node" : "10",
-           "min_task" : "1",
-           "min_node" : "2"
-         }
-       } ],
-       "properties" : {
-         "max_partition_per_broker" : "2000",
-         "max_broker" : "30",
-         "max_storage_per_node" : "30000",
-         "max_consumer_per_broker" : "4000",
-         "min_broker" : "3",
-         "max_bandwidth_per_broker" : "100",
-         "min_storage_per_node" : "1600",
-         "max_tps_per_broker" : "250000",
-         "product_alias" : "kafka.16u32g.cluster"
-       }
-     } ]
-   }
+   .. code-block::
+
+      {
+        "engine" : "kafka",
+        "versions" : [ "1.1.0", "2.3.0" ],
+        "products" : [ {
+          "type" : "cluster",
+          "product_id" : "c6.2u4g.cluster",
+          "ecs_flavor_id" : "c6.large.2",
+          "billing_code" : "dms.platinum.c6",
+          "arch_types" : [ "X86" ],
+          "charging_mode" : [ "monthly", "hourly" ],
+          "ios" : [ {
+            "io_spec" : "dms.physical.storage.high.v2",
+            "type" : "evs",
+            "available_zones" : [ "xxx", "xxx" ],
+            "unavailable_zones" : [ "xxx", "xxx" ]
+          }, {
+            "io_spec" : "dms.physical.storage.ultra.v2",
+            "type" : "evs",
+            "available_zones" : [ "xxx", "xxx" ],
+            "unavailable_zones" : [ "xxx", "xxx" ]
+          } ],
+          "support_features" : [ {
+            "name" : "connector_obs",
+            "properties" : {
+              "max_task" : "10",
+              "max_node" : "10",
+              "min_task" : "1",
+              "min_node" : "2"
+            }
+          } ],
+          "properties" : {
+            "max_partition_per_broker" : "250",
+            "max_broker" : "30",
+            "max_storage_per_node" : "10000",
+            "max_consumer_per_broker" : "4000",
+            "min_broker" : "3",
+            "max_bandwidth_per_broker" : "100",
+            "min_storage_per_node" : "200",
+            "max_tps_per_broker" : "30000",
+            "product_alias" : "kafka.2u4g.cluster"
+          }
+        }, {
+          "type" : "cluster",
+          "product_id" : "c6.4u8g.cluster",
+          "ecs_flavor_id" : "c6.xlarge.2",
+          "billing_code" : "dms.platinum.c6",
+          "arch_types" : [ "X86" ],
+          "charging_mode" : [ "monthly", "hourly" ],
+          "ios" : [ {
+            "io_spec" : "dms.physical.storage.high.v2",
+            "type" : "evs",
+            "available_zones" : [ "xxx", "xxx" ],
+            "unavailable_zones" : [ "xxx", "xxx" ]
+          }, {
+            "io_spec" : "dms.physical.storage.ultra.v2",
+            "type" : "evs",
+            "available_zones" : [ "xxx", "xxx" ],
+            "unavailable_zones" : [ "xxx", "xxx" ]
+          } ],
+          "support_features" : [ {
+            "name" : "connector_obs",
+            "properties" : {
+              "max_task" : "10",
+              "max_node" : "10",
+              "min_task" : "1",
+              "min_node" : "2"
+            }
+          } ],
+          "properties" : {
+            "max_partition_per_broker" : "500",
+            "max_broker" : "30",
+            "max_storage_per_node" : "20000",
+            "max_consumer_per_broker" : "4000",
+            "min_broker" : "3",
+            "max_bandwidth_per_broker" : "100",
+            "min_storage_per_node" : "400",
+            "max_tps_per_broker" : "100000",
+            "product_alias" : "kafka.4u8g.cluster"
+          }
+        }, {
+          "type" : "cluster",
+          "product_id" : "c6.8u16g.cluster",
+          "ecs_flavor_id" : "c6.2xlarge.2",
+          "billing_code" : "dms.platinum.c6",
+          "arch_types" : [ "X86" ],
+          "charging_mode" : [ "monthly", "hourly" ],
+          "ios" : [ {
+            "io_spec" : "dms.physical.storage.high.v2",
+            "type" : "evs",
+            "available_zones" : [ "xxx", "xxx" ],
+            "unavailable_zones" : [ "xxx", "xxx" ]
+          }, {
+            "io_spec" : "dms.physical.storage.ultra.v2",
+            "type" : "evs",
+            "available_zones" : [ "xxx", "xxx" ],
+            "unavailable_zones" : [ "xxx", "xxx" ]
+          } ],
+          "support_features" : [ {
+            "name" : "connector_obs",
+            "properties" : {
+              "max_task" : "10",
+              "max_node" : "10",
+              "min_task" : "1",
+              "min_node" : "2"
+            }
+          } ],
+          "properties" : {
+            "max_partition_per_broker" : "1000",
+            "max_broker" : "30",
+            "max_storage_per_node" : "30000",
+            "max_consumer_per_broker" : "4000",
+            "min_broker" : "3",
+            "max_bandwidth_per_broker" : "100",
+            "min_storage_per_node" : "800",
+            "max_tps_per_broker" : "150000",
+            "product_alias" : "kafka.8u16g.cluster"
+          }
+        }, {
+          "type" : "cluster",
+          "product_id" : "c6.12u24g.cluster",
+          "ecs_flavor_id" : "c6.3xlarge.2",
+          "billing_code" : "dms.platinum.c6",
+          "arch_types" : [ "X86" ],
+          "charging_mode" : [ "monthly", "hourly" ],
+          "ios" : [ {
+            "io_spec" : "dms.physical.storage.high.v2",
+            "type" : "evs",
+            "available_zones" : [ "xxx", "xxx" ],
+            "unavailable_zones" : [ "xxx", "xxx" ]
+          }, {
+            "io_spec" : "dms.physical.storage.ultra.v2",
+            "type" : "evs",
+            "available_zones" : [ "xxx", "xxx" ],
+            "unavailable_zones" : [ "xxx", "xxx" ]
+          } ],
+          "support_features" : [ {
+            "name" : "connector_obs",
+            "properties" : {
+              "max_task" : "10",
+              "max_node" : "10",
+              "min_task" : "1",
+              "min_node" : "2"
+            }
+          } ],
+          "properties" : {
+            "max_partition_per_broker" : "1500",
+            "max_broker" : "30",
+            "max_storage_per_node" : "30000",
+            "max_consumer_per_broker" : "4000",
+            "min_broker" : "3",
+            "max_bandwidth_per_broker" : "100",
+            "min_storage_per_node" : "1200",
+            "max_tps_per_broker" : "200000",
+            "product_alias" : "kafka.12u24g.cluster"
+          }
+        }, {
+          "type" : "cluster",
+          "product_id" : "c6.16u32g.cluster",
+          "ecs_flavor_id" : "c6.4xlarge.2",
+          "billing_code" : "dms.platinum.c6",
+          "arch_types" : [ "X86" ],
+          "charging_mode" : [ "monthly", "hourly" ],
+          "ios" : [ {
+            "io_spec" : "dms.physical.storage.high.v2",
+            "type" : "evs",
+            "available_zones" : [ "xxx", "xxx" ],
+            "unavailable_zones" : [ "xxx", "xxx" ]
+          }, {
+            "io_spec" : "dms.physical.storage.ultra.v2",
+            "type" : "evs",
+            "available_zones" : [ "xxx", "xxx" ],
+            "unavailable_zones" : [ "xxx", "xxx" ]
+          } ],
+          "support_features" : [ {
+            "name" : "connector_obs",
+            "properties" : {
+              "max_task" : "10",
+              "max_node" : "10",
+              "min_task" : "1",
+              "min_node" : "2"
+            }
+          } ],
+          "properties" : {
+            "max_partition_per_broker" : "2000",
+            "max_broker" : "30",
+            "max_storage_per_node" : "30000",
+            "max_consumer_per_broker" : "4000",
+            "min_broker" : "3",
+            "max_bandwidth_per_broker" : "100",
+            "min_storage_per_node" : "1600",
+            "max_tps_per_broker" : "250000",
+            "product_alias" : "kafka.16u32g.cluster"
+          }
+        } ]
+      }
 
 Status Codes
 ------------

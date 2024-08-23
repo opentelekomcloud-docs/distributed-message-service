@@ -104,7 +104,7 @@ Request
    |                       |                 |                 |    -  Lowercase letters                                                                                                                                                                                                                                                                            |
    |                       |                 |                 |    -  Uppercase letters                                                                                                                                                                                                                                                                            |
    |                       |                 |                 |    -  Digits                                                                                                                                                                                                                                                                                       |
-   |                       |                 |                 |    -  Special characters :literal:`\`~!@#$%^&*()-_=+\\|[{}];:',<.>/?`                                                                                                                                                                                                                              |
+   |                       |                 |                 |    -  Special characters\ :literal:`\`~!@#$%^&*()-_=+\\|[{}];:',<.>/?`                                                                                                                                                                                                                             |
    +-----------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | vpc_id                | String          | Yes             | Indicates the VPC ID.                                                                                                                                                                                                                                                                              |
    |                       |                 |                 |                                                                                                                                                                                                                                                                                                    |
@@ -214,21 +214,21 @@ Request
 
 .. table:: **Table 3** tags
 
-   +-----------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------+
-   | Parameter       | Type            | Mandatory       | Description                                                                                               |
-   +=================+=================+=================+===========================================================================================================+
-   | key             | String          | No              | Indicates the tag key. A tag key can contain a maximum of 36 Unicode characters.                          |
-   |                 |                 |                 |                                                                                                           |
-   |                 |                 |                 | The key cannot be left blank or be an empty string.                                                       |
-   |                 |                 |                 |                                                                                                           |
-   |                 |                 |                 | It cannot contain nonprintable ASCII (0-31) characters and the following special characters: ``=*<>\,|/`` |
-   +-----------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------+
-   | value           | String          | No              | Indicates the value. A tag value can contain a maximum of 43 Unicode characters.                          |
-   |                 |                 |                 |                                                                                                           |
-   |                 |                 |                 | The value cannot be left blank or be an empty string.                                                     |
-   |                 |                 |                 |                                                                                                           |
-   |                 |                 |                 | It cannot contain nonprintable ASCII (0-31) characters and the following special characters: ``=*<>\,|/`` |
-   +-----------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------+
+   +-----------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------+
+   | Parameter       | Type            | Mandatory       | Description                                                                                              |
+   +=================+=================+=================+==========================================================================================================+
+   | key             | String          | No              | Indicates the tag key. A tag key can contain a maximum of 36 Unicode characters.                         |
+   |                 |                 |                 |                                                                                                          |
+   |                 |                 |                 | The key cannot be left blank or be an empty string.                                                      |
+   |                 |                 |                 |                                                                                                          |
+   |                 |                 |                 | It cannot contain nonprintable ASCII (0-31) characters and the following special characters:``=*<>\,|/`` |
+   +-----------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------+
+   | value           | String          | No              | Indicates the value. A tag value can contain a maximum of 43 Unicode characters.                         |
+   |                 |                 |                 |                                                                                                          |
+   |                 |                 |                 | The value cannot be left blank or be an empty string.                                                    |
+   |                 |                 |                 |                                                                                                          |
+   |                 |                 |                 | It cannot contain nonprintable ASCII (0-31) characters and the following special characters:``=*<>\,|/`` |
+   +-----------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------+
 
 .. code-block:: text
 

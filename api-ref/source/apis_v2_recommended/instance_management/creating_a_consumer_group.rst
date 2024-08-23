@@ -30,24 +30,33 @@ Request Parameters
 
 .. table:: **Table 2** Request body parameters
 
-   +-----------------+-----------------+-----------------+-----------------------------+
-   | Parameter       | Mandatory       | Type            | Description                 |
-   +=================+=================+=================+=============================+
-   | group_name      | Yes             | String          | Consumer group name.        |
-   +-----------------+-----------------+-----------------+-----------------------------+
-   | group_desc      | No              | String          | Consumer group description. |
-   |                 |                 |                 |                             |
-   |                 |                 |                 | Minimum: **0**              |
-   |                 |                 |                 |                             |
-   |                 |                 |                 | Maximum: **200**            |
-   +-----------------+-----------------+-----------------+-----------------------------+
+   ========== ========= ====== ===========================
+   Parameter  Mandatory Type   Description
+   ========== ========= ====== ===========================
+   group_name Yes       String Consumer group name.
+   group_desc No        String Consumer group description.
+   ========== ========= ====== ===========================
 
 Response Parameters
 -------------------
 
-**Status code: 400**
+**Status code: 200**
 
 .. table:: **Table 3** Response body parameters
+
+   +-----------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+   | Parameter             | Type                  | Description                                                                                                                                     |
+   +=======================+=======================+=================================================================================================================================================+
+   | ``-``                 | String                | Specified IPv4 private IP addresses.                                                                                                            |
+   |                       |                       |                                                                                                                                                 |
+   |                       |                       | The number of specified IP addresses must be less than or equal to the number of new brokers.                                                   |
+   |                       |                       |                                                                                                                                                 |
+   |                       |                       | If the number of specified IP addresses is less than the number of brokers, the unspecified brokers are randomly assigned private IP addresses. |
+   +-----------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Status code: 400**
+
+.. table:: **Table 4** Response body parameters
 
    ========== ====== ==================
    Parameter  Type   Description
