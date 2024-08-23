@@ -2,8 +2,8 @@
 
 .. _BatchDeleteGroup:
 
-Batch Deleting Consumer Groups of a Kafka Instance
-==================================================
+Deleting Consumer Groups of a Kafka Instance in Batches
+=======================================================
 
 Function
 --------

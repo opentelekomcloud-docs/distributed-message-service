@@ -7,6 +7,7 @@ APIs V2 (Recommended)
 
 -  :ref:`Lifecycle Management <topic_300000000>`
 -  :ref:`Instance Management <topic_300000001>`
+-  :ref:`Smart Connect <topic_300000011>`
 -  :ref:`Specification Modification Management <topic_300000003>`
 -  :ref:`Topic Management <topic_300000004>`
 -  :ref:`User Management <topic_300000005>`
@@ -21,6 +22,7 @@ APIs V2 (Recommended)
 
    lifecycle_management/index
    instance_management/index
+   smart_connect/index
    specification_modification_management/index
    topic_management/index
    user_management/index

@@ -63,7 +63,7 @@ The following procedure describes how to obtain a project ID:
 
 #. Click the username and choose **My Credentials** from the drop-down list.
 
-   On the **My Credentials** page, view project IDs in the project list.
+   On the **API Credentials** page, view project IDs in the project list.
 
 
    .. figure:: /_static/images/en-us_image_0000001862808485.png
