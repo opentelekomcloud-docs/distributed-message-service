@@ -110,7 +110,7 @@ html_copy_source = False
 latex_documents = [
     ('index',
      'dms-umn.tex',
-     u'Distributed Message Service - User Guide',
+    u'Distributed Message Service - User Guide',
      u'OpenTelekomCloud', 'manual'),
 ]
 

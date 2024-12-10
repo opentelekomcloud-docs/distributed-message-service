@@ -110,7 +110,7 @@ html_copy_source = False
 latex_documents = [
     ('index',
      'dms-best-practice.tex',
-     u'Distributed Message Service - Best Practice',
+    u'Distributed Message Service - Best Practice',
      u'OpenTelekomCloud', 'manual'),
 ]
 

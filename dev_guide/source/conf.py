@@ -109,8 +109,7 @@ html_copy_source = False
 # -- Options for PDF output --------------------------------------------------
 latex_documents = [
     ('index',
-     'dms-dev-guide.tex',
-     u'Distributed Message Service - Developer Guide',
+     'dms-dev-guide.tex',u'Distributed Message Service - Developer Guide',
      u'OpenTelekomCloud', 'manual'),
 ]
 
