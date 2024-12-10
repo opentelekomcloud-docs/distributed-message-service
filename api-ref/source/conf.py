@@ -110,7 +110,7 @@ html_copy_source = False
 latex_documents = [
     ('index',
      'dms-api-ref.tex',
-     u'Distributed Message Service - API Reference',
+    u'Distributed Message Service - API Reference',
      u'OpenTelekomCloud', 'manual'),
 ]
 
