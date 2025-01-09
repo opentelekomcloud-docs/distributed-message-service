@@ -34,7 +34,7 @@ Viewing Consumer Offsets (Console)
 #. Click the desired Kafka instance to view the instance details.
 #. In the navigation pane, choose **Consumer Groups**.
 #. Click the name of the desired consumer group.
-#. On the **Consumer Offset** tab page, view the list of topics that the consumer group has subscribed to, total number of messages accumulated in the topic, message consumption progress in each partition of the topic (accumulated messages, offset, latest offset, consumer ID, consumer address, and client ID).
+#. On the **Consumer Offset** tab page, view the list of topics that the consumer group has subscribed to, total number of messages accumulated in the topic, consumption progress in each partition of the topic (number of accumulated messages, offset, latest offset, consumer ID, consumer address, and client ID).
 #. (Optional) To query the consumer offsets of a specific topic, enter the topic name in the search box and press **Enter**.
 
 Viewing Consumer Offsets (Kafka CLI)
@@ -75,7 +75,7 @@ Viewing Consumer Offsets (Kafka CLI)
 
       View **Security Protocol** in the **Connection** area on the **Basic Information** page on the Kafka console. The configuration settings vary depending on the protocol.
 
-      -  SASL_PLAINTEXT: Skip this step if the username and password are already set. Otherwise, create the **ssl-user-config.properties** file in the **/config** directory on the Kafka client and add the following content to the file:
+      -  SASL_PLAINTEXT: Skip this step and go to :ref:`2 <kafka-ug-0014__li155191222323>` if the username and password are already set. Otherwise, create the **ssl-user-config.properties** file in the **/config** directory on the Kafka client and add the following content to the file:
 
          .. code-block::
 
@@ -93,7 +93,7 @@ Viewing Consumer Offsets (Kafka CLI)
 
          Parameter description: **username** and **password** are the ones you set when enabling ciphertext access for the first time or when creating a user.
 
-      -  SASL_SSL: Skip this step if the username, password, and SSL certificate are already set. Otherwise, create the **ssl-user-config.properties** file in the **/config** directory on the Kafka client and add the following content to the file:
+      -  SASL_SSL: Skip this step and go to :ref:`2 <kafka-ug-0014__li155191222323>` if the username, password, and SSL certificate are already set. Otherwise, create the **ssl-user-config.properties** file in the **/config** directory on the Kafka client and add the following content to the file:
 
          .. code-block::
 
@@ -119,7 +119,9 @@ Viewing Consumer Offsets (Kafka CLI)
          -  **ssl.endpoint.identification.algorithm**: whether to verify the certificate domain name. **This parameter must be left blank, which indicates disabling domain name verification**.
          -  **username** and **password**: username and password you set when enabling ciphertext access for the first time or when creating a user.
 
-   #. Run the following command in the **/bin** directory of the Kafka client:
+   #. .. _kafka-ug-0014__li155191222323:
+
+      Run the following command in the **/bin** directory of the Kafka client:
 
       .. code-block::
 

@@ -11,9 +11,9 @@ Partition reassignment is required in the following scenarios:
 
 -  After you add brokers to an instance, new topics are created on new brokers, and the original topics are still on the original brokers, resulting in unbalanced partitions. To migrate the replicas of the original topic partitions to the new brokers, reassign partitions.
 -  The leader partition is degraded to be a follower on a heavily loaded broker.
--  The number of replicas is increased or decreased.
+-  The replica quantity of a topic can be changed during partition reassignment.
 
-The DMS for Kafka console provides automatic and manual reassignment. Automatic reassignment is recommended because it ensures that leaders are evenly distributed.
+The DMS for Kafka console provides :ref:`automatic <kafka_ug_0023__section71802203584>` and :ref:`manual <kafka_ug_0023__section1733512332288>` reassignment. Automatic reassignment is recommended because it ensures that leaders are evenly distributed.
 
 .. note::
 
@@ -36,6 +36,8 @@ Preparing for Partition Reassignment
 
 -  To reduce the amount of data to be migrated, decrease the topic retention period without affecting services and wait for messages to age. After the reassignment is complete, you can restore the retention period. To change the topic retention period, see :ref:`Changing Kafka Message Retention Period <kafka-ug-200506001>`.
 -  The target broker should have sufficient disk space. To check available disk space of each broker, see :ref:`Viewing Kafka Disk Usage <kafka-ug-0004>`. If the remaining disk capacity of the target broker is close to the amount of data to be migrated to the broker, :ref:`expand the disk capacity <kafka-ug-181221001>` before the reassignment.
+
+.. _kafka_ug_0023__section71802203584:
 
 Auto Reassignment
 -----------------
@@ -61,10 +63,26 @@ Auto Reassignment
 
 #. Set automatic reassignment parameters.
 
-   -  In the **Brokers** area, select the brokers to assign the topic's partition replicas to.
-   -  In the **Topics** area, enter the number of replicas to be automatically reassigned. The number of replicas must be less than or equal to the number of brokers.
-   -  Specify **throttle**. The default value is **-1**, indicating that there is no throttle If the instance has low workload (for example, only 30/300 MB/s is used), you are not advised to limit the bandwidth. If a throttle is required, you are advised to set it to a value greater than or equal to the total production bandwidth of the to-be-reassigned topic multiplied by the maximum number of replicas of the to-be-reassigned topic. For details, see :ref:`Calculating a Throttle <kafka_ug_0023__section2847153373018>`.
-   -  For **Execute**, specify when to execute the reassignment. **Now** means to execute it immediately. **As scheduled** means to execute it at the scheduled time.
+   .. table:: **Table 1** Automatic balancing parameters
+
+      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                                                                                                                                                                                                                                                                             |
+      +===================================+=========================================================================================================================================================================================================================================================================================================================================================+
+      | Brokers                           | Select the brokers to assign the topic's partition replicas to.                                                                                                                                                                                                                                                                                         |
+      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Topics                            | Enter the number of replicas to be automatically reassigned. The number of replicas must be less than or equal to the number of brokers.                                                                                                                                                                                                                |
+      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Max. Bandwidth                    | Specify **throttle**. The default value is **-1**, indicating that there is no throttle                                                                                                                                                                                                                                                                 |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                         |
+      |                                   | If the instance has low workload (for example, only 30/300 MB/s is used), you are not advised to limit the bandwidth. If a throttle is required, you are advised to set it to a value greater than or equal to the total production bandwidth of the to-be-reassigned topic multiplied by the maximum number of replicas of the to-be-reassigned topic. |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                         |
+      |                                   | For details, see :ref:`Calculating a Throttle <kafka_ug_0023__section2847153373018>`.                                                                                                                                                                                                                                                                   |
+      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Execute                           | Specify when to execute the reassignment.                                                                                                                                                                                                                                                                                                               |
+      |                                   |                                                                                                                                                                                                                                                                                                                                                         |
+      |                                   | -  **Now** means to execute it immediately.                                                                                                                                                                                                                                                                                                             |
+      |                                   | -  **As scheduled** means to execute it at the scheduled time.                                                                                                                                                                                                                                                                                          |
+      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
    .. figure:: /_static/images/en-us_image_0000001940775828.png
@@ -74,11 +92,13 @@ Auto Reassignment
 
 #. (Optional) Click **Calculate**. **Time Required** indicates how long automatic balancing will take.
 
+   The one-click calculation function does not affect the performance of Kafka instances.
+
 #. Click **OK**.
 
    The following table lists how to check whether reassignment is complete (scheduled and non-scheduled tasks):
 
-   .. table:: **Table 1** Checking the reassignment result
+   .. table:: **Table 2** Checking the reassignment result
 
       +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Task Type                         | Reassignment Result                                                                                                                                                                                                 |
@@ -106,6 +126,8 @@ Auto Reassignment
       -  You cannot modify the partition quantity of topics whose reassignment tasks have started.
       -  Reassignment tasks cannot be manually stopped. Please wait until they complete.
       -  If partition reassignment has been scheduled, reassignment cannot be scheduled again for any topic in this instance until this reassignment is executed.
+
+.. _kafka_ug_0023__section1733512332288:
 
 Manual Reassignment
 -------------------
@@ -144,11 +166,13 @@ Manual Reassignment
 
 #. (Optional) Click **Calculate**. **Time Required** indicates how long manual balancing will take.
 
+   The one-click calculation function does not affect the performance of Kafka instances.
+
 #. Click **OK**.
 
    The following table lists how to check whether reassignment is complete (scheduled and non-scheduled tasks):
 
-   .. table:: **Table 2** Checking the reassignment result
+   .. table:: **Table 3** Checking the reassignment result
 
       +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Task Type                         | Reassignment Result                                                                                                                                                                                                 |
@@ -216,9 +240,11 @@ Throttles are affected by the execution duration of the reassignment, leader/fol
 
 Assume that the partition reassignment task needs to be completed within 200s and each replica has 100 MB data. Calculate the throttle in the following scenarios:
 
-**Scenario 1: Topic 1 has two partitions and two replicas, and Topic 2 has one partition and one replica. All leader replicas are on the same broker. One replica needs to be added for Topic 1 and Topic 2 respectively.**
+Scenario 1: Topic 1 has two partitions and two replicas, and Topic 2 has one partition and one replica. All leader replicas are on the same broker, as shown in :ref:`Table 4 <kafka_ug_0023__table87867310117>`. One replica needs to be added for Topic 1 and Topic 2 respectively, as shown in :ref:`Table 5 <kafka_ug_0023__table18476477156>`.
 
-.. table:: **Table 3** Replica distribution before reassignment
+.. _kafka_ug_0023__table87867310117:
+
+.. table:: **Table 4** Replica distribution before reassignment
 
    +------------+----------------+--------------------------+----------------------------+
    | Topic Name | Partition Name | Broker of Leader Replica | Broker of Follower Replica |
@@ -230,7 +256,9 @@ Assume that the partition reassignment task needs to be completed within 200s an
    | Topic 2    | 0              | 0                        | 0                          |
    +------------+----------------+--------------------------+----------------------------+
 
-.. table:: **Table 4** Replica distribution after reassignment
+.. _kafka_ug_0023__table18476477156:
+
+.. table:: **Table 5** Replica distribution after reassignment
 
    +------------+----------------+--------------------------+----------------------------+
    | Topic Name | Partition Name | Broker of Leader Replica | Broker of Follower Replica |
@@ -257,9 +285,11 @@ As shown in :ref:`Figure 7 <kafka_ug_0023__fig11847155234519>`, three replicas f
 
 In conclusion, to complete the partition reassignment task within 200s, set the throttle to a value greater than or equal to 1.5 MB/s. The bandwidth should be set to be greater than or equal to 2 MB/s because the limit on it on the console must be an integer.
 
-**Scenario 2: Topic 1 has two partitions and one replica, and Topic 2 has two partitions and one replica. Leader replicas are on different brokers. One replica needs to be added for Topic 1 and Topic 2 respectively.**
+Scenario 2: Topic 1 has two partitions and one replica, and Topic 2 has two partitions and one replica. Leader replicas are on different brokers, as shown in :ref:`Table 6 <kafka_ug_0023__table193318516246>`. One replica needs to be added for Topic 1 and Topic 2 respectively, as shown in :ref:`Table 7 <kafka_ug_0023__table17347515245>`.
 
-.. table:: **Table 5** Replica distribution before reassignment
+.. _kafka_ug_0023__table193318516246:
+
+.. table:: **Table 6** Replica distribution before reassignment
 
    +------------+----------------+--------------------------+----------------------------+
    | Topic Name | Partition Name | Broker of Leader Replica | Broker of Follower Replica |
@@ -273,7 +303,9 @@ In conclusion, to complete the partition reassignment task within 200s, set the 
    | Topic 2    | 1              | 2                        | 2                          |
    +------------+----------------+--------------------------+----------------------------+
 
-.. table:: **Table 6** Replica distribution after reassignment
+.. _kafka_ug_0023__table17347515245:
+
+.. table:: **Table 7** Replica distribution after reassignment
 
    +------------+----------------+--------------------------+----------------------------+
    | Topic Name | Partition Name | Broker of Leader Replica | Broker of Follower Replica |
@@ -304,9 +336,11 @@ As shown in :ref:`Figure 8 <kafka_ug_0023__fig03691046202512>`, Broker 1 has onl
 
 In conclusion, to complete the partition reassignment task within 200s, set the throttle to a value greater than or equal to 1.5 MB/s. The bandwidth should be set to be greater than or equal to 2 MB/s because the limit on it on the console must be an integer.
 
-**Scenario 3: Both Topic 1 and Topic 2 have one partition and two replicas. All leader replicas are on the same broker. One replica needs to be added to Topic 1. Messages are produced on Topic 1, causing replication.**
+Scenario 3: Both Topic 1 and Topic 2 have one partition and two replicas. All leader replicas are on the same broker. One replica needs to be added to Topic 1, as shown in :ref:`Table 8 <kafka_ug_0023__table17155172610419>`. Messages are produced on Topic 1, causing replication, as shown in :ref:`Table 9 <kafka_ug_0023__table6156142611413>`.
 
-.. table:: **Table 7** Replica distribution before reassignment
+.. _kafka_ug_0023__table17155172610419:
+
+.. table:: **Table 8** Replica distribution before reassignment
 
    +------------+----------------+--------------------------+----------------------------+
    | Topic Name | Partition Name | Broker of Leader Replica | Broker of Follower Replica |
@@ -316,7 +350,9 @@ In conclusion, to complete the partition reassignment task within 200s, set the 
    | Topic 2    | 0              | 0                        | 0, 1                       |
    +------------+----------------+--------------------------+----------------------------+
 
-.. table:: **Table 8** Replica distribution after reassignment
+.. _kafka_ug_0023__table6156142611413:
+
+.. table:: **Table 9** Replica distribution after reassignment
 
    +------------+----------------+--------------------------+----------------------------+
    | Topic Name | Partition Name | Broker of Leader Replica | Broker of Follower Replica |

@@ -33,7 +33,7 @@ Procedure
    In the upper right corner of the page, click **View Metric**. On the displayed Cloud Eye page, you can view metrics of Kafka instances.
 
 
-   .. figure:: /_static/images/en-us_image_0000001377028284.png
+   .. figure:: /_static/images/en-us_image_0000002029015544.png
       :alt: **Figure 1** Viewing disk usage
 
       **Figure 1** Viewing disk usage

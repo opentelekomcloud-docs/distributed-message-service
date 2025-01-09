@@ -49,7 +49,7 @@ Procedure
 #. Set the parameters for deleting messages, as shown in :ref:`Table 1 <kafka_ug_0046__table10182314115320>`.
 
 
-   .. figure:: /_static/images/en-us_image_0000001781630389.png
+   .. figure:: /_static/images/en-us_image_0000002065181241.png
       :alt: **Figure 1** Deleting messages
 
       **Figure 1** Deleting messages

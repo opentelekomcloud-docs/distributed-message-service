@@ -27,6 +27,10 @@ After you initiate certain instance operations listed in :ref:`Table 1 <kafka-ug
    +-----------------------------------+-----------------------------------------------------------+
    | Configure public network access   | Enables/Disables public access.                           |
    +-----------------------------------+-----------------------------------------------------------+
+   | Enable Smart Connect              | Enables Smart Connect.                                    |
+   +-----------------------------------+-----------------------------------------------------------+
+   | Disable Smart Connect             | Disables Smart Connect.                                   |
+   +-----------------------------------+-----------------------------------------------------------+
    | Modify Specifications             | -  Expands the storage space.                             |
    |                                   | -  Adds brokers.                                          |
    |                                   | -  Increases the bandwidth.                               |

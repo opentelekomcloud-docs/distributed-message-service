@@ -92,9 +92,9 @@ Procedure
       |                                |                                                                                                                                                                                                                       |                       |                 |
       |                                | This parameter is displayed only when is enabled for the instance or ciphertext access is used.                                                                                                                       |                       |                 |
       |                                |                                                                                                                                                                                                                       |                       |                 |
-      |                                | This parameter cannot be modified for certain earlier instances.                                                                                                                                                      |                       |                 |
+      |                                | This parameter of some earlier instances cannot be modified.                                                                                                                                                          |                       |                 |
       +--------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+-----------------+
-      | num.partitions                 | The default number of partitions configured for each automatically created topic.                                                                                                                                     | 1-200                 | 3               |
+      | num.partitions                 | The default number of partitions configured for each automatically created topic.                                                                                                                                     | 1 ~ 200               | 3               |
       +--------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+-----------------+
       | group.min.session.timeout.ms   | Minimum session timeout for consumers. A shorter timeout enables quicker failure detection but results in more frequent consumer heartbeating, which can overwhelm broker resources.                                  | 6000-300,000          | 6000            |
       |                                |                                                                                                                                                                                                                       |                       |                 |
@@ -103,7 +103,7 @@ Procedure
 
    .. _kafka-ug-0007__table24142056192817:
 
-   .. table:: **Table 3** Dynamic parameters (2.3.0/2.7/3.x instances)
+   .. table:: **Table 3** Dynamic parameters (v2.3.0/v2.7/v3.x)
 
       +--------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------+-----------------+
       | Parameter                      | Description                                                                                                                                                                                                                                                  | Value Range           | Default Value   |
@@ -129,7 +129,7 @@ Procedure
 
    .. _kafka-ug-0007__table913673592919:
 
-   .. table:: **Table 4** Static parameters (2.3.0/2.7/3.x instances)
+   .. table:: **Table 4** Static parameters (v2.3.0/v2.7/v3.x)
 
       +--------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------+-----------------+
       | Parameter                      | Description                                                                                                                                                                          | Value Range       | Default Value   |

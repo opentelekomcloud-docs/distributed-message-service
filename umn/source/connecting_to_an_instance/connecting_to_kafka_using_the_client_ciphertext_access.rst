@@ -5,7 +5,7 @@
 Connecting to Kafka Using the Client (Ciphertext Access)
 ========================================================
 
-This section describes how to access a Kafka instance in ciphertext on an open-source Kafka client. Accessing in ciphertext requires SASL authentication. The protocol **SASL_SSL** encrypts data transmission with high security.
+This section describes how to access a Kafka instance in ciphertext on an open-source Kafka client. The client connects to the Kafka instance with SASL authentication. If the security protocol **SASL_SSL** is used, the client communicates with the Kafka instance in encryption, improving security.
 
 For security purposes, **TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256** is supported.
 
@@ -94,23 +94,27 @@ The following uses Linux as an example.
 
    For example:
 
-   10.154.48.120 server01
+   .. code-block::
 
-   10.154.48.121 server02
-
-   10.154.48.122 server03
+      10.154.48.120 server01
+      10.154.48.121 server02
+      10.154.48.122 server03
 
 #. Decompress the Kafka CLI package.
 
    Access the directory where the CLI package is stored and run the following command to decompress the package:
 
-   **tar -zxf [kafka_tar]**
+   .. code-block::
+
+      tar -zxf [kafka_tar]
 
    In the preceding command, *[kafka_tar]* indicates the name of the CLI package.
 
    For example:
 
-   **tar -zxf kafka_2.12-2.7.2.tgz**
+   .. code-block::
+
+      tar -zxf kafka_2.12-2.7.2.tgz
 
 #. Modify the Kafka CLI configuration file based on the :ref:`SASL mechanism <kafka-ug-180801001__li198901524125317>`.
 

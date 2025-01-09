@@ -9,7 +9,7 @@ After creating a Kafka instance, you can view the details or modify some paramet
 
 .. note::
 
-   Single-node instances do not support reconfiguration of private network access.
+   Single-node instances do not support reconfiguration of Smart Connect and private network access.
 
 Prerequisite
 ------------
@@ -29,7 +29,7 @@ Viewing Kafka Instance Details
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
 
-#. Search for a Kafka instance by specifying filters. You can filter instances by tag, status, name, version, flavor, used/available storage space, maximum partitions, billing mode, and enterprise project.Only enterprise users can filter instances by enterprise projects. For Kafka instance statuses, see :ref:`Table 1 <kafka-ug-180604014__table5086721717534>`.
+#. You can filter Kafka instances by tag, status, name, version, flavor, used/available storage space, maximum partitions, billing mode, and enterprise project. Only enterprise users can filter instances by enterprise projects. For Kafka instance statuses, see :ref:`Table 1 <kafka-ug-180604014__table5086721717534>`.
 
    .. _kafka-ug-180604014__table5086721717534:
 

@@ -16,7 +16,7 @@ This section describes how to enable Smart Connect.
 
 .. note::
 
-   This function is unavailable for single-node instances. Kafka 3.x instances do not support this function.
+   This function is unavailable for single-node instances.
 
 Operation Impact
 ----------------
@@ -28,7 +28,7 @@ For example, if you enable Smart Connect for a kafka.4u8g.cluster instance, at l
 Prerequisites
 -------------
 
--  A Kafka instance has been created and is in the **Running** state.
+-  :ref:`A Kafka instance has been created <kafka-ug-180604013>` and is in the **Running** state.
 -  **auto.create.groups.enable** is set to **true**. If no, modify it by referring to :ref:`Modifying Kafka Instance Configuration Parameters <kafka-ug-0007>`.
 
 Procedure

@@ -7,7 +7,7 @@ Configuring Kafka Topic Permissions
 
 Kafka instances with ciphertext access enabled support access control list (ACL) for topics. You can differentiate user permissions by granting users different permissions in a topic.
 
-This section describes how to grant topic permissions to users after ciphertext access is enabled for Kafka instances. For details about how to create a user, see :ref:`Configuring Kafka ACL Users <kafka-ug-0003>`.
+This section describes how to grant topic permissions to users after ciphertext access is enabled for Kafka instances.
 
 .. note::
 
@@ -23,7 +23,7 @@ Constraints
 Prerequisites
 -------------
 
--  :ref:`Ciphertext has been enabled <kafka_ug_0044>` for the instance.
+-  :ref:`Ciphertext has been enabled <kafka_ug_0044>` for the Kafka instance.
 -  :ref:`A user is created <kafka-ug-0003>`.
 
 Procedure

@@ -5,11 +5,13 @@
 Modifying Kafka Topic Configurations
 ====================================
 
-This section describes how to modify following configurations of a Kafka topic on the console.
+This section describes how to modify configurations in :ref:`Table 1 <kafka-ug-0038__table19803102744620>` of a Kafka topic on the console.
 
 .. note::
 
    Modifying **Synchronous Replication**, **Synchronous Flushing**, **Message Timestamp**, or **Max. Message Size** does not require instance restart.
+
+.. _kafka-ug-0038__table19803102744620:
 
 .. table:: **Table 1** Kafka topic configuration parameters
 

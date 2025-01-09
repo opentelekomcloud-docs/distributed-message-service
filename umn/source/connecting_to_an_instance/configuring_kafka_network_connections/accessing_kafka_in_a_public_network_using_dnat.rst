@@ -37,7 +37,7 @@ Step 1: Obtain Information About the Kafka Instance
    In the **Connection** area on the **Basic Information** tab page, view and record the private network access addresses of the Kafka instance. In the **Network** area, view and record the VPC and subnet where the Kafka instance is located.
 
 
-   .. figure:: /_static/images/en-us_image_0000001803492553.png
+   .. figure:: /_static/images/en-us_image_0000002029070918.png
       :alt: **Figure 1** Kafka instance information
 
       **Figure 1** Kafka instance information
@@ -129,7 +129,7 @@ Step 4: Map EIPs to the Port 9011 of Private IP Addresses
 
    .. _kafka-dnat__fig15689320154314:
 
-   .. figure:: /_static/images/en-us_image_0000001329138322.png
+   .. figure:: /_static/images/en-us_image_0000002029078598.png
       :alt: **Figure 5** Changing the advertised.listeners IP address (for DNAT access)
 
       **Figure 5** Changing the advertised.listeners IP address (for DNAT access)

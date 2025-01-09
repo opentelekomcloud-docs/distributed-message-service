@@ -9,6 +9,7 @@ Consumer Groups
 -  :ref:`Will a Consumer Group Without Active Consumers Be Automatically Deleted in 14 Days? <kafka-faq-0043>`
 -  :ref:`Why Does a Deleted Consumer Group Still Exist? <kafka_faq_0059>`
 -  :ref:`Why Can't I View Consumers When Instance Consumption Is Normal? <kafka_faq_0060>`
+-  :ref:`Can I Delete Unnecessary Topics in a Consumer Group? <kafka-faq-0031>`
 
 .. toctree::
    :maxdepth: 1
@@ -18,3 +19,4 @@ Consumer Groups
    will_a_consumer_group_without_active_consumers_be_automatically_deleted_in_14_days
    why_does_a_deleted_consumer_group_still_exist
    why_cant_i_view_consumers_when_instance_consumption_is_normal
+   can_i_delete_unnecessary_topics_in_a_consumer_group
