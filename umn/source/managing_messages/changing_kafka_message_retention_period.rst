@@ -5,7 +5,7 @@
 Changing Kafka Message Retention Period
 =======================================
 
-Aging time is a period that messages in the topic are retained for. Consumers must retrieve messages before this period ends. Otherwise, the messages will be deleted and can no longer be retrieved.
+Aging time is a period that messages in a topic are retained for. Consumers must consume messages before this period ends. Otherwise, the messages will be deleted and can no longer be consumed.
 
 The topic retention period is 72 hours by default, and can be changed later as required. Changing the aging time does not affect services.
 

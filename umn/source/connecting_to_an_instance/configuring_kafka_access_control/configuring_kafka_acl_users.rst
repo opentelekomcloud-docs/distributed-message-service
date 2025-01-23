@@ -5,7 +5,7 @@
 Configuring Kafka ACL Users
 ===========================
 
-Kafka instances with ciphertext access enabled support access control list (ACL) for topics. You can isolate users by granting them different permissions in a topic.
+Kafka instances with ciphertext access enabled support access control list (ACL) for topics. You can differentiate user permissions by granting users different permissions in a topic.
 
 This section describes how to create users, reset the password, and delete users with ciphertext access enabled. For details about how to grant topic permissions for users, see :ref:`Configuring Kafka Topic Permissions <kafka-ug-0002>`.
 
@@ -25,7 +25,7 @@ Prerequisites
 Constraints
 -----------
 
--  This function is unavailable for single-node instances.
+-  Single-node instances do not support user creation, user password reset, or user deletion.
 -  Resetting a user password will interrupt services. Change the user password in the client configuration file or code as soon as possible.
 
 Creating a User

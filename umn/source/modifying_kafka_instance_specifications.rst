@@ -26,13 +26,16 @@ After creating a Kafka instance, you can increase its specifications. :ref:`Tabl
 
    This function is unavailable for single-node instances.
 
-**Distinguishing between old and new specifications:**
+.. _kafka-ug-181221001__section146651355193212:
+
+Distinguishing Between Old and New Specifications
+-------------------------------------------------
 
 -  Old specifications: In the instance list, the instance specification is displayed as bandwidth (for example, **100 MB/s**).
 -  New specifications: In the instance list, the instance specification is displayed as the ECS flavor multiplied by the number of brokers (for example, **kafka.2u4g.cluster*3 brokers**).
 
 
-.. figure:: /_static/images/en-us_image_0000001803507917.png
+.. figure:: /_static/images/en-us_image_0000002022589414.png
    :alt: **Figure 1** Instance list
 
    **Figure 1** Instance list
@@ -107,7 +110,7 @@ Procedure
 #. In the row containing the desired instance, choose **More** > **Modify Specifications** in the **Operation** column.
 #. Specify the storage space, number of brokers, or broker flavor as required.
 
-   -  **Increase the bandwidth (for earlier instances).**
+   -  Increase the bandwidth\ :ref:` (for earlier instances) <kafka-ug-181221001__section146651355193212>`.
 
       a. Specify a new bandwidth and click **Next**.
       b. Confirm the configurations and click **Submit**.
@@ -123,7 +126,7 @@ Procedure
 
          After increasing the bandwidth, add the IP address of the new broker to the client connection configuration to improve reliability.
 
-   -  **Expand the storage space (for earlier instances).**
+   -  Expand the storage space\ :ref:` (for earlier instances) <kafka-ug-181221001__section146651355193212>`.
 
       a. Specify a new storage space and click **Next**.
       b. Confirm the configurations and click **Submit**.
@@ -135,7 +138,7 @@ Procedure
 
             Instances in the **Change failed** state cannot be restarted, modified, or deleted. After the instance status automatically changes from **Change failed** to **Running**, you can continue to perform operations on the instance. If the status does not change to **Running**, contact customer service.
 
-   -  **Expand the storage space (for later instances).**
+   -  Expand the storage space\ :ref:` (for later instances) <kafka-ug-181221001__section146651355193212>`.
 
       a. For **Change By**, select **Storage**. For **Storage Space per Broker**, specify a new storage space, and click **Next**. The storage space range varies by instance specifications. For details, see :ref:`Table 1 <kafka-specification__table152020206204>`.
       b. Confirm the configurations and click **Submit**.
@@ -147,7 +150,7 @@ Procedure
 
             Instances in the **Change failed** state cannot be restarted, modified, or deleted. After the instance status automatically changes from **Change failed** to **Running**, you can continue to perform operations on the instance. If the status does not change to **Running**, contact customer service.
 
-   -  **Increase the broker quantity (for later instances).**
+   -  Increase the broker quantity\ :ref:` (for later instances) <kafka-ug-181221001__section146651355193212>`.
 
       a. For **Change By**, select **Brokers**. Then, enter the number of brokers and click **Next**. The broker quantity range varies by instance specifications. For details, see :ref:`Table 1 <kafka-specification__table152020206204>`. If public access has been enabled, configure EIPs for the new brokers. Then click **Next**.
       b. Confirm the configurations and click **Submit**.
@@ -163,7 +166,7 @@ Procedure
 
          After adding brokers, add the IP addresses of the new brokers to the client connection configuration to improve reliability.
 
-   -  **Increase the broker flavor (for later instances).**
+   -  Increase the broker flavor\ :ref:` (for later instances) <kafka-ug-181221001__section146651355193212>`.
 
       a. For **Change By**, select **Broker Flavor**.
 

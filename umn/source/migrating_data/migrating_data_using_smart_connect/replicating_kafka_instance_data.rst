@@ -14,7 +14,7 @@ Create a Smart Connect task to copy data unidirectionally or bidirectionally bet
 Notes and Constraints
 ---------------------
 
--  This function is unavailable for single-node Kafka 3.x instances.
+-  This function is unavailable for single-node Kafka instances.
 -  A maximum of 18 Smart Connect tasks can be created for an instance.
 -  When you copy Kafka data, the two Kafka instances must be connected through the intranet. If they are in different VPCs, connect the network by referring to :ref:`Accessing Kafka Using a VPC Endpoint Across VPCs <kafka-ug-0001>` or `VPC Peering Connection <https://docs.otc.t-systems.com/en-us/usermanual/vpc/vpc_peering_0000.html>`__.
 -  After a Smart Connect task is created, task parameters cannot be modified.

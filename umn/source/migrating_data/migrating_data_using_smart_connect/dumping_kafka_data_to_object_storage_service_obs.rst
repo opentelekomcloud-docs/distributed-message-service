@@ -14,7 +14,7 @@ Create a Smart Connect task to dump Kafka instance data to OBS for message data 
 Notes and Constraints
 ---------------------
 
--  This function is unavailable for single-node Kafka 3.x instances.
+-  This function is unavailable for single-node Kafka instances.
 -  A maximum of 18 Smart Connect tasks can be created for an instance.
 -  After a Smart Connect task is created, task parameters cannot be modified.
 

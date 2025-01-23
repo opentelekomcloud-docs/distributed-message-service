@@ -15,20 +15,20 @@ A tag consists of a tag key and a tag value. :ref:`Table 1 <tagmanagement__table
 
 .. table:: **Table 1** Tag key and value requirements
 
-   +-----------------------------------+-----------------------------------------------------------------------------------+
-   | Parameter                         | Requirements                                                                      |
-   +===================================+===================================================================================+
-   | Tag key                           | -  Cannot be left blank.                                                          |
-   |                                   | -  Must be unique for the same instance.                                          |
-   |                                   | -  Can contain 1 to 128 characters.                                               |
-   |                                   | -  Can contain letters, digits, spaces, and special characters \_.:=+-@ : = + - @ |
-   |                                   | -  Cannot start or end with a space.                                              |
-   |                                   | -  Cannot start with **\_sys\_**.                                                 |
-   +-----------------------------------+-----------------------------------------------------------------------------------+
-   | Tag value                         | -  Can contain 0 to 255 characters.                                               |
-   |                                   | -  Can contain letters, digits, spaces, and special characters \_.:=+-@ : = + - @ |
-   |                                   | -  Cannot start or end with a space in instance creation.                         |
-   +-----------------------------------+-----------------------------------------------------------------------------------+
+   +-----------------------------------+-------------------------------------------------------------------------------+
+   | Parameter                         | Requirements                                                                  |
+   +===================================+===============================================================================+
+   | Tag key                           | -  Cannot be left blank.                                                      |
+   |                                   | -  Must be unique for the same instance.                                      |
+   |                                   | -  Can contain 1 to 128 characters.                                           |
+   |                                   | -  Can contain letters, digits, spaces, and special characters \_ . : = + - @ |
+   |                                   | -  Cannot start or end with a space.                                          |
+   |                                   | -  Cannot start with **\_sys\_**.                                             |
+   +-----------------------------------+-------------------------------------------------------------------------------+
+   | Tag value                         | -  Can contain 0 to 255 characters.                                           |
+   |                                   | -  Can contain letters, digits, spaces, and special characters \_ . : = + - @ |
+   |                                   | -  Cannot start or end with a space in instance creation.                     |
+   +-----------------------------------+-------------------------------------------------------------------------------+
 
 Procedure
 ---------

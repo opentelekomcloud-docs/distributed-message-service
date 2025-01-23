@@ -5,4 +5,4 @@
 Can I Access a Kafka Instance Over a Public Network?
 ====================================================
 
-Yes. For details, see the :ref:`instance access instructions <kafka-ug190605003>`.
+Yes. For details, see the :ref:`Connecting to an Instance <kafka-ug190605003>`.

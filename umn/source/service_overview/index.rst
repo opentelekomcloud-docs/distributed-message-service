@@ -14,7 +14,6 @@ Service Overview
 -  :ref:`Notes and Constraints <kafka-pd-190605003>`
 -  :ref:`Related Services <kafka-pd-190605002>`
 -  :ref:`Basic Concepts <glossary-kafka>`
--  :ref:`Best Practices <dms-ug-001>`
 -  :ref:`Permission <productdescprivilegemanagement>`
 
 .. toctree::
@@ -30,5 +29,4 @@ Service Overview
    notes_and_constraints
    related_services
    basic_concepts
-   best_practices
    permission

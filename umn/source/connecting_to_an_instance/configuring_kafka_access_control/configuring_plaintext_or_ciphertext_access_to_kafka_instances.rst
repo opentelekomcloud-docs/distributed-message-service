@@ -7,10 +7,14 @@ Configuring Plaintext or Ciphertext Access to Kafka Instances
 
 You can access a Kafka instance in plaintext or ciphertext. This section describes how to change the access mode on the console.
 
+-  Plaintext access: Clients connect to the Kafka instance without SASL authentication.
+-  Ciphertext access: Clients connect to the Kafka instance with SASL authentication.
+
 .. note::
 
    -  When you change the access mode for the first time, some instances will restart. You can see the actual situation on the console. The restart takes about 75-80s. The instance will not be restarted when the access mode is changed again.
    -  For a single-node instance, you can only enable or disable plaintext for public network access.
+   -  The access mode cannot be changed for instances with IPv6 enabled.
 
 Prerequisites
 -------------
@@ -100,17 +104,10 @@ Enabling Ciphertext Access
       | Parameter                 | Value                 | Description                                                                                                                                                                                                              |
       +===========================+=======================+==========================================================================================================================================================================================================================+
       | Security Protocol         | SASL_SSL              | SASL is used for authentication. Data is encrypted with SSL certificates for high-security transmission.                                                                                                                 |
-      |                           |                       |                                                                                                                                                                                                                          |
-      |                           |                       | SCRAM-SHA-512 is enabled by default. To use PLAIN, enable **SASL/PLAIN**.                                                                                                                                                |
-      |                           |                       |                                                                                                                                                                                                                          |
-      |                           |                       | **What are SCRAM-SHA-512 and PLAIN mechanisms?**                                                                                                                                                                         |
-      |                           |                       |                                                                                                                                                                                                                          |
-      |                           |                       | -  SCRAM-SHA-512: uses the hash algorithm to generate credentials for usernames and passwords to verify identities. SCRAM-SHA-512 is more secure than PLAIN.                                                             |
-      |                           |                       | -  PLAIN: a simple username and password verification mechanism.                                                                                                                                                         |
       +---------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       |                           | SASL_PLAINTEXT        | SASL is used for authentication. Data is transmitted in plaintext for high performance.                                                                                                                                  |
       |                           |                       |                                                                                                                                                                                                                          |
-      |                           |                       | SCRAM-SHA-512 is enabled by default. To use PLAIN, enable **SASL/PLAIN**. SCRAM-SHA-512 authentication is recommended for plaintext transmission.                                                                        |
+      |                           |                       | SCRAM-SHA-512 authentication is recommended for plaintext transmission.                                                                                                                                                  |
       +---------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Cross-VPC Access Protocol | ``-``                 | -  When **Plaintext Access** is enabled and **Ciphertext Access** is disabled, **PLAINTEXT** is used for **Cross-VPC Access Protocol**.                                                                                  |
       |                           |                       | -  When **Ciphertext Access** is enabled and **Security Protocol** is **SASL_SSL**, **SASL_SSL** is used for **Cross-VPC Access Protocol**.                                                                              |
@@ -122,6 +119,11 @@ Enabling Ciphertext Access
       |                           |                       | -  If **SASL/PLAIN** is enabled, both the SCRAM-SHA-512 and PLAIN mechanisms are supported. You can select either of them as required.                                                                                   |
       |                           |                       |                                                                                                                                                                                                                          |
       |                           |                       | The **SASL/PLAIN** setting cannot be changed once ciphertext access is enabled.                                                                                                                                          |
+      |                           |                       |                                                                                                                                                                                                                          |
+      |                           |                       | **What are SCRAM-SHA-512 and PLAIN mechanisms?**                                                                                                                                                                         |
+      |                           |                       |                                                                                                                                                                                                                          |
+      |                           |                       | -  SCRAM-SHA-512: uses the hash algorithm to generate credentials for usernames and passwords to verify identities. SCRAM-SHA-512 is more secure than PLAIN.                                                             |
+      |                           |                       | -  PLAIN: a simple username and password verification mechanism.                                                                                                                                                         |
       +---------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Username and Password     | ``-``                 | Username and password used by the client to connect to the Kafka instance.                                                                                                                                               |
       |                           |                       |                                                                                                                                                                                                                          |
@@ -131,7 +133,7 @@ Enabling Ciphertext Access
       |                           |                       |                                                                                                                                                                                                                          |
       |                           |                       | -  Contains 8 to 32 characters.                                                                                                                                                                                          |
       |                           |                       | -  Cannot start with a hyphen (-) and must contain at least three of the following character types: uppercase letters, lowercase letters, digits, spaces, and special characters \`~! @#$\ ``%^&*()-_=+\|[{}];:'",<.>?`` |
-      |                           |                       | -  Cannot be the username spelled forwards or backwards.                                                                                                                                                                 |
+      |                           |                       | -  Cannot be the username spelled forward or backward.                                                                                                                                                                   |
       |                           |                       |                                                                                                                                                                                                                          |
       |                           |                       | The username cannot be changed once ciphertext access is enabled.                                                                                                                                                        |
       +---------------------------+-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -211,8 +213,8 @@ Disabling Ciphertext Access
 .. |image2| image:: /_static/images/en-us_image_0000001191767177.png
 .. |image3| image:: /_static/images/en-us_image_0000001191767177.png
 .. |image4| image:: /_static/images/en-us_image_0143929918.png
-.. |image5| image:: /_static/images/en-us_image_0000001655076581.png
-.. |image6| image:: /_static/images/en-us_image_0000001654716901.png
+.. |image5| image:: /_static/images/en-us_image_0000001191767177.png
+.. |image6| image:: /_static/images/en-us_image_0000001191767177.png
 .. |image7| image:: /_static/images/en-us_image_0143929918.png
 .. |image8| image:: /_static/images/en-us_image_0000001283221910.png
 .. |image9| image:: /_static/images/en-us_image_0000001283221910.png

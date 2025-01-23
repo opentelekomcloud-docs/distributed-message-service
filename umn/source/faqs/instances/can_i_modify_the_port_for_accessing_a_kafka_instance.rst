@@ -11,7 +11,8 @@ No. You must access a Kafka instance through one of the following ports:
 
    The port varies with the access mode:
 
-   -  Intra-VPC access: port **9092**
+   -  Intra-VPC access using IPv4 addresses: port **9092**
+   -  Intra-VPC access using IPv6 addresses: port **9192**
    -  Public access: port **9094**
    -  Cross-VPC access using a VPC endpoint: port **9011**
    -  Cross-VPC access using a peering connection: port: **9092**.
@@ -21,7 +22,8 @@ No. You must access a Kafka instance through one of the following ports:
 
    The port varies with the access mode:
 
-   -  Intra-VPC access: port **9093**
+   -  Intra-VPC access using IPv4 addresses: port **9093**
+   -  Intra-VPC access using IPv6 addresses: port **9193**
    -  Public access: port **9095**
    -  Cross-VPC access using a VPC endpoint: port **9011**
    -  Cross-VPC access using a peering connection: port: **9093**.
