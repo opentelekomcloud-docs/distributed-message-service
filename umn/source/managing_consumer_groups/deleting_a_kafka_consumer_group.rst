@@ -7,8 +7,8 @@ Deleting a Kafka Consumer Group
 
 You can delete a consumer group in either of the following ways:
 
--  Method 1: Delete a consumer group on the console.
--  Method 2: Use `Kafka CLI <https://cwiki.apache.org/confluence/display/KAFKA/Clients>`__ to delete a consumer group. (Ensure that the Kafka instance version is the same as the CLI version.)
+-  On the console.
+-  Use `Kafka CLI <https://cwiki.apache.org/confluence/display/KAFKA/Clients>`__. (Ensure that the Kafka instance version is the same as the CLI version.)
 
 Constraints
 -----------
@@ -22,8 +22,8 @@ Prerequisites
 
 The status of the consumer group to be deleted is **EMPTY**.
 
-Method 1: Deleting a Consumer Group on the Console
---------------------------------------------------
+Deleting a Consumer Group on the Console
+----------------------------------------
 
 #. Log in to the console.
 
@@ -58,8 +58,8 @@ Method 1: Deleting a Consumer Group on the Console
 
 #. In the displayed **Delete Consumer Group** dialog box, click **OK**.
 
-Method 2: Using the CLI to Delete a Consumer Group
---------------------------------------------------
+Using the CLI to Delete a Consumer Group
+----------------------------------------
 
 The following uses Linux as an example.
 
@@ -88,7 +88,7 @@ The following uses Linux as an example.
 
       View **Security Protocol** in the **Connection** area on the **Basic Information** page on the Kafka console. The configuration settings vary depending on the protocol.
 
-      -  SASL_PLAINTEXT: Skip this step if the username and password are already set. Otherwise, create the **ssl-user-config.properties** file in the **/config** directory on the Kafka client and add the following content to the file:
+      -  SASL_PLAINTEXT: Skip this step and go to :ref:`2 <kafka-ug-0012__li529219395271>` if the username and password are already set. Otherwise, create the **ssl-user-config.properties** file in the **/config** directory on the Kafka client and add the following content to the file:
 
          .. code-block::
 
@@ -106,7 +106,7 @@ The following uses Linux as an example.
 
          Parameter description: **username** and **password** are the ones you set when enabling ciphertext access for the first time or when creating a user.
 
-      -  SASL_SSL: Skip this step if the username, password, and SSL certificate are already set. Otherwise, create the **ssl-user-config.properties** file in the **/config** directory on the Kafka client and add the following content to the file:
+      -  SASL_SSL: Skip this step and go to :ref:`2 <kafka-ug-0012__li529219395271>` if the username, password, and SSL certificate are already set. Otherwise, create the **ssl-user-config.properties** file in the **/config** directory on the Kafka client and add the following content to the file:
 
          .. code-block::
 
@@ -132,7 +132,9 @@ The following uses Linux as an example.
          -  **ssl.endpoint.identification.algorithm**: whether to verify the certificate domain name. **This parameter must be left blank, which indicates disabling domain name verification**.
          -  **username** and **password**: username and password you set when enabling ciphertext access for the first time or when creating a user.
 
-   #. In the **/bin** directory of the Kafka client, run the following command:
+   #. .. _kafka-ug-0012__li529219395271:
+
+      In the **/bin** directory of the Kafka client, run the following command:
 
       .. code-block::
 

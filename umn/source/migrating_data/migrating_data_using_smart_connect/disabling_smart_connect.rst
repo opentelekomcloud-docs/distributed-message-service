@@ -11,7 +11,7 @@ Disabling Smart Connect does not affect services.
 
 .. note::
 
-   This function is unavailable for single-node instances. Kafka 3.x instances do not support this function.
+   This function is unavailable for single-node instances.
 
 Impact
 ------

@@ -13,13 +13,13 @@ After creating a topic, you can increase the number of partitions as required.
 
 Methods for changing the partition quantity:
 
--  :ref:`Changing the Number of Topic Partitions (Console) <kafka-ug-0006__section11349555102717>`
--  :ref:`Method 2: By using Kafka CLI <kafka-ug-0006__section2227184716161>`
+-  :ref:`Modifying Topic Partitions on the Console <kafka-ug-0006__section11349555102717>`
+-  :ref:`Modifying Topic Partitions on the Client <kafka-ug-0006__section2227184716161>`
 
 .. _kafka-ug-0006__section11349555102717:
 
-Changing the Number of Topic Partitions (Console)
--------------------------------------------------
+Modifying Topic Partitions on the Console
+-----------------------------------------
 
 #. Log in to the console.
 #. Click |image1| in the upper left corner to select a region.
@@ -42,12 +42,12 @@ Changing the Number of Topic Partitions (Console)
 
       -  The number of partitions can only be increased.
       -  To ensure performance, the Kafka console allows a maximum of 200 partitions for each topic.
-      -  The total partitions of all topics cannot exceed the maximum partitions of an instance. The maximum partitions of an instance varies by instance specifications. For details, see :ref:`Specifications <kafka-specification>`.
+      -  The total partitions of all topics cannot exceed the maximum partitions of an instance. The maximum partitions of an instance vary by instance specifications. For details, see :ref:`Specifications <kafka-specification>`.
 
 .. _kafka-ug-0006__section2227184716161:
 
-Changing the Number of Topic Partitions (Client)
-------------------------------------------------
+Modifying Topic Partitions on the Client
+----------------------------------------
 
 If your Kafka client version is later than 2.2, you can use **kafka-topics.sh** to change the partition quantity.
 
@@ -65,7 +65,7 @@ If your Kafka client version is later than 2.2, you can use **kafka-topics.sh** 
 
    -  **connection-address**: can be obtained from the **Connection** area on the **Basic Information** page on the Kafka console.
    -  **topic-name**: topic name.
-   -  **number-of-partitions**: number of partitions in a topic.
+   -  **number-of-partitions**: number of partitions in a topic. To ensure performance, a partition number within 200 is recommended for each topic.
 
    Example:
 
@@ -80,7 +80,7 @@ If your Kafka client version is later than 2.2, you can use **kafka-topics.sh** 
 
       View **Security Protocol** in the **Connection** area on the **Basic Information** page on the Kafka console. The configuration settings vary depending on the protocol.
 
-      -  SASL_PLAINTEXT: Skip this step if the username and password are already set. Otherwise, create the **ssl-user-config.properties** file in the **/config** directory on the Kafka client and add the following content to the file:
+      -  SASL_PLAINTEXT: Skip this step and go to :ref:`2 <kafka-ug-0006__li529219395271>` if the username and password are already set. Otherwise, create the **ssl-user-config.properties** file in the **/config** directory on the Kafka client and add the following content to the file:
 
          .. code-block::
 
@@ -98,7 +98,7 @@ If your Kafka client version is later than 2.2, you can use **kafka-topics.sh** 
 
          Parameter description: **username** and **password** are the ones you set when enabling ciphertext access for the first time or when creating a user.
 
-      -  SASL_SSL: Skip this step if the username, password, and SSL certificate are already set. Otherwise, create the **ssl-user-config.properties** file in the **/config** directory on the Kafka client and add the following content to the file:
+      -  SASL_SSL: Skip this step and go to :ref:`2 <kafka-ug-0006__li529219395271>` if the username, password, and SSL certificate are already set. Otherwise, create the **ssl-user-config.properties** file in the **/config** directory on the Kafka client and add the following content to the file:
 
          .. code-block::
 
@@ -124,7 +124,9 @@ If your Kafka client version is later than 2.2, you can use **kafka-topics.sh** 
          -  **ssl.endpoint.identification.algorithm**: whether to verify the certificate domain name. **This parameter must be left blank, which indicates disabling domain name verification**.
          -  **username** and **password**: username and password you set when enabling ciphertext access for the first time or when creating a user.
 
-   #. Run the following command in the **/bin** directory of the Kafka client:
+   #. .. _kafka-ug-0006__li529219395271:
+
+      Run the following command in the **/bin** directory of the Kafka client:
 
       .. code-block::
 
@@ -134,7 +136,7 @@ If your Kafka client version is later than 2.2, you can use **kafka-topics.sh** 
 
       -  **connection-address**: can be obtained from the **Connection** area on the **Basic Information** page on the Kafka console.
       -  **topic-name**: topic name.
-      -  **number-of-partitions**: number of partitions in a topic.
+      -  **number-of-partitions**: number of partitions in a topic. To ensure performance, a partition number within 200 is recommended for each topic.
 
       Example:
 

@@ -23,6 +23,17 @@ VPCEP provides two types of resources: VPC endpoint services and VPC endpoints.
 
    **Figure 1** Working principle of accessing a Kafka instance across VPCs
 
+Is Plaintext Access or Ciphertext Access Used When a Client Accesses Kafka Across VPCs Using A VPC Endpoint?
+------------------------------------------------------------------------------------------------------------
+
+It depends on **Cross-VPC Access Protocol**. The cross-VPC access protocol can be configured when you create a Kafka instance. After an instance is created, the setting cannot be changed.
+
+Options:
+
+-  PLAINTEXT: There is no authentication required in such a connection and data is transmitted in plaintext.
+-  SASL_SSL: Clients can connect to a Kafka instance with SASL and the data will be encrypted using the SSL certificate.
+-  SASL_PLAINTEXT: Clients can connect to a Kafka instance with SASL and the data will be transmitted in plaintext.
+
 Creating a VPC Endpoint Service
 -------------------------------
 
@@ -43,7 +54,7 @@ Creating a VPC Endpoint Service
    In the **Advanced Settings** section on the **Basic Information** tab page, obtain the listeners IP addresses and port IDs of the instance for **Cross-VPC Access**.
 
 
-   .. figure:: /_static/images/en-us_image_0000001328948884.png
+   .. figure:: /_static/images/en-us_image_0000002064922489.png
       :alt: **Figure 2** Cross-VPC access-related listeners IP addresses and corresponding port IDs of the Kafka instance
 
       **Figure 2** Cross-VPC access-related listeners IP addresses and corresponding port IDs of the Kafka instance
@@ -51,7 +62,7 @@ Creating a VPC Endpoint Service
 #. In the **Network** section on the **Basic Information** tab page, view the VPC to which the Kafka instance belongs.
 
 
-   .. figure:: /_static/images/en-us_image_0000001244372389.png
+   .. figure:: /_static/images/en-us_image_0000002064933413.png
       :alt: **Figure 3** Viewing the VPC to which the Kafka instance belongs
 
       **Figure 3** Viewing the VPC to which the Kafka instance belongs
@@ -61,7 +72,7 @@ Creating a VPC Endpoint Service
    Click the VPC to obtain the VPC ID on the VPC console.
 
 
-   .. figure:: /_static/images/en-us_image_0000001328950348.png
+   .. figure:: /_static/images/en-us_image_0000002065020989.png
       :alt: **Figure 4** Obtaining the VPC ID
 
       **Figure 4** Obtaining the VPC ID
@@ -163,7 +174,7 @@ Modifying Parameter advertised.listeners IP
 
    .. _kafka-ug-0001__fig6446112151915:
 
-   .. figure:: /_static/images/en-us_image_0000001380118889.png
+   .. figure:: /_static/images/en-us_image_0000002064945101.png
       :alt: **Figure 7** Changing the advertised.listeners IP addresses
 
       **Figure 7** Changing the advertised.listeners IP addresses

@@ -20,8 +20,6 @@ Kafka instances are classified based on instance ECS flavors as follows:
    -  kafka.8u16g.cluster
    -  kafka.12u24g.cluster
    -  kafka.16u32g.cluster
-   -  kafka.2u4g.cluster.beta
-   -  kafka.4u8g.cluster.beta
 
 -  Single-node
 
@@ -32,11 +30,11 @@ Kafka instances are classified based on instance ECS flavors as follows:
 
    For Kafka instances, the number of transactions per second (TPS) is the maximum number of messages that can be written per second. In the following table, transactions per second (TPS) are calculated assuming that the size of a message is 1 KB. The test scenario is private access in plaintext. The disk type is ultra-high I/O.
 
-   Cluster Kafka instances support v1.1.0, v2.3.0, v2.7, and v3.x. Single-node Kafka instances support v2.7.
+   Cluster Kafka instances support v2.3.0, v2.7, and v3.x. Single-node Kafka instances support v2.7.
 
 .. _kafka-specification__table152020206204:
 
-.. table:: **Table 1** Kafka instance specifications (v1.1.0/v2.3.0/v2.7 cluster instances)
+.. table:: **Table 1** Kafka instance specifications (cluster)
 
    +--------------------------+---------+------------------------+-------------------------------+----------------------------------------+---------------------------------------+---------------------+---------------------------+
    | Flavor                   | Brokers | Maximum TPS per Broker | Maximum Partitions per Broker | Recommended Consumer Groups per Broker | Maximum Client Connections per Broker | Storage Space       | Traffic per Broker (MB/s) |
@@ -47,26 +45,16 @@ Kafka instances are classified based on instance ECS flavors as follows:
    +--------------------------+---------+------------------------+-------------------------------+----------------------------------------+---------------------------------------+---------------------+---------------------------+
    | kafka.4u8g.cluster       | 3-30    | 100,000                | 500                           | 100                                    | 4000                                  | 300 GB-600,000 GB   | 200                       |
    +--------------------------+---------+------------------------+-------------------------------+----------------------------------------+---------------------------------------+---------------------+---------------------------+
-   | kafka.8u16g.cluster      | 3-50    | 150,000                | 1000                          | 150                                    | 4000                                  | 300 GB-1,500,000 GB | 250                       |
+   | kafka.8u16g.cluster      | 3-50    | 150,000                | 1000                          | 150                                    | 4000                                  | 300 GB-1,500,000 GB | 375                       |
    +--------------------------+---------+------------------------+-------------------------------+----------------------------------------+---------------------------------------+---------------------+---------------------------+
-   | kafka.12u24g.cluster     | 3-50    | 200,000                | 1500                          | 200                                    | 4000                                  | 300 GB-1,500,000 GB | 375                       |
+   | kafka.12u24g.cluster     | 3-50    | 200,000                | 1500                          | 200                                    | 4000                                  | 300 GB-1,500,000 GB | 625                       |
    +--------------------------+---------+------------------------+-------------------------------+----------------------------------------+---------------------------------------+---------------------+---------------------------+
-   | kafka.16u32g.cluster     | 3-50    | 250,000                | 2000                          | 200                                    | 4000                                  | 300 GB-1,500,000 GB | 500                       |
+   | kafka.16u32g.cluster     | 3-50    | 250,000                | 2000                          | 200                                    | 4000                                  | 300 GB-1,500,000 GB | 750                       |
    +--------------------------+---------+------------------------+-------------------------------+----------------------------------------+---------------------------------------+---------------------+---------------------------+
-
-.. table:: **Table 2** Kafka instance specifications (v3.x cluster instances)
-
-   +-------------------------+---------+----------------+-------------------------------+----------------------------------------+---------------------------------------+---------------+---------------------------+
-   | Flavor                  | Brokers | TPS per Broker | Maximum Partitions per Broker | Recommended Consumer Groups per Broker | Maximum Client Connections per Broker | Storage Space | Traffic per Broker (MB/s) |
-   +=========================+=========+================+===============================+========================================+=======================================+===============+===========================+
-   | kafka.2u4g.cluster.beta | 3       | 30,000         | 250                           | 20                                     | 2000                                  | 300 GB        | 100                       |
-   +-------------------------+---------+----------------+-------------------------------+----------------------------------------+---------------------------------------+---------------+---------------------------+
-   | kafka.4u8g.cluster.beta | 3       | 100,000        | 500                           | 100                                    | 4000                                  | 300 GB        | 200                       |
-   +-------------------------+---------+----------------+-------------------------------+----------------------------------------+---------------------------------------+---------------+---------------------------+
 
 .. _kafka-specification__table960115533719:
 
-.. table:: **Table 3** Kafka instance specifications (single-node)
+.. table:: **Table 2** Kafka instance specifications (single-node)
 
    +-------------------------+---------+----------------+-------------------------------+----------------------------------------+---------------------------------------+------------------+---------------------------+
    | Flavor                  | Brokers | TPS per Broker | Maximum Partitions per Broker | Recommended Consumer Groups per Broker | Maximum Client Connections per Broker | Storage Space    | Traffic per Broker (MB/s) |
@@ -105,11 +93,11 @@ Assume that the current flavor is kafka.2u4g.cluster, the traffic per broker is 
 Mapping Between Old and New Flavors
 -----------------------------------
 
-:ref:`Table 4 <kafka-specification__table16919145814010>` compares the old and new Kafka instance flavors.
+:ref:`Table 3 <kafka-specification__table16919145814010>` compares the old and new Kafka instance flavors.
 
 .. _kafka-specification__table16919145814010:
 
-.. table:: **Table 4** Mapping between old and new Kafka instance flavors
+.. table:: **Table 3** Mapping between old and new Kafka instance flavors
 
    +------------+--------------------------------+-------------------------------+--------------------------------+
    | Old Flavor |                                | New Flavor                    |                                |
@@ -174,11 +162,11 @@ Topic Quantity
 
 There are limits on the topic quantity and the aggregate number of partitions in the topics. When the partition quantity limit is reached, you can no longer create topics.
 
-The number of topics is related to the maximum number of partitions allowed (see :ref:`Figure 1 <kafka-specification__fig1391435820518>`) and the specified number of partitions in each topic (see :ref:`Table 1 <kafka-specification__table152020206204>` and :ref:`Table 3 <kafka-specification__table960115533719>`).
+The number of topics is related to the maximum number of partitions allowed (see :ref:`Table 1 <kafka-specification__table152020206204>` and :ref:`Table 2 <kafka-specification__table960115533719>`) and the specified number of partitions in each topic (see :ref:`Figure 1 <kafka-specification__fig1391435820518>`).
 
 .. _kafka-specification__fig1391435820518:
 
-.. figure:: /_static/images/en-us_image_0000001755301270.png
+.. figure:: /_static/images/en-us_image_0000002063422361.png
    :alt: **Figure 1** Setting the number of partitions
 
    **Figure 1** Setting the number of partitions

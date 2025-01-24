@@ -15,7 +15,7 @@ This section takes the example of creating a Kafka instance (ciphertext access a
 
 #. :ref:`Step 1: Preparations <kafka-qs-0409001__section729541193917>`
 
-   A Kafka instance runs in a VPC. Before creating a Kafka instance, ensure that a VPC is available.
+   A Kafka instance runs in a virtual private cloud (VPC). Before creating a Kafka instance, ensure that a VPC is available.
 
    After a Kafka instance is created, download and install the Kafka open-source client on your ECS before producing and consuming messages.
 
@@ -160,7 +160,7 @@ Step 2: Create a Kafka Instance
 
 #. Log in to the DMS console, then click **Create Instance** in the upper right corner of the page.
 
-#. Set basic instance information. :ref:`Table 2 <kafka-qs-0409001__table035715811538>` lists the configuration details.
+#. Specify the basic instance settings. For details, see :ref:`Table 2 <kafka-qs-0409001__table035715811538>`.
 
    .. _kafka-qs-0409001__table035715811538:
 
@@ -170,8 +170,6 @@ Step 2: Create a Kafka Instance
       | Parameter                         | Description                                                                                                                                                                                                                                                                                                   |
       +===================================+===============================================================================================================================================================================================================================================================================================================+
       | Region                            | DMS for Kafka in different regions cannot communicate with each other over an intranet. Select a nearest location for low latency and fast access.                                                                                                                                                            |
-      |                                   |                                                                                                                                                                                                                                                                                                               |
-      |                                   | Select eu-de.                                                                                                                                                                                                                                                                                                 |
       +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Project                           | Projects isolate compute, storage, and network resources across geographical regions. For each region, a preset project is available.                                                                                                                                                                         |
       |                                   |                                                                                                                                                                                                                                                                                                               |
@@ -275,7 +273,7 @@ Step 2: Create a Kafka Instance
    It takes 3 to 15 minutes to create an instance. During this period, the instance status is **Creating**.
 
    -  If the instance is created successfully, its status changes to **Running**.
-   -  If the instance is in the **Creation failed** state, delete it, and create a new one. If the instance creation fails again, contact customer service.
+   -  If the instance is in the **Failed** state, delete it and try creating another one. If the instance creation fails again, contact customer service.
 
       .. note::
 

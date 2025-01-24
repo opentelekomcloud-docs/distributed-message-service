@@ -5,7 +5,7 @@
 Connecting to Kafka Using the Client (Plaintext Access)
 =======================================================
 
-This section describes how to access a Kafka instance in plaintext on an open-source Kafka client. With plaintext access enabled, there is no authentication required in such connections, which is friendly to performance.
+This section describes how to access a Kafka instance in plaintext on an open-source Kafka client. With plaintext access enabled, there is no authentication required in such a connection, which is friendly to performance.
 
 Each Kafka broker allows a maximum of 1000 connections from each IP address. Excess connections will be rejected. You can change the limit by referring to :ref:`Modifying Kafka Instance Configuration Parameters <kafka-ug-0007>`, that is, to modify parameter **max.connections.per.ip**.
 
@@ -64,13 +64,17 @@ The following uses Linux as an example.
 
    Access the directory where the CLI package is stored and run the following command to decompress the package:
 
-   **tar -zxf [kafka_tar]**
+   .. code-block::
+
+      tar -zxf [kafka_tar]
 
    In the preceding command, *[kafka_tar]* indicates the name of the CLI package.
 
    For example:
 
-   **tar -zxf kafka_2.12-2.7.2.tgz**
+   .. code-block::
+
+      tar -zxf kafka_2.12-2.7.2.tgz
 
 #. Access the **/bin** directory of the Kafka CLI.
 

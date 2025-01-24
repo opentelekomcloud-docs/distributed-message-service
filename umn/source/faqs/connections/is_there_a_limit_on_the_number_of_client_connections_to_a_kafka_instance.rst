@@ -27,8 +27,6 @@ Yes. The maximum allowed number of client connections varies by instance specifi
    kafka.2u4g.single.small  2000
    kafka.2u4g.cluster       2000
    kafka.2u4g.single        2000
-   kafka.2u4g.cluster.beta  2000
-   kafka.4u8g.cluster.beta  4000
    kafka.4u8g.cluster       4000
    kafka.8u16g.cluster      4000
    kafka.12u24g.cluster     4000

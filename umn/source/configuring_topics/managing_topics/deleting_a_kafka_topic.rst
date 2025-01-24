@@ -14,7 +14,7 @@ Prerequisites
 -------------
 
 -  A Kafka instance has been created, and a topic has been created in this instance.
--  The Kafka instance is in the **Running** state.
+-  The instance is in the **Running** state.
 
 Constraint
 ----------
@@ -78,7 +78,7 @@ If your Kafka client version is later than 2.2, you can use **kafka-topics.sh** 
 
       View **Security Protocol** in the **Connection** area on the **Basic Information** page on the Kafka console. The configuration settings vary depending on the protocol.
 
-      -  SASL_PLAINTEXT: Skip this step if the username and password are already set. Otherwise, create the **ssl-user-config.properties** file in the **/config** directory on the Kafka client and add the following content to the file:
+      -  SASL_PLAINTEXT: Skip this step and go to :ref:`2 <kafka-ug-180604019__li529219395271>` if the username and password are already set. Otherwise, create the **ssl-user-config.properties** file in the **/config** directory on the Kafka client and add the following content to the file:
 
          .. code-block::
 
@@ -96,7 +96,7 @@ If your Kafka client version is later than 2.2, you can use **kafka-topics.sh** 
 
          Parameter description: **username** and **password** are the ones you set when enabling ciphertext access for the first time or when creating a user.
 
-      -  SASL_SSL: Skip this step if the username, password, and SSL certificate are already set. Otherwise, create the **ssl-user-config.properties** file in the **/config** directory on the Kafka client and add the following content to the file:
+      -  SASL_SSL: Skip this step and go to :ref:`2 <kafka-ug-180604019__li529219395271>` if the username, password, and SSL certificate are already set. Otherwise, create the **ssl-user-config.properties** file in the **/config** directory on the Kafka client and add the following content to the file:
 
          .. code-block::
 
@@ -122,7 +122,9 @@ If your Kafka client version is later than 2.2, you can use **kafka-topics.sh** 
          -  **ssl.endpoint.identification.algorithm**: whether to verify the certificate domain name. **This parameter must be left blank, which indicates disabling domain name verification**.
          -  **username** and **password**: username and password you set when enabling ciphertext access for the first time or when creating a user.
 
-   #. Run the following command in the **/bin** directory of the Kafka client:
+   #. .. _kafka-ug-180604019__li529219395271:
+
+      Run the following command in the **/bin** directory of the Kafka client:
 
       .. code-block::
 

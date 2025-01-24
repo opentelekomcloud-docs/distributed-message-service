@@ -9,7 +9,7 @@ View, delete, start, pause, or restart a Smart Connect task.
 
 .. note::
 
-   This function is unavailable for single-node instances. Kafka 3.x instances do not support this function.
+   This function is unavailable for single-node instances.
 
 Prerequisites
 -------------
@@ -59,7 +59,7 @@ Starting or Pausing a Smart Connect Task
 
 After a task of a Kafka instance is paused, data of the instance will not be synchronized to another Kafka instance or other cloud services.
 
-#. Log in to the management console.
+#. Log in to the console.
 #. Click |image3| in the upper left corner to select a region.
 
    .. note::
@@ -78,6 +78,7 @@ Restarting a Smart Connect Task
 -------------------------------
 
 #. Log in to the console.
+
 #. Click |image4| in the upper left corner to select a region.
 
    .. note::
@@ -85,8 +86,11 @@ Restarting a Smart Connect Task
       Select the region where your Kafka instance is located.
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
+
 #. Click the desired Kafka instance to view its details.
+
 #. In the navigation pane, choose **Smart Connect**.
+
 #. In the row containing the desired Smart Connect task, click **Restart**.
 
    .. important::
@@ -95,6 +99,8 @@ Restarting a Smart Connect Task
       -  Restarting a Smart Connect task resets the synchronization progress and the synchronization task will be restarted.
 
 #. Click **OK**.
+
+   Once the task is restarted, a success message is displayed in the upper left area of the page.
 
 .. |image1| image:: /_static/images/en-us_image_0143929918.png
 .. |image2| image:: /_static/images/en-us_image_0143929918.png

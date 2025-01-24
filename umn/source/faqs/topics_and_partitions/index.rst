@@ -16,7 +16,6 @@ Topics and Partitions
 -  :ref:`What Should I Do If Kafka Storage Space Is Used Up Because Retrieved Messages Are Not Deleted? <kafka-faq-0003>`
 -  :ref:`How Do I Increase the Partition Quantity? <kafka-faq-0005>`
 -  :ref:`Will a Kafka Instance Be Restarted After Its Automatic Topic Creation Setting Is Modified? <kafka-faq-0010>`
--  :ref:`Can I Delete Unnecessary Topics in a Consumer Group? <kafka-faq-0031>`
 -  :ref:`What Can I Do If a Consumer Fails to Retrieve Messages from a Topic Due to Insufficient Permissions? <kafka-faq-0038>`
 
 .. toctree::
@@ -34,5 +33,4 @@ Topics and Partitions
    what_should_i_do_if_kafka_storage_space_is_used_up_because_retrieved_messages_are_not_deleted
    how_do_i_increase_the_partition_quantity
    will_a_kafka_instance_be_restarted_after_its_automatic_topic_creation_setting_is_modified
-   can_i_delete_unnecessary_topics_in_a_consumer_group
    what_can_i_do_if_a_consumer_fails_to_retrieve_messages_from_a_topic_due_to_insufficient_permissions
