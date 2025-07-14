@@ -98,7 +98,7 @@ html_theme_options = {
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
 
-html_title = "Distributed Message Service - API Reference"
+html_title = "Distributed Message Service (for Kafka) - API Reference"
 
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -114,7 +114,7 @@ html_copy_source = False
 latex_documents = [
     ('index',
      'dms-api-ref.tex',
-    u'Distributed Message Service - API Reference',
+    u'Distributed Message Service (for Kafka) - API Reference',
      u'OpenTelekomCloud', 'manual'),
 ]
 
