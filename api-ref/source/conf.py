@@ -26,7 +26,7 @@ extensions = [
 otcdocs_auto_name = False
 otcdocs_auto_version = False
 
-project = 'Distributed Message Service'
+project = 'Distributed Message Service (for Kafka)'
 otcdocs_repo_name = 'opentelekomcloud-docs/distributed-message-service'
 # Those variables are required for edit/bug links
 
@@ -36,7 +36,7 @@ otcdocs_doc_link = '/distributed-message-service/api-ref/'
 otcdocs_doc_title = 'API Reference'
 otcdocs_doc_type = 'api-ref'
 otcdocs_service_category = 'application'
-otcdocs_service_title = 'Distributed Message Service'
+otcdocs_service_title = 'Distributed Message Service (for Kafka)'
 otcdocs_service_type = 'dms'
 otcdocs_service_environment = 'public'
 otcdocs_cloud_environment = 'eu_de'
@@ -98,7 +98,7 @@ html_theme_options = {
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
 
-html_title = "Distributed Message Service - API Reference"
+html_title = "Distributed Message Service (for Kafka) - API Reference"
 
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -114,7 +114,7 @@ html_copy_source = False
 latex_documents = [
     ('index',
      'dms-api-ref.tex',
-    u'Distributed Message Service - API Reference',
+    u'Distributed Message Service (for Kafka) - API Reference',
      u'OpenTelekomCloud', 'manual'),
 ]
 

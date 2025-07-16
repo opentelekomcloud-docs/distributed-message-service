@@ -26,7 +26,7 @@ extensions = [
 otcdocs_auto_name = False
 otcdocs_auto_version = False
 
-project = 'Distributed Message Service'
+project = 'Distributed Message Service (for Kafka)'
 otcdocs_repo_name = 'opentelekomcloud-docs/distributed-message-service'
 # Those variables are required for edit/bug links
 
@@ -36,7 +36,7 @@ otcdocs_doc_link = '/distributed-message-service/dev-guide/'
 otcdocs_doc_title = 'Developer Guide'
 otcdocs_doc_type = 'dev'
 otcdocs_service_category = 'application'
-otcdocs_service_title = 'Distributed Message Service'
+otcdocs_service_title = 'Distributed Message Service (for Kafka)'
 otcdocs_service_type = 'dms'
 otcdocs_service_environment = 'public'
 otcdocs_cloud_environment = 'eu_de'
@@ -98,7 +98,7 @@ html_theme_options = {
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
 
-html_title = "Distributed Message Service - Developer Guide"
+html_title = "Distributed Message Service (for Kafka) - Developer Guide"
 
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -113,7 +113,7 @@ html_copy_source = False
 # -- Options for PDF output --------------------------------------------------
 latex_documents = [
     ('index',
-     'dms-dev-guide.tex',u'Distributed Message Service - Developer Guide',
+     'dms-dev-guide.tex',u'Distributed Message Service (for Kafka) - Developer Guide',
      u'OpenTelekomCloud', 'manual'),
 ]
 
