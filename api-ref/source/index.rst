@@ -1,6 +1,6 @@
-===========================================
-Distributed Message Service - API Reference
-===========================================
+=======================================================
+Distributed Message Service (for Kafka) - API Reference
+=======================================================
 
 .. toctree::
    :maxdepth: 1
