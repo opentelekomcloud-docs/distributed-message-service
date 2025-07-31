@@ -1,6 +1,6 @@
-=============================================
-Distributed Message Service - Developer Guide
-=============================================
+=========================================================
+Distributed Message Service (for Kafka) - Developer Guide
+=========================================================
 
 .. toctree::
    :maxdepth: 1
