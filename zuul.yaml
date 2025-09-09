@@ -7,8 +7,9 @@
     vars:
       sphinx_pdf_files:
         - dms-umn.pdf
-        - dms-api-ref.pdf
         - dms-dev-guide.pdf
+        - dms-best-practice.pdf
+        - dms-api-ref.pdf
     check:
       jobs:
         - noop

@@ -21,7 +21,6 @@ from datetime import datetime
 
 extensions = [
     'otcdocstheme',
-    'otc_sphinx_directives'
 ]
 
 otcdocs_auto_name = False
@@ -32,10 +31,10 @@ otcdocs_repo_name = 'opentelekomcloud-docs/distributed-message-service'
 # Those variables are required for edit/bug links
 
 # Those variables are needed for indexing into OpenSearch
-otcdocs_doc_environment = ''
-otcdocs_doc_link = ''
-otcdocs_doc_title = ''
-otcdocs_doc_type = ''
+otcdocs_doc_environment = 'public'
+otcdocs_doc_link = '/distributed-message-service/best-practice/'
+otcdocs_doc_title = 'Best Practice'
+otcdocs_doc_type = 'best-practice'
 otcdocs_service_category = 'application'
 otcdocs_service_title = 'Distributed Message Service (for Kafka)'
 otcdocs_service_type = 'dms'
@@ -99,7 +98,7 @@ html_theme_options = {
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
 
-html_title = "Distributed Message Service (for Kafka) - Service Based View"
+html_title = "Distributed Message Service (for Kafka) - Best Practice"
 
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -112,7 +111,12 @@ templates_path = ['_templates']
 html_copy_source = False
 
 # -- Options for PDF output --------------------------------------------------
-latex_documents = []
+latex_documents = [
+    ('index',
+     'dms-best-practice.tex',
+    u'Distributed Message Service (for Kafka) - Best Practice',
+     u'OpenTelekomCloud', 'manual'),
+]
 
 # Get the Git commit values for last updated timestamp on each page
 repo = Repo(search_parent_directories=True)
