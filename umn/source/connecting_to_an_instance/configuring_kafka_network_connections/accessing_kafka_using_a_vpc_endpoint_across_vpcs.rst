@@ -39,19 +39,15 @@ Creating a VPC Endpoint Service
 
 #. Log in to the console.
 
-#. Click |image1| in the upper left corner to select a region.
-
-   .. note::
-
-      Select the region where your Kafka instance is located.
+#. Click |image1| in the upper left corner to select the region where your instance is located.
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
 
-#. Click the desired Kafka instance to view its details.
+#. Click the desired instance to go to the instance details page.
 
 #. .. _kafka-ug-0001__li1470016488194:
 
-   In the **Advanced Settings** section on the **Basic Information** tab page, obtain the listeners IP addresses and port IDs of the instance for **Cross-VPC Access**.
+   In the **Advanced Settings** area on the **Basic Information** page, obtain the listeners IP addresses and port IDs of the instance for **Cross-VPC Access**.
 
 
    .. figure:: /_static/images/en-us_image_0000002064922489.png
@@ -59,7 +55,7 @@ Creating a VPC Endpoint Service
 
       **Figure 2** Cross-VPC access-related listeners IP addresses and corresponding port IDs of the Kafka instance
 
-#. In the **Network** section on the **Basic Information** tab page, view the VPC to which the Kafka instance belongs.
+#. In the **Network** area on the **Basic Information** page, view the VPC to which the Kafka instance belongs.
 
 
    .. figure:: /_static/images/en-us_image_0000002064933413.png
@@ -85,18 +81,51 @@ Creating a VPC Endpoint Service
 
       POST https://{endpoint}/v1/{project_id}/vpc-endpoint-services
 
-   Set the following request parameter to the specified values, and other parameters as required.
+   Set request parameters by referring to :ref:`Table 1 <kafka-ug-0001__table171601028133011>`, and other parameters as required.
 
-   -  **port_id**: one of the port IDs obtained in :ref:`5 <kafka-ug-0001__li1470016488194>`.
-   -  **vpc_id**: VPC ID obtained in :ref:`7 <kafka-ug-0001__li19701310122315>`.
-   -  **server_type**: **VM**
-   -  **client_port**: **9011**
-   -  **server_port**: **9011**
-   -  **protocol**: **TCP**
-   -  **approval_enabled**: **false**
-   -  **service_type**: **interface**
-   -  **endpoint**: VPCEP endpoint obtained from `Regions and Endpoints <https://docs.otc.t-systems.com/en-us/endpoint/index.html>`__. The region must be the same as that of the Kafka instance.
-   -  **project_id**: project ID obtained from `Obtaining a Project ID <https://docs.otc.t-systems.com/en-us/api/vpcep/vpcep_08_0003.html>`__. The region must be the same as that of the Kafka instance.
+   .. _kafka-ug-0001__table171601028133011:
+
+   .. table:: **Table 1** VPC Endpoint service creation parameters
+
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                                                                                                         |
+      +===================================+=====================================================================================================================================================================================+
+      | port_id                           | ID of the backend resource.                                                                                                                                                         |
+      |                                   |                                                                                                                                                                                     |
+      |                                   | Enter a port ID obtained in :ref:`5 <kafka-ug-0001__li1470016488194>`.                                                                                                              |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | vpc_id                            | ID of the VPC of the backend resource.                                                                                                                                              |
+      |                                   |                                                                                                                                                                                     |
+      |                                   | Enter a VPC ID obtained in :ref:`7 <kafka-ug-0001__li19701310122315>`.                                                                                                              |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | server_type                       | Resource type.                                                                                                                                                                      |
+      |                                   |                                                                                                                                                                                     |
+      |                                   | Enter **VM**.                                                                                                                                                                       |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | client_port                       | Access port.                                                                                                                                                                        |
+      |                                   |                                                                                                                                                                                     |
+      |                                   | Enter **9011**.                                                                                                                                                                     |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | server_port                       | Service port.                                                                                                                                                                       |
+      |                                   |                                                                                                                                                                                     |
+      |                                   | Enter **9011**.                                                                                                                                                                     |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | protocol                          | Port mapping protocol.                                                                                                                                                              |
+      |                                   |                                                                                                                                                                                     |
+      |                                   | Enter **TCP**.                                                                                                                                                                      |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | approval_enabled                  | Whether approval is required.                                                                                                                                                       |
+      |                                   |                                                                                                                                                                                     |
+      |                                   | Entering **false** indicates that no approval is required and the connected VPC endpoint will be in the **accepted** state.                                                         |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | service_type                      | Service type.                                                                                                                                                                       |
+      |                                   |                                                                                                                                                                                     |
+      |                                   | Enter **interface**.                                                                                                                                                                |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | endpoint                          | VPCEP endpoint obtained from `Regions and Endpoints <https://docs.otc.t-systems.com/en-us/endpoint/index.html>`__. The region must be the same as that of the Kafka instance.       |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | project_id                        | project ID obtained from `Obtaining a Project ID <https://docs.otc.t-systems.com/en-us/api/vpcep/vpcep_08_0003.html>`__. The region must be the same as that of the Kafka instance. |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    Record the value of **service_name** in the response. This parameter indicates the name of the VPC endpoint service.
 
@@ -120,16 +149,30 @@ Creating a VPC Endpoint
 
 #. Click **Create VPC Endpoint**.
 
-#. Set the following parameters:
+#. Set parameters by referring to :ref:`Table 2 <kafka-ug-0001__table1239310551447>`. Retain the default values for other parameters. For details, see `Creating a VPC Endpoint <https://docs.otc.t-systems.com/usermanual/vpcep/en-us_topic_0131645189.html>`__.
 
-   -  **Region**: Select the region that the Kafka instance is in.
-   -  **Service Category**: Select **Find a service by name**.
-   -  **VPC Endpoint Service Name**: Enter the VPC endpoint service name recorded in :ref:`8 <kafka-ug-0001__li11323122315289>` and click **Verify**. If **Service name found** is displayed, proceed with subsequent operations.
-   -  **VPC**: Select the VPC that the Kafka client is in.
-   -  **Subnet**: Select the subnet that the Kafka client is in.
-   -  **Private IP Address**: Select **Automatic**.
+   .. _kafka-ug-0001__table1239310551447:
 
-   Retain the default values for other parameters. For details, see `Creating a VPC Endpoint <https://docs.otc.t-systems.com/usermanual/vpcep/en-us_topic_0131645189.html>`__.
+   .. table:: **Table 2** VPC endpoint creation parameters
+
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                                                                                                                  |
+      +===================================+==============================================================================================================================================================================================+
+      | Region                            | Region where the endpoint is located. Select the region that the Kafka instance is in.                                                                                                       |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Service Category                  | -  **Cloud services**: Select this option if the VPC endpoint service to be accessed is a cloud service.                                                                                     |
+      |                                   | -  **Find a service by name**: Select this option if the VPC endpoint service to be accessed is a private service of your own.                                                               |
+      |                                   |                                                                                                                                                                                              |
+      |                                   | Select **Find a service by name**.                                                                                                                                                           |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | VPC Endpoint Service Name         | Enter the VPC endpoint service name recorded in :ref:`8 <kafka-ug-0001__li11323122315289>` and click **Verify**. If **Service name found** is displayed, proceed with subsequent operations. |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | VPC                               | VPC where the endpoint is located. Select the VPC that the Kafka client is in.                                                                                                               |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Subnet                            | Subnet where the endpoint is located. Select the subnet that the Kafka client is in.                                                                                                         |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Private IP Address                | IPv4 address of the endpoint. Select **Automatic**.                                                                                                                                          |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. Click **Create Now**.
 
@@ -166,11 +209,7 @@ Modifying Parameter advertised.listeners IP
 
 #. Click the desired Kafka instance to view its details.
 
-#. On the **Advanced Settings** section of the **Basic Information** tab page, click **Modify** for **Cross-VPC Access** to change the value of **advertised.listeners IP address** to the private IP addresses recorded in :ref:`7 <kafka-ug-0001__li1942253845112>` and :ref:`8 <kafka-ug-0001__li923645116109>`. Click **Save**.
-
-   .. important::
-
-      Each IP address must match the corresponding port ID. Otherwise, the network will be disconnected.
+#. In the **Advanced Settings** area on the **Basic Information** page, click **Modify** for **Cross-VPC Access** to change the value of **advertised.listeners IP address** to the private IP addresses recorded in :ref:`7 <kafka-ug-0001__li1942253845112>` and :ref:`8 <kafka-ug-0001__li923645116109>`. **Each IP address must match the corresponding port ID. Otherwise, the network will be disconnected.** After the modification, click **Save**.
 
    .. _kafka-ug-0001__fig6446112151915:
 

@@ -10,11 +10,12 @@ You can access a Kafka instance in plaintext or ciphertext. This section describ
 -  Plaintext access: Clients connect to the Kafka instance without SASL authentication.
 -  Ciphertext access: Clients connect to the Kafka instance with SASL authentication.
 
-.. note::
+Notes and Constraints
+---------------------
 
-   -  When you change the access mode for the first time, some instances will restart. You can see the actual situation on the console. The restart takes about 75-80s. The instance will not be restarted when the access mode is changed again.
-   -  For a single-node instance, you can only enable or disable plaintext for public network access.
-   -  The access mode cannot be changed for instances with IPv6 enabled.
+-  When you change the access mode for the first time, some instances will restart. You can see the actual situation on the console. The restart takes about 75-80s. The instance will not be restarted when the access mode is changed again.
+-  For a single-node instance, you can only enable or disable plaintext for public network access.
+-  The access mode cannot be changed for instances with IPv6 enabled.
 
 Prerequisites
 -------------
@@ -26,15 +27,11 @@ Enabling Plaintext Access
 
 #. Log in to the console.
 
-#. Click |image1| in the upper left corner to select a region.
-
-   .. note::
-
-      Select the region where your Kafka instance is located.
+#. Click |image1| in the upper left corner to select the region where your instance is located.
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
 
-#. Click a Kafka instance to go to the **Basic Information** page.
+#. Click the name of a Kafka instance to go to the **Basic Information** page.
 
 #. An instance can be accessed in plaintext over the private network and public network. For details about how to enable plaintext access, see :ref:`Table 1 <kafka_ug_0044__table11722031164315>`.
 
@@ -53,31 +50,56 @@ Enabling Plaintext Access
       |                                   | c. Click **OK**. The **Background Tasks** page is displayed. If the status of the task turns to **Successful**, plaintext access is successfully enabled. |
       +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
 
+Disabling Plaintext Access
+--------------------------
+
+#. Log in to the console.
+
+#. Click |image4| in the upper left corner to select the region where your instance is located.
+
+#. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
+
+#. Click the name of a Kafka instance to go to the **Basic Information** page.
+
+#. An instance can be accessed in plaintext over the private network and public network. For details about how to disable plaintext access, see :ref:`Table 2 <kafka_ug_0044__table442114711262>`.
+
+   .. _kafka_ug_0044__table442114711262:
+
+   .. table:: **Table 2** Disabling plaintext access
+
+      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Access Method                     | Disabling Plaintext Access                                                                                                                                                      |
+      +===================================+=================================================================================================================================================================================+
+      | Private network plaintext access  | Once enabled, private network access cannot be disabled. Enable plaintext or ciphertext access, or both. If ciphertext access is disabled, plaintext access cannot be disabled. |
+      |                                   |                                                                                                                                                                                 |
+      |                                   | a. Click |image5| next to **Plaintext Access** in the **Private Network Access** area.                                                                                          |
+      |                                   | b. Click **OK**. The **Background Tasks** page is displayed. If the status of the task turns to **Successful**, plaintext access is successfully disabled.                      |
+      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Public network plaintext access   | a. Click |image6| next to **Plaintext Access** in the **Public Network Access** area.                                                                                           |
+      |                                   | b. Click **OK**. The **Background Tasks** page is displayed. If the status of the task turns to **Successful**, plaintext access is successfully disabled.                      |
+      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
 Enabling Ciphertext Access
 --------------------------
 
 #. Log in to the console.
 
-#. Click |image4| in the upper left corner to select a region.
-
-   .. note::
-
-      Select the region where your Kafka instance is located.
+#. Click |image7| in the upper left corner to select the region where your instance is located.
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
 
-#. Click a Kafka instance to go to the **Basic Information** page.
+#. Click the name of a Kafka instance to go to the **Basic Information** page.
 
-#. An instance can be accessed in ciphertext over the private network and public network. For details about how to enable ciphertext access, see :ref:`Table 2 <kafka_ug_0044__table11522204714587>`.
+#. An instance can be accessed in ciphertext over the private network and public network. For details about how to enable ciphertext access, see :ref:`Table 3 <kafka_ug_0044__table11522204714587>`.
 
    .. _kafka_ug_0044__table11522204714587:
 
-   .. table:: **Table 2** Enabling ciphertext access
+   .. table:: **Table 3** Enabling ciphertext access
 
       +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Access Method                     | Enabling Ciphertext Access                                                                                                                                                                                                                                                                                    |
       +===================================+===============================================================================================================================================================================================================================================================================================================+
-      | Private network ciphertext access | a. Click |image5| next to **Ciphertext Access** in the **Private Network Access** area. The **Private Network Ciphertext Access** dialog box is displayed.                                                                                                                                                    |
+      | Private network ciphertext access | a. Click |image8| next to **Ciphertext Access** in the **Private Network Access** area. The **Private Network Ciphertext Access** dialog box is displayed.                                                                                                                                                    |
       |                                   | b. Set the :ref:`Kafka security protocol, SASL/PLAIN mechanism, username, and password <kafka_ug_0044__table103011426102317>`, and click **OK**. The **Background Tasks** page is displayed. If the status of the task turns to **Successful**, ciphertext access is successfully enabled.                    |
       |                                   |                                                                                                                                                                                                                                                                                                               |
       |                                   |    .. note::                                                                                                                                                                                                                                                                                                  |
@@ -86,7 +108,7 @@ Enabling Ciphertext Access
       |                                   |       -  To disable private network ciphertext access, contact customer service.                                                                                                                                                                                                                              |
       +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Public network ciphertext access  | a. Check that **Public Access** is enabled. If it is not enabled, enable it. For details, see :ref:`Configuring Kafka Public Access <kafka-ug-0319001>`.                                                                                                                                                      |
-      |                                   | b. Click |image6| next to **Ciphertext Access** in the **Public Network Access** area. The **Public Network Ciphertext Access** dialog box is displayed.                                                                                                                                                      |
+      |                                   | b. Click |image9| next to **Ciphertext Access** in the **Public Network Access** area. The **Public Network Ciphertext Access** dialog box is displayed.                                                                                                                                                      |
       |                                   | c. Set the :ref:`Kafka security protocol, SASL/PLAIN mechanism, username, and password <kafka_ug_0044__table103011426102317>`, and click **OK**. The **Background Tasks** page is displayed. If the status of the task turns to **Successful**, ciphertext access is successfully enabled.                    |
       |                                   |                                                                                                                                                                                                                                                                                                               |
       |                                   |    .. note::                                                                                                                                                                                                                                                                                                  |
@@ -205,18 +227,16 @@ Disabling Ciphertext Access
       |                                   | b. Click **OK**. The **Background Tasks** page is displayed. If the status of the task turns to **Successful**, ciphertext access is successfully disabled. |
       +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-   .. note::
-
-      After you disable ciphertext access, the created users will not be deleted. You do not need to create users again when you enable ciphertext access next time.
+   After you disable ciphertext access, the created users will not be deleted. You do not need to create users again when you enable ciphertext access next time.
 
 .. |image1| image:: /_static/images/en-us_image_0143929918.png
 .. |image2| image:: /_static/images/en-us_image_0000001191767177.png
 .. |image3| image:: /_static/images/en-us_image_0000001191767177.png
 .. |image4| image:: /_static/images/en-us_image_0143929918.png
-.. |image5| image:: /_static/images/en-us_image_0000001191767177.png
-.. |image6| image:: /_static/images/en-us_image_0000001191767177.png
+.. |image5| image:: /_static/images/en-us_image_0000002317222029.png
+.. |image6| image:: /_static/images/en-us_image_0000002317148937.png
 .. |image7| image:: /_static/images/en-us_image_0143929918.png
-.. |image8| image:: /_static/images/en-us_image_0000001283221910.png
-.. |image9| image:: /_static/images/en-us_image_0000001283221910.png
+.. |image8| image:: /_static/images/en-us_image_0000001191767177.png
+.. |image9| image:: /_static/images/en-us_image_0000001191767177.png
 .. |image10| image:: /_static/images/en-us_image_0143929918.png
 .. |image11| image:: /_static/images/en-us_image_0000001283221910.png

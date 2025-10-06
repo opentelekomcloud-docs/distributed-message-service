@@ -46,31 +46,23 @@ Procedure
 
 #. Log in to the console.
 
-#. Click |image1| in the upper left corner to select a region.
-
-   .. note::
-
-      Select the region where your Kafka instance is located.
+#. Click |image1| in the upper left corner to select the region where your instance is located.
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
 
-#. Click a Kafka instance to go to the **Basic Information** page.
+#. Click the name of the desired Kafka instance to go to the **Basic Information** page.
 
 #. In the navigation pane, choose **Background Tasks**.
 
-#. On the **Background tasks** or **Scheduled tasks** tab page, click the time drop-down box, specify time, enter keywords in the search box, and press **Enter**. Tasks started in the specified time will be displayed.
+#. On the **Background Tasks** or **Scheduled Tasks** tab page, click the time drop-down list, specify a time range, enter a keyword in the search box, and press **Enter**. The tasks started within the specified time range are displayed.
 
    On the **Background Tasks** page, you can also perform the following operations:
 
    -  Click |image2| to refresh the task status.
+
    -  Click **Delete**. In the displayed **Delete Task** dialog box, click **OK** to clear the task information.
 
-      .. note::
-
-         You can delete a task only when it is in either of the following situations:
-
-         -  The task is complete, which can be **Successful** or **Failed**.
-         -  The task is **Canceled**.
+      You can only delete the records of tasks in the **Successful**, **Failed**, or **Canceled** state.
 
 .. |image1| image:: /_static/images/en-us_image_0143929918.png
-.. |image2| image:: /_static/images/en-us_image_0000001206335999.png
+.. |image2| image:: /_static/images/en-us_image_0000001540501562.png

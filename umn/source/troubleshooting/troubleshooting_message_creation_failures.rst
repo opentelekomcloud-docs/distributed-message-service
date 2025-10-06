@@ -18,4 +18,4 @@ The disk usage of the broker is too high.
 Solution
 --------
 
-Expand the disk space by referring to :ref:`Modifying Instance Specifications <kafka-ug-181221001>`.
+Expand the disk space by referring to :ref:`Modifying Cluster Kafka Instance Specifications <kafka-ug-181221001>`.

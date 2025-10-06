@@ -10,6 +10,7 @@ Troubleshooting
 -  :ref:`Troubleshooting Message Creation Failures <kafka-trouble-0001>`
 -  :ref:`Troubleshooting Topic Deletion Failures <kafka-trouble-0002>`
 -  :ref:`Troubleshooting Error "Topic {{topic_name}} not present in metadata after 60000 ms" During Message Production or Consumption <kafka-trouble-0004>`
+-  :ref:`Flink 1.15 Consumption Progress Submission Failure <kafka_trouble_0007>`
 
 .. toctree::
    :maxdepth: 1
@@ -20,3 +21,4 @@ Troubleshooting
    troubleshooting_message_creation_failures
    troubleshooting_topic_deletion_failures
    troubleshooting_error_topic_topic_name_not_present_in_metadata_after_60000_ms_during_message_production_or_consumption
+   flink_1.15_consumption_progress_submission_failure

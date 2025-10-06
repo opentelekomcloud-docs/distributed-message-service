@@ -7,26 +7,23 @@ Viewing Kafka Disk Usage
 
 This section describes how to view the disk usage of each broker of a Kafka instance on the console.
 
-.. note::
+Notes and Constraints
+---------------------
 
-   This function is unavailable for single-node instances.
+Unavailable for single-node instances.
 
 Procedure
 ---------
 
 #. Log in to the console.
 
-#. Click |image1| in the upper left corner to select a region.
-
-   .. note::
-
-      Select the region where your Kafka instance is located.
+#. Click |image1| in the upper left corner to select the region where your instance is located.
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
 
-#. Click a Kafka instance to go to the **Basic Information** page.
+#. Click the name of the desired Kafka instance to go to the **Basic Information** page.
 
-#. Go to the **Disk Usage Statistics** page.
+#. Go to the **Monitoring** > **Disk Usage Statistics** page.
 
    You can query topics that use the most disk space or topics that have used a specified amount or percentage of disk space.
 

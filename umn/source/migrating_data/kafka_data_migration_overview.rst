@@ -30,13 +30,13 @@ Preparation
 
    .. table:: **Table 1** Security group rules
 
-      +-----------+----------+------+-----------+----------------------------------------------------------------+
-      | Direction | Protocol | Port | Source    | Description                                                    |
-      +===========+==========+======+===========+================================================================+
-      | Inbound   | TCP      | 9094 | 0.0.0.0/0 | Accessing a Kafka instance in a public network (in plaintext)  |
-      +-----------+----------+------+-----------+----------------------------------------------------------------+
-      | Inbound   | TCP      | 9095 | 0.0.0.0/0 | Accessing a Kafka instance in a public network (in ciphertext) |
-      +-----------+----------+------+-----------+----------------------------------------------------------------+
+      +-----------+----------+------+----------------------------------------------------+----------------------------------------------------------------+
+      | Direction | Protocol | Port | Source                                             | Description                                                    |
+      +===========+==========+======+====================================================+================================================================+
+      | Inbound   | TCP      | 9094 | IP address or IP address group of the Kafka client | Accessing a Kafka instance in a public network (in plaintext)  |
+      +-----------+----------+------+----------------------------------------------------+----------------------------------------------------------------+
+      | Inbound   | TCP      | 9095 | IP address or IP address group of the Kafka client | Accessing a Kafka instance in a public network (in ciphertext) |
+      +-----------+----------+------+----------------------------------------------------+----------------------------------------------------------------+
 
 #. Create the target Kafka instance.
 
@@ -78,14 +78,16 @@ For a certain period of time, the consumption service consumes messages from bot
 
 #. Start new consumer clients, set the Kafka connection addresses to that of the new Kafka instance, and consume data from the new Kafka instance.
 
-   .. note::
-
-      Original consumer clients must continue running. Messages are consumed from both the original and new Kafka instances.
+   Original consumer clients must continue running. Messages are consumed from both the original and new Kafka instances.
 
 #. Change the Kafka connection address of the producer to that of the new Kafka instance.
+
 #. Restart the producer client to migrate the production service to the new Kafka instance.
+
 #. After the production service is migrated, check whether the consumption service connected to the new Kafka instance is normal.
+
 #. After all data in the original Kafka is consumed, close the original consumption clients.
+
 #. The migration is complete.
 
 Migration Scheme 3: Migrating the Consumption First
