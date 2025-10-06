@@ -82,13 +82,49 @@ DMS Operations Supported by CTS
    +---------------------------------------------------------------------------+---------------+----------------------------------------+
    | Failing to delete a background task                                       | kafka         | deleteDMSBackendJobFailure             |
    +---------------------------------------------------------------------------+---------------+----------------------------------------+
-   | Successfully enabling Smart Connect                                       | kafka         | createConnectorTaskSuccess             |
+   | Successfully enabling Smart Connect                                       | kafka         | CreateConnectorSuccess                 |
    +---------------------------------------------------------------------------+---------------+----------------------------------------+
-   | Successfully creating a Smart Connect task                                | kafka         | createConnectorSinkTaskSuccess         |
+   | Failing to enable Smart Connect                                           | kafka         | createConnectorFailure                 |
    +---------------------------------------------------------------------------+---------------+----------------------------------------+
-   | Failing to enable Smart Connect                                           | kafka         | createConnectorTaskFailure             |
+   | Successfully creating a Smart Connect task                                | kafka         | createConnectorTaskSuccess             |
    +---------------------------------------------------------------------------+---------------+----------------------------------------+
-   | Failing to create a Smart Connect task                                    | kafka         | createConnectorSinkTaskFailure         |
+   | Failing to create a Smart Connect task                                    | kafka         | createConnectorTaskFailure             |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Successfully modifying a Smart Connect task                               | kafka         | putConnectorTaskSuccess                |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Failing to modify a Smart Connect task                                    | kafka         | putConnectorTaskFailure                |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Successfully deleting a Smart Connect task                                | kafka         | deleteConnectorTaskSuccess             |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Failing to delete a Smart Connect task                                    | kafka         | deleteConnectorTaskFailure             |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Successfully restarting a Smart Connect task                              | kafka         | restartConnectorSuccess                |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Failing to restart a Smart Connect task                                   | kafka         | restartConnectorFailure                |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Successfully pausing a Smart Connect task                                 | kafka         | pauseConnectorSuccess                  |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Failing to pause a Smart Connect task                                     | kafka         | pauseConnectorFailure                  |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Successfully starting a Smart Connect task                                | kafka         | resumeConnectorSuccess                 |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Failing to start a Smart Connect task                                     | kafka         | resumeConnectorFailure                 |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Connectivity check succeeded                                              | kafka         | ValidateConnectorConnectivitySuccess   |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Connectivity check failed                                                 | kafka         | ValidateConnectorConnectivityFailure   |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Successfully disabling Smart Connect                                      | kafka         | DeleteConnectorSuccess                 |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Failing to disable Smart Connect                                          | kafka         | DeleteConnectorFailure                 |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Successfully creating a connector                                         | kafka         | createConnectorNodeTaskSuccess         |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Failing to create a connector                                             | kafka         | createConnectorNodeTaskFailure         |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Successfully deleting a connector                                         | kafka         | deleteConnectorNodeTaskSuccess         |
+   +---------------------------------------------------------------------------+---------------+----------------------------------------+
+   | Failing to delete a connector                                             | kafka         | deleteConnectorNodeTaskFailure         |
    +---------------------------------------------------------------------------+---------------+----------------------------------------+
    | Successfully creating a topic for a Kafka instance                        | kafka         | Kafka_create_topicSuccess              |
    +---------------------------------------------------------------------------+---------------+----------------------------------------+

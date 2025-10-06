@@ -8,14 +8,14 @@ Distributed Message Service (for Kafka) - User Guide
    service_overview/index
    getting_started/index
    process_of_using_kafka
-   permission_management/index
+   permissions_management/index
    creating_a_kafka_instance
    configuring_topics/index
    connecting_to_an_instance/index
    managing_messages/index
    managing_consumer_groups/index
    managing_instances/index
-   modifying_kafka_instance_specifications
+   modifying_instance_specifications/index
    migrating_data/index
    monitoring_and_alarms/index
    viewing_kafka_audit_logs

@@ -71,43 +71,32 @@ Resetting the Password (for the Initial User)
 ---------------------------------------------
 
 #. Log in to the console.
-#. Click |image2| in the upper left corner to select a region.
-
-   .. note::
-
-      Select the region where your Kafka instance is located.
-
+#. Click |image2| in the upper left corner to select the region where your instance is located.
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
 #. Reset the password for the initial user in either of the following ways.
 
    -  Choose **More** > **Reset Kafka Password** in the row containing the desired Kafka instance.
-   -  Click the desired Kafka instance to view its details. Choose **More** > **Reset Kafka Password** in the upper left corner.
-   -  Click the desired Kafka instance to view its details. On the **Basic Information** page, click **Reset Password** next to **Username** in the **Connection** section.
-   -  Click the desired Kafka instance to view its details. On the **Users** page, click **Reset Password** in the row containing the desired user.
+   -  Click the desired Kafka instance to go to the instance details page. Choose **More** > **Reset Kafka Password** in the upper right corner.
+   -  Click the desired Kafka instance to go to the instance details page. On the **Basic Information** page, click **Reset Password** next to **Username** in the **Connection** section.
+   -  Click the desired Kafka instance to go to the instance details page. On the **Users** page, click **Reset Password** in the row containing the desired user.
 
 #. Enter and confirm a new password, and click **OK**.
 
    -  If the password is successfully reset, a success message is displayed.
+
    -  If the password fails to be reset, a failure message is displayed. In this case, reset the password again. If you still fail to reset the password after multiple attempts, contact customer service.
 
-   .. note::
-
-      The system will display a success message only after the password is successfully reset on all brokers.
+      **The system will display a success message only after the password is successfully reset on all brokers.**
 
 .. _kafka-ug-0003__section728275161010:
 
-Resetting the User Password (for Non-initial Users)
----------------------------------------------------
+Resetting the Password (for Non-initial Users)
+----------------------------------------------
 
 #. Log in to the console.
-#. Click |image3| in the upper left corner to select a region.
-
-   .. note::
-
-      Select the region where your Kafka instance is located.
-
+#. Click |image3| in the upper left corner to select the region where your instance is located.
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
-#. Click the desired Kafka instance to view its details.
+#. Click the desired Kafka instance to go to the instance details page.
 #. On the **Users** page, click **Reset Password** in the row containing the desired user.
 #. Enter and confirm a new password, and click **OK**.
 
@@ -122,25 +111,23 @@ Deleting a User
 ---------------
 
 #. Log in to the console.
-#. Click |image4| in the upper left corner to select a region.
 
-   .. note::
-
-      Select the region where your Kafka instance is located.
+#. Click |image4| in the upper left corner to select the region where your instance is located.
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
-#. Click the desired Kafka instance to view its details.
+
+#. Click the desired instance to go to the instance details page.
+
 #. In the navigation pane, choose **Users**.
+
 #. Delete a user in either of the following ways:
 
    -  In the row containing the desired user, click **Delete**.
    -  Select one or more users and click **Delete** above the list.
 
-   .. note::
-
-      The initial user set when ciphertext access is enabled for the first time cannot be deleted.
-
 #. In the displayed **Delete User** dialog box, click **OK** to delete the user.
+
+   The user is deleted if it is not displayed in the user list.
 
 .. |image1| image:: /_static/images/en-us_image_0143929918.png
 .. |image2| image:: /_static/images/en-us_image_0143929918.png

@@ -2,8 +2,8 @@
 
 .. _CreateUserAndGrantPolicy:
 
-Creating a User and Granting DMS for Kafka Permissions
-======================================================
+Creating an IAM User and Granting DMS for Kafka Permissions
+===========================================================
 
 This section describes how to use `Identity and Access Management (IAM) <https://docs.otc.t-systems.com/en-us/usermanual/iam/iam_01_0026.html>`__ for fine-grained permissions control for your Distributed Message Service (DMS) for Kafka resources. With IAM, you can:
 
@@ -13,12 +13,14 @@ This section describes how to use `Identity and Access Management (IAM) <https:/
 
 If your account meets your permissions requirements, you can skip this section.
 
-This section describes the procedure for granting permissions (see :ref:`Figure 1 <createuserandgrantpolicy__fig207161552102018>`).
+This section describes the procedure for granting user permissions. :ref:`Figure 1 <createuserandgrantpolicy__fig207161552102018>` shows the process flow.
 
 Prerequisites
 -------------
 
-Learn about the permissions (see System-defined roles and policies supported by DMS for Kafka) supported by DMS for Kafka and choose policies according to your requirements. For the permissions of other services, see `Permissions <https://docs.otc.t-systems.com/en-us/permissions/index.html>`__.
+Learn about the permissions (see :ref:`System-defined roles and policies supported by DMS for Kafka <productdescprivilegemanagement>`) supported by DMS for Kafka and choose policies according to your requirements. For the permissions of other services, see `Permissions <https://docs.otc.t-systems.com/en-us/permissions/index.html>`__.
+
+**DMS for Kafka permissions policies are based on DMS. Therefore, when assigning permissions for user groups, select DMS permissions policies.**
 
 Process Flow
 ------------
@@ -30,7 +32,7 @@ Process Flow
 
    **Figure 1** Process for granting DMS for Kafka permissions
 
-#. For the following example, `create a user group on the IAM console <https://docs.otc.t-systems.com/en-us/usermanual/iam/iam_01_0030.html>`__ and assign the **DMS ReadOnlyAccess** policy to the group.
+#. For the following example, `create a user group on the IAM console <https://docs.otc.t-systems.com/en-us/usermanual/iam/iam_01_0030.html>`__ and assign the **DMS ReadOnlyAccess** to the group.
 
 #. `Create an IAM user and add it to the created user group <https://docs.otc.t-systems.com/en-us/usermanual/iam/iam_01_0031.html>`__.
 
@@ -40,12 +42,12 @@ Process Flow
 
    -  Choose **Service List** > **Distributed Message Service**. Then click **Create Instance** on the console of DMS for Kafka. If a message appears indicating that you cannot perform the operation, the **DMS ReadOnlyAccess** policy is in effect.
    -  Choose **Service List** > **Elastic Volume Service**. If a message appears indicating that you have insufficient permissions, the **DMS ReadOnlyAccess** policy is in effect.
-   -  Choose **Service List** > Distributed Message Service. If the Kafka instance list can be displayed, the **DMS ReadOnlyAccess** policy is in effect.
+   -  Choose **Service List** > **Distributed Message Service**. If the Kafka instance list can be displayed, the **DMS ReadOnlyAccess** policy is in effect.
 
 Example Custom Policies
 -----------------------
 
-You can create custom policies to supplement the system-defined policies of DMS for Kafka. For details about actions supported in custom policies, see `Permissions Policies and Supported Actions <https://docs.otc.t-systems.com/en-us/api/dms/api-grant-policy.html>`__"Permissions Policies and Supported Actions" in *Distributed Message Service API Reference*
+You can create custom policies to supplement the system-defined policies of DMS for Kafka. For details about actions supported in custom policies, see `Permissions Policies and Supported Actions <https://docs.otc.t-systems.com/en-us/api/dms/api-grant-policy.html>`__
 
 To create a custom policy, choose either visual editor or JSON.
 
@@ -53,11 +55,6 @@ To create a custom policy, choose either visual editor or JSON.
 -  JSON: Create a JSON policy or edit an existing one.
 
 For details, see `Creating a Custom Policy <https://docs.otc.t-systems.com/en-us/usermanual/iam/iam_01_0016.html>`__. The following lists examples of common DMS for Kafka custom policies.
-
-.. note::
-
-   -  DMS for Kafka permissions policies are based on DMS. Therefore, when assigning permissions, select DMS permissions policies.
-   -  Due to data caching, a policy involving Object Storage Service (OBS) actions will take effect five minutes after it is attached to a user, user group, or project.
 
 -  Example 1: Grant permission to delete and restart instances.
 
@@ -80,9 +77,7 @@ For details, see `Creating a Custom Policy <https://docs.otc.t-systems.com/en-us
 
    A policy with only "Deny" permissions must be used together with other policies. If the permissions granted to an IAM user contain both "Allow" and "Deny", the "Deny" permissions take precedence over the "Allow" permissions.
 
-   Assume that you want to grant the permissions of the **DMS FullAccess** policy to a user but want to prevent them from deleting instances. You can create a custom policy for denying instance deletion, and attach this policy together with the **DMS FullAccess** policy to the user. As an explicit deny in any policy overrides any allows, the user can perform all operations on DMS for Kafka excepting deleting instances.
-
-   Example policy denying instance deletion:
+   For example, if you want to assign all of the permissions of the **DMS FullAccess** policy to a user, except for deleting instances, you can create a custom policy to deny only instance deletion. When you apply both the **DMS FullAccess** policy and the custom policy denying instance deletion, since "Deny" always takes precedence over "Allow", the "Deny" will be applied for that one conflicting permission. The user will then be able to perform all operations on instances except deleting instances. The following is an example of a deny policy:
 
    .. code-block::
 

@@ -42,7 +42,7 @@ Step 1: Preparations
 
 #. Grant Kafka instance permissions.
 
-   To achieve fine-grained management of your cloud resources, create Identity and Access Management (IAM) user groups and users and grant specified permissions to the users. For more information, see :ref:`Creating a User and Granting DMS for Kafka Permissions <createuserandgrantpolicy>`.
+   To achieve fine-grained management of your cloud resources, create Identity and Access Management (IAM) user groups and users and grant specified permissions to the users. For more information, see :ref:`Creating an IAM User and Granting DMS for Kafka Permissions <createuserandgrantpolicy>`.
 
 #. .. _kafka-qs-0409001__li79912171816:
 
@@ -50,15 +50,15 @@ Step 1: Preparations
 
    Before creating a Kafka instance, ensure that a VPC and a subnet are available. For details about how to create a VPC and a subnet, see `Creating a VPC <https://docs.otc.t-systems.com/en-us/usermanual/vpc/en-us_topic_0013935842.html>`__.
 
-   .. important::
-
-      The VPC must be created in the same region as the Kafka instance.
+   The VPC **must** be created in the **same** region as the Kafka instance.
 
 #. .. _kafka-qs-0409001__li15466154716411:
 
    Create a security group and add security group rules.
 
    Before creating a Kafka instance, ensure that a security group is available. For details about how to create a security group, see `Creating a Security Group <https://docs.otc.t-systems.com/en-us/usermanual/vpc/en-us_topic_0013748715.html>`__.
+
+   The security group **must** be created in the **same** region as the Kafka instance.
 
    To connect to Kafka instances, add the security group rules described in :ref:`Table 1 <kafka-qs-0409001__table161395381402>`. Other rules can be added based on site requirements.
 
@@ -108,7 +108,7 @@ Step 1: Preparations
 
             vim ~/.bash_profile
 
-      #. Add the following content:
+      #. Press **i** and add the following content.
 
          .. code-block::
 
@@ -141,7 +141,7 @@ Step 1: Preparations
 
             java version "1.8.0_321"
 
-   d. Download an open-source Kafka client.
+   d. Download an open-source `Kafka client <https://archive.apache.org/dist/kafka/2.7.2/kafka_2.12-2.7.2.tgz>`__.
 
       .. code-block::
 
@@ -170,6 +170,8 @@ Step 2: Create a Kafka Instance
       | Parameter                         | Description                                                                                                                                                                                                                                                                                                   |
       +===================================+===============================================================================================================================================================================================================================================================================================================+
       | Region                            | DMS for Kafka in different regions cannot communicate with each other over an intranet. Select a nearest location for low latency and fast access.                                                                                                                                                            |
+      |                                   |                                                                                                                                                                                                                                                                                                               |
+      |                                   | Select eu-de.                                                                                                                                                                                                                                                                                                 |
       +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Project                           | Projects isolate compute, storage, and network resources across geographical regions. For each region, a preset project is available.                                                                                                                                                                         |
       |                                   |                                                                                                                                                                                                                                                                                                               |
@@ -192,10 +194,6 @@ Step 2: Create a Kafka Instance
       | Version                           | Kafka version. Cannot be changed once the instance is created.                                                                                                                                                                                                                                                |
       |                                   |                                                                                                                                                                                                                                                                                                               |
       |                                   | Select **2.7**.                                                                                                                                                                                                                                                                                               |
-      +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | CPU Architecture                  | **x86**                                                                                                                                                                                                                                                                                                       |
-      |                                   |                                                                                                                                                                                                                                                                                                               |
-      |                                   | Retain the default value.                                                                                                                                                                                                                                                                                     |
       +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
       | Broker Flavor                     | Select a broker flavor as required.                                                                                                                                                                                                                                                                           |
       |                                   |                                                                                                                                                                                                                                                                                                               |
@@ -323,6 +321,7 @@ Step 3: Create a Topic
       |                                   | -  \__connect-status                                                                                                                                                                                                                 |
       |                                   | -  \__connect-configs                                                                                                                                                                                                                |
       |                                   | -  \__connect-offsets                                                                                                                                                                                                                |
+      |                                   | -  \__dms_dial_test                                                                                                                                                                                                                  |
       |                                   |                                                                                                                                                                                                                                      |
       |                                   | Cannot be changed once the topic is created.                                                                                                                                                                                         |
       |                                   |                                                                                                                                                                                                                                      |

@@ -5,22 +5,27 @@
 Viewing Kafka Messages
 ======================
 
+When messages are lost or fail to be consumed, you can query the content and attributes of specific messages for troubleshooting.
+
 You can view the offset of different partitions, the message size, creation time, and body of messages in topics.
+
+Notes and Constraints
+---------------------
+
+-  If a topic contains a large amount of data, an internal service error may be reported when you query messages in a topic with only one replica. You can shorten the time range for query based on the data volume.
+-  To query with content, due to resource and performance restrictions, a total of 200 MB and 10,000 messages can be queried, and a maximum of 10 messages can be returned.
+-  The console displays messages smaller than 4 KB. To view messages larger than 4 KB, click **Download Message**.
 
 Procedure
 ---------
 
 #. Log in to the console.
 
-#. Click |image1| in the upper left corner to select a region.
-
-   .. note::
-
-      Select the region where your Kafka instance is located.
+#. Click |image1| in the upper left corner to select the region where your instance is located.
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
 
-#. Click the desired Kafka instance to view its details.
+#. Click the desired instance to go to the instance details page.
 
 #. In the left navigation pane, choose **Message Query**.
 
@@ -53,25 +58,27 @@ Procedure
       |                                   |    Due to resource and performance restrictions, query with content is limited to 10 results. Each search covers at most 10,000 records, or 200 MB. For large records (> 20 KB per message) or a long period, dump messages for offline query. |
       +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-   .. note::
-
-      If a topic contains a large amount of data, an internal service error may be reported when you query messages in a topic with only one replica. You can shorten the time range for query based on the data volume.
-
 #. Click **Search** to query messages.
 
-   Parameter description:
+   .. table:: **Table 2** Message parameters
 
-   -  **Topic Name**: name of the topic where the message is located
-   -  **Partition**: partition where the message is located
-   -  **Offset**: position of the message in the partition
-   -  **Message Size (Byte)** size of the message
-   -  **Created**: time when the message is created. The message creation time is specified by **CreateTime** when a producer creates messages. If this parameter is not set during message creation, the message creation time is year 1970 by default.
+      +---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter           | Description                                                                                                                                                                                                                           |
+      +=====================+=======================================================================================================================================================================================================================================+
+      | Topic Name          | Name of the topic where the message is located.                                                                                                                                                                                       |
+      +---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Partition           | Partition where the message is located.                                                                                                                                                                                               |
+      +---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Offset              | Position of the message in the partition.                                                                                                                                                                                             |
+      +---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Message Size (Byte) | Size of the message.                                                                                                                                                                                                                  |
+      +---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Created             | Time when the message is created. The message creation time is specified by **CreateTime** when a producer creates messages. If this parameter is not set during message creation, the message creation time is year 1970 by default. |
+      +---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. Click **View Message Body**. In the displayed **View Message Body** dialog box, view the message content, including the topic name, partition, offset, creation time, and message body.
 
-   .. note::
-
-      The console displays messages smaller than 4 KB. To view messages larger than 4 KB, click **Download Message**.
+   The console displays messages smaller than 4 KB. To view messages larger than 4 KB, click **Download Message**.
 
 #. (Optional) To restore the default settings, click **Reset**.
 

@@ -7,55 +7,119 @@ Viewing Kafka Topic Details
 
 On the Kafka console, you can view basic information, partition and producer information, and subscriptions of a topic.
 
+Notes and Constraints
+---------------------
+
+-  If an instance contains more than 10,000 consumer groups, the subscribed topics cannot be queried.
+-  The producer information is displayed only when a producer is producing messages into topics.
+
 Procedure
 ---------
 
 #. Log in to the console.
 
-#. Click |image1| in the upper left corner to select a region.
-
-   .. note::
-
-      Select the region where your Kafka instance is located.
+#. Click |image1| in the upper left corner to select the region where your instance is located.
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
 
-#. Click the desired Kafka instance to view its details.
+#. Click the desired instance to go to the instance details page.
 
 #. In the navigation pane, choose **Topics**.
 
 #. Click a topic to view its details.
 
-   The general information, subscriptions, partitions, and producers are displayed.
+   On the topic details page, the :ref:`basic information <kafka_ug_0045__table75960253133>`, :ref:`partitions <kafka_ug_0045__table3493841115917>`, :ref:`producers <kafka_ug_0045__table793651919179>`, and :ref:`subscriptions <kafka_ug_0045__table14692021153117>` are displayed.
 
-   -  General information: topic name, brokers, partitions, and creation time
+   .. _kafka_ug_0045__table75960253133:
 
-      .. note::
+   .. table:: **Table 1** Basic topic information
 
-         -  For topics created much earlier, creation time is not displayed on the topic details page. See the console.
-         -  For topics automatically created, and created by commands or code on the client, creation time is not displayed on the topic details page.
+      +-----------------------------------+------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                          |
+      +===================================+======================================================================================================+
+      | Topic Name                        | Name of this topic.                                                                                  |
+      +-----------------------------------+------------------------------------------------------------------------------------------------------+
+      | Brokers                           | This topic has been associated with brokers.                                                         |
+      +-----------------------------------+------------------------------------------------------------------------------------------------------+
+      | Partitions                        | Number of partitions of this topic.                                                                  |
+      +-----------------------------------+------------------------------------------------------------------------------------------------------+
+      | Created                           | .. caution::                                                                                         |
+      |                                   |                                                                                                      |
+      |                                   |    CAUTION:                                                                                          |
+      |                                   |    The topic creation time is not displayed on the topic details page in any of the following cases: |
+      |                                   |                                                                                                      |
+      |                                   |    -  The topics were created much earlier. See the console.                                         |
+      |                                   |    -  The topics were created automatically, or by commands or code on the client.                   |
+      |                                   |                                                                                                      |
+      |                                   | Time when this topic is created.                                                                     |
+      +-----------------------------------+------------------------------------------------------------------------------------------------------+
 
-   -  Subscriptions: consumer group name and status, Coordinator (ID), and accumulated messages
 
-      Click **Details** in the **Operation** column or the name of a consumer group.
+   .. figure:: /_static/images/en-us_image_0000002309000337.png
+      :alt: **Figure 1** Partitions
 
-      .. note::
+      **Figure 1** Partitions
 
-         If an instance contains more than 10,000 consumer groups, the subscription relationships of topics cannot be queried.
+   .. _kafka_ug_0045__table3493841115917:
 
-   -  Partitions: partition No., minimum offset, maximum offset, number of messages, and message update time
+   .. table:: **Table 2** Partition information of a topic
 
+      ============== ========================================================
+      Parameter      Description
+      ============== ========================================================
+      Partition      Partition No. of this topic.
+      Minimum Offset Minimum offset of this partition.
+      Maximum Offset Maximum offset of this partition.
+      Messages       Number of messages in this partition.
+      Updated        Time when the last message in this partition is updated.
+      ============== ========================================================
 
-      .. figure:: /_static/images/en-us_image_0000001756853218.png
-         :alt: **Figure 1** Partitions
+   .. caution::
 
-         **Figure 1** Partitions
+      For topics created much earlier, **Producer** tab page is not displayed on the topic details page. See the console.
 
-   -  Producers: broker address, producer address, and producer connected time
+   .. _kafka_ug_0045__table793651919179:
 
-      .. note::
+   .. table:: **Table 3** Producer information of a topic
 
-         -  The producer information is displayed only when a producer is producing messages into topics.
-         -  For topics created much earlier, **Producer** tab page is not displayed on the topic details page. See the console.
+      +--------------------+-----------------------------------------------------------------+
+      | Parameter          | Description                                                     |
+      +====================+=================================================================+
+      | Broker Address     | Broker address of the Kafka instance connected to the producer. |
+      +--------------------+-----------------------------------------------------------------+
+      | Producer Address   | Address of the producer client.                                 |
+      +--------------------+-----------------------------------------------------------------+
+      | Producer Connected | Time when the producer is connected to the Kafka instance.      |
+      +--------------------+-----------------------------------------------------------------+
+
+   .. warning::
+
+      If an instance contains more than 10,000 consumer groups, the subscribed topics cannot be queried.
+
+   .. _kafka_ug_0045__table14692021153117:
+
+   .. table:: **Table 4** Subscriptions of a topic
+
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                                                   |
+      +===================================+===============================================================================================================================+
+      | Consumer Group Name               | Name of the consumer group that subscribes to this topic.                                                                     |
+      |                                   |                                                                                                                               |
+      |                                   | Clicking a consumer group name can go to the consumer group details page and view the consumer list and consumption progress. |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+      | Status                            | Current status of a consumer group.                                                                                           |
+      |                                   |                                                                                                                               |
+      |                                   | -  **DEAD**: The consumer group has no member or metadata.                                                                    |
+      |                                   | -  **EMPTY**: The consumer group has metadata but has no member.                                                              |
+      |                                   | -  **PREPARING_REBALANCE**: The consumer group is to be rebalanced.                                                           |
+      |                                   | -  **COMPLETING_REBALANCE**: All members have joined the consumer group.                                                      |
+      |                                   | -  **STABLE**: Members in the consumer group can consume messages normally.                                                   |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+      | Coordinator(ID)                   | Broker where the Coordinator component is.                                                                                    |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+      | Accumulated Messages              | Number of remaining messages that can be consumed in a consumer group.                                                        |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+      | Details                           | Clicking **Details** to go to the consumer group details.                                                                     |
+      +-----------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
 
 .. |image1| image:: /_static/images/en-us_image_0143929918.png

@@ -18,11 +18,7 @@ A consumer subscribes to a topic. A consumer group consists of one or more consu
 -  A consumer group is required before consuming messages when **auto.create.groups.enable** is **false** in :ref:`Configuring Parameters <kafka-ug-0007>`. Otherwise, consumption will fail.
 -  A consumer group is created automatically before consuming messages when **auto.create.groups.enable** is **true** in :ref:`Configuring Parameters <kafka-ug-0007>`.
 
-Create a consumer group on the console.
-
-.. note::
-
-   Creating a consumer group on the console does not require an instance restart.
+This section describes how to create a consumer group on the console. This operation does not restart the Kafka instance.
 
 Notes and Constraints
 ---------------------
@@ -36,15 +32,11 @@ Procedure
 
 #. Log in to the console.
 
-#. Click |image1| in the upper left corner to select a region.
-
-   .. note::
-
-      Select the region where your Kafka instance is located.
+#. Click |image1| in the upper left corner to select the region where your instance is located.
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
 
-#. Click the desired Kafka instance to view the instance details.
+#. Click the desired instance to go to the instance details page.
 
 #. In the navigation pane, choose **Consumer Groups**.
 

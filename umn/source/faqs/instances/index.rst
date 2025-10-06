@@ -29,6 +29,7 @@ Instances
 -  :ref:`Where Can I Find Kafka Streams Use Cases? <kafka-faq-0037>`
 -  :ref:`Can I Upgrade Kafka Instances? <kafka-faq-0040>`
 -  :ref:`How Do I Bind an EIP Again? <kafka_faq_0046>`
+-  :ref:`Why Are the Earliest Messages Not Automatically Deleted When the Disk Capacity Reaches 95%? <kafka-faq-0070>`
 
 .. toctree::
    :maxdepth: 1
@@ -58,3 +59,4 @@ Instances
    where_can_i_find_kafka_streams_use_cases
    can_i_upgrade_kafka_instances
    how_do_i_bind_an_eip_again
+   why_are_the_earliest_messages_not_automatically_deleted_when_the_disk_capacity_reaches_95pct

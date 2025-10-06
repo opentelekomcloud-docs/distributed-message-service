@@ -22,19 +22,15 @@ Step 1: Obtain Information About the Kafka Instance
 
 #. Log in to the console.
 
-#. Click |image1| in the upper left corner to select a region.
-
-   .. note::
-
-      Select the region where your Kafka instance is located.
+#. Click |image1| in the upper left corner to select the region where your instance is located.
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
 
-#. Click the desired Kafka instance to view its details.
+#. Click the desired instance to go to the instance details page.
 
 #. .. _kafka-dnat__li122701357121013:
 
-   In the **Connection** area on the **Basic Information** tab page, view and record the private network access addresses of the Kafka instance. In the **Network** area, view and record the VPC and subnet where the Kafka instance is located.
+   In the **Connection** area on the **Basic Information** page, view and record the private network access addresses of the Kafka instance. In the **Network** area, view and record the VPC and subnet where the Kafka instance is located.
 
 
    .. figure:: /_static/images/en-us_image_0000002029070918.png
@@ -49,20 +45,29 @@ Step 2: Create a Public NAT Gateway
 
 #. Click **Create Public NAT Gateway**.
 
-#. Set the following parameters:
-
-   -  **Region**: Select the region that the Kafka instance is in.
-   -  **Name**: Enter a name for the public NAT gateway.
-   -  **VPC**: Select the VPC recorded in :ref:`5 <kafka-dnat__li122701357121013>`.
-   -  **Subnet**: Select the subnet recorded in :ref:`5 <kafka-dnat__li122701357121013>`.
-
-   Set other parameters as required. For details, see `Creating a NAT Gateway <https://docs.otc.t-systems.com/usermanual/nat/en-us_topic_0150270259.html>`__.
+#. Set parameters by referring to :ref:`Table 1 <kafka-dnat__table021473214566>` and other parameters as required. For details, see `Creating a Public NAT Gateway <https://docs.otc.t-systems.com/usermanual/nat/en-us_topic_0150270259.html>`__.
 
 
    .. figure:: /_static/images/en-us_image_0000001614245881.png
       :alt: **Figure 2** Create Public NAT Gateway
 
       **Figure 2** Create Public NAT Gateway
+
+   .. _kafka-dnat__table021473214566:
+
+   .. table:: **Table 1** Public NAT gateway creation parameters
+
+      +-----------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter | Description                                                                                                                                          |
+      +===========+======================================================================================================================================================+
+      | Region    | Region where the public NAT gateway is located. Select the region that the Kafka instance is in.                                                     |
+      +-----------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Name      | Enter a name for the public NAT gateway. Enter up to 64 characters. Only letters, digits, underscores (_), hyphens (-), and periods (.) are allowed. |
+      +-----------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | VPC       | VPC where the public NAT gateway resides. Select the VPC recorded in :ref:`5 <kafka-dnat__li122701357121013>`.                                       |
+      +-----------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Subnet    | Subnet in the VPC where the public NAT gateway resides. Select the subnet recorded in :ref:`5 <kafka-dnat__li122701357121013>`.                      |
+      +-----------+------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. Click **Create Now**.
 
@@ -83,24 +88,37 @@ Step 3: Add a DNAT Rule
 
       **Figure 3** Public NAT gateway details
 
-#. Set the following parameters:
-
-   -  **Scenario**: Select **VPC**.
-   -  **Port Type**: Select **Specific port**.
-   -  **Protocol**: Select **TCP**.
-   -  **EIP**: Select an EIP.
-   -  **Outside Port**: Enter **9011**.
-   -  **Instance Type**: Select **Custom**.
-   -  **Private IP Address**: Enter one of the private network addresses of the Kafka instance recorded in :ref:`5 <kafka-dnat__li122701357121013>`.
-   -  **Inside Port**: Enter **9011**.
-
-   For details about more parameters, see `Adding a DNAT Rule <https://docs.otc.t-systems.com/usermanual/nat/en-us_topic_0127489530.html>`__.
+#. Set parameters by referring to :ref:`Table 2 <kafka-dnat__table18913152420910>`. For details about more parameters, see `Adding a DNAT Rule <https://docs.otc.t-systems.com/usermanual/nat/en-us_topic_0127489530.html>`__.
 
 
    .. figure:: /_static/images/en-us_image_0000001563854478.png
       :alt: **Figure 4** Adding a DNAT rule
 
       **Figure 4** Adding a DNAT rule
+
+   .. _kafka-dnat__table18913152420910:
+
+   .. table:: **Table 2** Adding a DNAT rule
+
+      +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter          | Description                                                                                                                                                                                    |
+      +====================+================================================================================================================================================================================================+
+      | Scenario           | Select **VPC**. The servers in a VPC will share an EIP to provide services accessible from the Internet through the DNAT rule.                                                                 |
+      +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Port Type          | Select **Specific port**. The public NAT gateway forwards requests to your servers only from the outside port and to the inside port configured here, and only if they use the right protocol. |
+      +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Protocol           | Select **TCP**.                                                                                                                                                                                |
+      +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | EIP                | Select the created EIP.                                                                                                                                                                        |
+      +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Outside Port       | Enter **9011**.                                                                                                                                                                                |
+      +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Instance Type      | Instance type for providing services over external public networks. Select **Custom**.                                                                                                         |
+      +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Private IP Address | Enter one of the private network addresses of the Kafka instance recorded in :ref:`5 <kafka-dnat__li122701357121013>`.                                                                         |
+      +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Inside Port        | Enter **9011**.                                                                                                                                                                                |
+      +--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 #. .. _kafka-dnat__li295532675915:
 
@@ -123,7 +141,7 @@ Step 4: Map EIPs to the Port 9011 of Private IP Addresses
 
 #. Click the desired Kafka instance to view its details.
 
-#. In the **Advanced Settings** section on the **Basic Information** tab page, click **Modify** next to **Cross-VPC Access**.
+#. In the **Advanced Settings** area on the **Basic Information** page, click **Modify**.
 
 #. Change the values of **advertised.listeners IP Address/Domain Name** to the EIPs in the DNAT rules. Ensure that the mapping between the private network addresses and the EIPs is consistent with that recorded in :ref:`6 <kafka-dnat__li1062193864112>`. Then click **Save**.
 

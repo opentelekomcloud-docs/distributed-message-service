@@ -14,6 +14,7 @@ Messages
 -  :ref:`How Do I View the Number of Accumulated Messages? <kafka-faq-0041>`
 -  :ref:`Why Is the Message Creation Time Displayed as Year 1970? <kafka-faq-0045>`
 -  :ref:`How Do I Modify message.max.bytes? <kafka_faq_0058>`
+-  :ref:`Why Are Offsets Not Continuous? <kafka-faq-0065>`
 
 .. toctree::
    :maxdepth: 1
@@ -28,3 +29,4 @@ Messages
    how_do_i_view_the_number_of_accumulated_messages
    why_is_the_message_creation_time_displayed_as_year_1970
    how_do_i_modify_message.max.bytes
+   why_are_offsets_not_continuous

@@ -5,6 +5,6 @@
 How Do I Obtain the Public Access Address After Public Access Is Enabled?
 =========================================================================
 
-Click the name of your Kafka instance. In the **Connection** section on the **Basic Information** tab page, view **Instance Address (Public Network)**.
+Click the name of your Kafka instance. In the **Connection** section on the **Basic Information** page, view **Instance Address (Public Network)**.
 
 For details about how to connect to a Kafka instance, see :ref:`Connecting to an Instance <kafka-ug190605003>`.

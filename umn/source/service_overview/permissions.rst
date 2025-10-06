@@ -2,8 +2,8 @@
 
 .. _ProductDescPrivilegeManagement:
 
-Permission
-==========
+Permissions
+===========
 
 If you need to grant your enterprise personnel permission to access your DMS resources, use Identity and Access Management (IAM). IAM provides identity authentication, fine-grained permissions management, and access control. IAM helps you secure access to your cloud resources.
 

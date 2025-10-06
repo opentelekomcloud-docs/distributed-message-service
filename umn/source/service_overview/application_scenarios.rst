@@ -7,6 +7,8 @@ Application Scenarios
 
 Kafka is popular message-oriented middleware that features highly reliable, asynchronous message delivery. It is widely used for transmitting data between different systems in many industries, including enterprise application, payment, telecommunications, e-commerce, social networking, instant messaging, video, Internet of Things, and Internet of Vehicle.
 
+For synchronization links that require real-time results, Remote Procedure Call (RPC) is recommended.
+
 Asynchronous Communication
 --------------------------
 

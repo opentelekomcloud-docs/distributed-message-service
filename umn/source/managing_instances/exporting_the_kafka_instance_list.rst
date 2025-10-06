@@ -11,14 +11,9 @@ Procedure
 ---------
 
 #. Log in to the console.
-#. Click |image1| in the upper left corner to select a region.
-
-   .. note::
-
-      Select the region where your Kafka instance is located.
-
+#. Click |image1| in the upper left corner to select the region where your instance is located.
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
-#. Export the instance list using either of the following methods:
+#. Export the instance list in either of the following ways:
 
    -  Select the desired instances and choose **Export** > **Export selected data to an XLSX file** to export specified instances.
    -  Choose **Export** > **Export all data to an XLSX file** to export all instances.
