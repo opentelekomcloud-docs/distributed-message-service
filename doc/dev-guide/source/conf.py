@@ -34,7 +34,7 @@ otcdocs_repo_name = 'opentelekomcloud-docs/distributed-message-service'
 otcdocs_doc_environment = 'public'
 otcdocs_doc_link = '/distributed-message-service/dev-guide/'
 otcdocs_doc_title = 'Developer Guide'
-otcdocs_doc_type = 'dev'
+otcdocs_doc_type = 'dev-guide'
 otcdocs_service_category = 'application'
 otcdocs_service_title = 'Distributed Message Service (for Kafka)'
 otcdocs_service_type = 'dms'
@@ -113,7 +113,8 @@ html_copy_source = False
 # -- Options for PDF output --------------------------------------------------
 latex_documents = [
     ('index',
-     'dms-dev-guide.tex',u'Distributed Message Service (for Kafka) - Developer Guide',
+     'dms-dev-guide.tex',
+    u'Distributed Message Service (for Kafka) - Developer Guide',
      u'OpenTelekomCloud', 'manual'),
 ]
 

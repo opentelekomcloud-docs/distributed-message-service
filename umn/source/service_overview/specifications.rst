@@ -100,7 +100,7 @@ Mapping Between Old and New Flavors
 .. table:: **Table 3** Mapping between old and new Kafka instance flavors
 
    +------------+--------------------------------+-------------------------------+--------------------------------+
-   | Old Flavor |                                | New Flavor                    |                                |
+   | Old Flavor | _                              | New Flavor                    | _                              |
    +============+================================+===============================+================================+
    | Flavor     | Total Instance Network Traffic | Flavor                        | Total Instance Network Traffic |
    +------------+--------------------------------+-------------------------------+--------------------------------+
