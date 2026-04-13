@@ -10,6 +10,7 @@ Consumer Groups
 -  :ref:`Why Does a Deleted Consumer Group Still Exist? <kafka_faq_0059>`
 -  :ref:`Why Can't I View Consumers When Instance Consumption Is Normal? <kafka_faq_0060>`
 -  :ref:`Can I Delete Unnecessary Topics in a Consumer Group? <kafka-faq-0031>`
+-  :ref:`Why Are Consumer Groups Missing? <kafka-faq-0069>`
 
 .. toctree::
    :maxdepth: 1
@@ -20,3 +21,4 @@ Consumer Groups
    why_does_a_deleted_consumer_group_still_exist
    why_cant_i_view_consumers_when_instance_consumption_is_normal
    can_i_delete_unnecessary_topics_in_a_consumer_group
+   why_are_consumer_groups_missing

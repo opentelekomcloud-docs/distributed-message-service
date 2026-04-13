@@ -24,9 +24,11 @@ Before creating a Kafka instance, prepare the resources listed in :ref:`Table 1 
    |                       | Note when creating a VPC and a subnet:                                                                                                                          |                                                                                                                                                                                                                                                                                                                                                    |
    |                       |                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                    |
    |                       | -  The VPC must be created in the same region as the Kafka instance.                                                                                            |                                                                                                                                                                                                                                                                                                                                                    |
-   |                       | -  The Kafka instance supports IPv6 after it is enabled for the subnet. The Kafka instance with IPv6 enabled can be accessed on a client using IPv6 addresses.  |                                                                                                                                                                                                                                                                                                                                                    |
+   |                       | -  The Kafka instance supports IPv6 after it is enabled for the subnet. The instance with IPv6 enabled can be accessed on a client using IPv6 addresses.        |                                                                                                                                                                                                                                                                                                                                                    |
    +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    | Security group        | Different Kafka instances can use the same or different security groups.                                                                                        | For details on how to create a security group, see `Creating a Security Group <https://docs.otc.t-systems.com/en-us/usermanual/vpc/en-us_topic_0013748715.html>`__. For details on how to add rules to a security group, see `Adding a Security Group Rule <https://docs.otc.t-systems.com/en-us/usermanual/vpc/en-us_topic_0030969470.html>`__.   |
+   |                       |                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                    |
+   |                       | The security group must be in the same region as the Kafka instance.                                                                                            |                                                                                                                                                                                                                                                                                                                                                    |
    |                       |                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                    |
    |                       | Before accessing a Kafka instance, configure security groups based on the access mode. For details, see :ref:`Table 2 <kafka-ug-180604012__table161395381402>`. |                                                                                                                                                                                                                                                                                                                                                    |
    +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -42,6 +44,12 @@ Before creating a Kafka instance, prepare the resources listed in :ref:`Table 1 
    |                       |                                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                    |
    |                       | The KMS key must be created in the same region as the Kafka instance.                                                                                           |                                                                                                                                                                                                                                                                                                                                                    |
    +-----------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Notes and Constraints
+---------------------
+
+-  SASL_SSL cannot be manually configured for instances with IPv6 enabled.
+-  Ciphertext access is unavailable for single-node instances.
 
 Procedure
 ---------
@@ -98,7 +106,7 @@ Procedure
 
          Disks are formatted when an instance is created. As a result, the actual available disk space is 93% to 95% of the total disk space.
 
-         The disk type can be high I/O or ultra-high I/O. For more information, see `Disk Types and Performance <https://docs.otc.t-systems.com/en-us/usermanual/evs/en-us_topic_0014580744.html>`__.
+         The disk type can be high I/O, ultra-high I/O, General Purpose SSD, or Extreme SSD. For more information, see `Disk Types and Performance <https://docs.otc.t-systems.com/en-us/usermanual/evs/en-us_topic_0014580744.html>`__.
 
       e. **Disk Encryption**: Specify whether to enable disk encryption.
 
@@ -106,8 +114,8 @@ Procedure
 
       f. **Capacity Threshold Policy**: Policy used when the disk usage reaches the threshold. The capacity threshold is 95%.
 
-         -  **Automatically delete**: Messages can be created and retrieved, but 10% of the earliest messages will be deleted to ensure sufficient disk space. This policy is suitable for scenarios where no service interruption can be tolerated. Data may be lost.
-         -  **Stop production**: New messages cannot be created, but existing messages can still be retrieved. This policy is suitable for scenarios where no data loss can be tolerated.
+         -  **Automatically delete**: Messages can be produced and consumed, but 10% of the earliest messages will be deleted to ensure sufficient disk space. This policy is suitable for scenarios where no service interruption can be tolerated. Data may be lost.
+         -  **Stop production**: New messages cannot be produced, but existing messages can still be consumed. This policy is suitable for scenarios where no data loss can be tolerated.
 
 
       .. figure:: /_static/images/en-us_image_0000002027334552.png
@@ -129,7 +137,7 @@ Procedure
 
          Disks are formatted when an instance is created. As a result, the actual available disk space is 93% to 95% of the total disk space.
 
-         The disk type can be high I/O or ultra-high I/O. For more information, see `Disk Types and Performance <https://docs.otc.t-systems.com/en-us/usermanual/evs/en-us_topic_0014580744.html>`__.
+         The disk type can be high I/O, ultra-high I/O, General Purpose SSD, or Extreme SSD. For more information, see `Disk Types and Performance <https://docs.otc.t-systems.com/en-us/usermanual/evs/en-us_topic_0014580744.html>`__.
 
       e. **Disk Encryption**: Specify whether to enable disk encryption.
 
@@ -137,8 +145,8 @@ Procedure
 
       f. **Capacity Threshold Policy**: Policy used when the disk usage reaches the threshold. The capacity threshold is 95%.
 
-         -  **Automatically delete**: Messages can be created and retrieved, but 10% of the earliest messages will be deleted to ensure sufficient disk space. This policy is suitable for scenarios where no service interruption can be tolerated. Data may be lost.
-         -  **Stop production**: New messages cannot be created, but existing messages can still be retrieved. This policy is suitable for scenarios where no data loss can be tolerated.
+         -  **Automatically delete**: Messages can be produced and consumed, but 10% of the earliest messages will be deleted to ensure sufficient disk space. This policy is suitable for scenarios where no service interruption can be tolerated. Data may be lost.
+         -  **Stop production**: New messages cannot be produced, but existing messages can still be consumed. This policy is suitable for scenarios where no data loss can be tolerated.
 
 
       .. figure:: /_static/images/en-us_image_0000002027493428.png
@@ -218,45 +226,45 @@ Procedure
 
    .. table:: **Table 3** Ciphertext access parameters
 
-      +---------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Parameter                 | Value                 | Description                                                                                                                                                                                                             |
-      +===========================+=======================+=========================================================================================================================================================================================================================+
-      | Security Protocol         | SASL_SSL              | SASL is used for authentication. Data is encrypted with SSL certificates for high-security transmission.                                                                                                                |
-      |                           |                       |                                                                                                                                                                                                                         |
-      |                           |                       | SCRAM-SHA-512 is enabled by default. To use PLAIN, enable **SASL/PLAIN**.                                                                                                                                               |
-      |                           |                       |                                                                                                                                                                                                                         |
-      |                           |                       | **What are SCRAM-SHA-512 and PLAIN mechanisms?**                                                                                                                                                                        |
-      |                           |                       |                                                                                                                                                                                                                         |
-      |                           |                       | -  SCRAM-SHA-512: uses the hash algorithm to generate credentials for usernames and passwords to verify identities. SCRAM-SHA-512 is more secure than PLAIN.                                                            |
-      |                           |                       | -  PLAIN: a simple username and password verification mechanism.                                                                                                                                                        |
-      +---------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      |                           | SASL_PLAINTEXT        | SASL is used for authentication. Data is transmitted in plaintext for high performance.                                                                                                                                 |
-      |                           |                       |                                                                                                                                                                                                                         |
-      |                           |                       | SCRAM-SHA-512 is enabled by default. To use PLAIN, enable **SASL/PLAIN**. SCRAM-SHA-512 authentication is recommended for plaintext transmission.                                                                       |
-      +---------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Cross-VPC Access Protocol | ``-``                 | -  When **Plaintext Access** is enabled and **Ciphertext Access** is disabled, **PLAINTEXT** is used for **Cross-VPC Access Protocol**.                                                                                 |
-      |                           |                       | -  When **Ciphertext Access** is enabled and **Security Protocol** is **SASL_SSL**, **SASL_SSL** is used for **Cross-VPC Access Protocol**.                                                                             |
-      |                           |                       | -  When **Ciphertext Access** is enabled and **Security Protocol** is **SASL_PLAINTEXT**, **SASL_PLAINTEXT** is used for **Cross-VPC Access Protocol**.                                                                 |
-      |                           |                       |                                                                                                                                                                                                                         |
-      |                           |                       | Fixed once the instance is created.                                                                                                                                                                                     |
-      +---------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | SASL/PLAIN                | ``-``                 | -  If **SASL/PLAIN** is disabled, the SCRAM-SHA-512 mechanism is used for username and password authentication.                                                                                                         |
-      |                           |                       | -  If **SASL/PLAIN** is enabled, both the SCRAM-SHA-512 and PLAIN mechanisms are supported. You can select either of them as required.                                                                                  |
-      |                           |                       |                                                                                                                                                                                                                         |
-      |                           |                       | The **SASL/PLAIN** setting cannot be changed once ciphertext access is enabled.                                                                                                                                         |
-      +---------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-      | Username and Password     | ``-``                 | Username and password used by the client to connect to the Kafka instance.                                                                                                                                              |
-      |                           |                       |                                                                                                                                                                                                                         |
-      |                           |                       | A username should contain 4 to 64 characters, start with a letter, and contain only letters, digits, hyphens (-), and underscores (_).                                                                                  |
-      |                           |                       |                                                                                                                                                                                                                         |
-      |                           |                       | A password must meet the following requirements:                                                                                                                                                                        |
-      |                           |                       |                                                                                                                                                                                                                         |
-      |                           |                       | -  Contains 8 to 32 characters.                                                                                                                                                                                         |
-      |                           |                       | -  Cannot start with a hyphen (-) and must contain at least three of the following character types: uppercase letters, lowercase letters, digits, spaces, and special characters \`~! @#$ ``%^&*()-_=+\|[{}];:'",<.>?`` |
-      |                           |                       | -  Cannot be the username spelled forwards or backwards.                                                                                                                                                                |
-      |                           |                       |                                                                                                                                                                                                                         |
-      |                           |                       | The username cannot be changed once ciphertext access is enabled.                                                                                                                                                       |
-      +---------------------------+-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      +---------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                 | Value                 | Description                                                                                                                                                                                                                     |
+      +===========================+=======================+=================================================================================================================================================================================================================================+
+      | Security Protocol         | SASL_SSL              | SASL is used for authentication. Data is encrypted with SSL certificates for high-security transmission.                                                                                                                        |
+      |                           |                       |                                                                                                                                                                                                                                 |
+      |                           |                       | SCRAM-SHA-512 is enabled by default. To use PLAIN, enable **SASL/PLAIN**.                                                                                                                                                       |
+      |                           |                       |                                                                                                                                                                                                                                 |
+      |                           |                       | **What are SCRAM-SHA-512 and PLAIN mechanisms?**                                                                                                                                                                                |
+      |                           |                       |                                                                                                                                                                                                                                 |
+      |                           |                       | -  SCRAM-SHA-512: uses the hash algorithm to generate credentials for usernames and passwords to verify identities. SCRAM-SHA-512 is more secure than PLAIN.                                                                    |
+      |                           |                       | -  PLAIN: a simple username and password verification mechanism.                                                                                                                                                                |
+      +---------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      |                           | SASL_PLAINTEXT        | SASL is used for authentication. Data is transmitted in plaintext for high performance.                                                                                                                                         |
+      |                           |                       |                                                                                                                                                                                                                                 |
+      |                           |                       | SCRAM-SHA-512 is enabled by default. To use PLAIN, enable **SASL/PLAIN**. SCRAM-SHA-512 authentication is recommended for plaintext transmission.                                                                               |
+      +---------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Cross-VPC Access Protocol | ``-``                 | -  When **Plaintext Access** is enabled and **Ciphertext Access** is disabled, **PLAINTEXT** is used for **Cross-VPC Access Protocol**.                                                                                         |
+      |                           |                       | -  When **Ciphertext Access** is enabled and **Security Protocol** is **SASL_SSL**, **SASL_SSL** is used for **Cross-VPC Access Protocol**.                                                                                     |
+      |                           |                       | -  When **Ciphertext Access** is enabled and **Security Protocol** is **SASL_PLAINTEXT**, **SASL_PLAINTEXT** is used for **Cross-VPC Access Protocol**.                                                                         |
+      |                           |                       |                                                                                                                                                                                                                                 |
+      |                           |                       | Fixed once the instance is created.                                                                                                                                                                                             |
+      +---------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | SASL/PLAIN                | ``-``                 | -  If **SASL/PLAIN** is disabled, the SCRAM-SHA-512 mechanism is used for username and password authentication.                                                                                                                 |
+      |                           |                       | -  If **SASL/PLAIN** is enabled, both the SCRAM-SHA-512 and PLAIN mechanisms are supported. You can select either of them as required.                                                                                          |
+      |                           |                       |                                                                                                                                                                                                                                 |
+      |                           |                       | The **SASL/PLAIN** setting cannot be changed once ciphertext access is enabled.                                                                                                                                                 |
+      +---------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Username and Password     | ``-``                 | Username and password used by the client to connect to the Kafka instance.                                                                                                                                                      |
+      |                           |                       |                                                                                                                                                                                                                                 |
+      |                           |                       | A username should contain 4 to 64 characters, start with a letter, and contain only letters, digits, hyphens (-), and underscores (_).                                                                                          |
+      |                           |                       |                                                                                                                                                                                                                                 |
+      |                           |                       | A password must meet the following requirements:                                                                                                                                                                                |
+      |                           |                       |                                                                                                                                                                                                                                 |
+      |                           |                       | -  Contains 8 to 32 characters.                                                                                                                                                                                                 |
+      |                           |                       | -  Contains at least three types of the following characters: uppercase letters, lowercase letters, digits, and special characters :literal:`\`~!@#$%^&*()-_=+\\|[{}];:'",<.>?` and spaces, and cannot start with a hyphen (-). |
+      |                           |                       | -  Cannot be the username spelled forwards or backwards.                                                                                                                                                                        |
+      |                           |                       |                                                                                                                                                                                                                                 |
+      |                           |                       | The username cannot be changed once ciphertext access is enabled.                                                                                                                                                               |
+      +---------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
    .. note::
 
@@ -266,7 +274,7 @@ Procedure
 
    This parameter indicates whether to enable SASL authentication when a client connects to the instance. If you enable **Kafka SASL_SSL**, data will be encrypted for transmission to enhance security.
 
-   This setting is enabled by default. **It cannot be changed after the instance is created.** If you want to use a different setting, you must create a new instance.
+   This setting is enabled by default. **It cannot be changed after the instance is created.** If you want to use a different setting, you must create an instance.
 
    After **Kafka SASL_SSL** is enabled, you can determine whether to enable **SASL/PLAIN**. If **SASL/PLAIN** is disabled, the SCRAM-SHA-512 mechanism is used to transmit data. If **SASL/PLAIN** is enabled, both the SCRAM-SHA-512 and PLAIN mechanisms are supported. You can select either of them as required. The **SASL/PLAIN** setting cannot be changed once the instance is created.
 
@@ -305,27 +313,33 @@ Procedure
 
    c. Configure **Automatic Topic Creation**.
 
-      This setting is disabled by default. You can enable or disable it as required.
+      This setting is disabled by default. You can configure it as required.
 
-      If this option is enabled, a topic will be automatically created when a message is produced in or consumed from a topic that does not exist. The default topic parameters are listed in :ref:`Table 4 <kafka-ug-180604013__table46677586328>`.
+      If this option is enabled, a topic will be automatically created when a message is produced in or consumed from a topic that does not exist. The default topic parameters are listed in :ref:`Table 4 <kafka-ug-180604013__table089295714583>`.
 
-      After you change the value of the **log.retention.hours** (retention period), **default.replication.factor** (replica quantity), or **num.partitions** (partition quantity) parameter, the value will be used in later topics that are automatically created. For example, assume that **num.partitions** is changed to 5, an automatically created topic has parameters listed in :ref:`Table 4 <kafka-ug-180604013__table46677586328>`.
+      For cluster instances, after you change the value of the **log.retention.hours** (retention period), **default.replication.factor** (replica quantity), or **num.partitions** (partition quantity) parameter, the value will be used in later topics that are automatically created. For example, assume that **num.partitions** is changed to **5**, an automatically created topic has parameters listed in :ref:`Table 4 <kafka-ug-180604013__table089295714583>`. These parameters cannot be modified for single-node instances.
 
-      .. _kafka-ug-180604013__table46677586328:
+      .. _kafka-ug-180604013__table089295714583:
 
       .. table:: **Table 4** Topic parameters
 
-         ========================= ============= ==============
-         Parameter                 Default Value Modified Value
-         ========================= ============= ==============
-         Partitions                3             5
-         Replicas                  3             3
-         Aging Time (h)            72            72
-         Synchronous Replication   Disabled      Disabled
-         Synchronous Flushing      Disabled      Disabled
-         Message Timestamp         CreateTime    CreateTime
-         Max. Message Size (bytes) 10,485,760    10,485,760
-         ========================= ============= ==============
+         +---------------------------+-----------------------------+-------------------------+-----------------------+
+         | Parameter                 | Default Value (Single-node) | Default Value (Cluster) | Modified To (Cluster) |
+         +===========================+=============================+=========================+=======================+
+         | Partitions                | 1                           | 3                       | 5                     |
+         +---------------------------+-----------------------------+-------------------------+-----------------------+
+         | Replicas                  | 1                           | 3                       | 3                     |
+         +---------------------------+-----------------------------+-------------------------+-----------------------+
+         | Aging Time (h)            | 72                          | 72                      | 72                    |
+         +---------------------------+-----------------------------+-------------------------+-----------------------+
+         | Synchronous Replication   | Disabled                    | Disabled                | Disabled              |
+         +---------------------------+-----------------------------+-------------------------+-----------------------+
+         | Synchronous Flushing      | Disabled                    | Disabled                | Disabled              |
+         +---------------------------+-----------------------------+-------------------------+-----------------------+
+         | Message Timestamp         | CreateTime                  | CreateTime              | CreateTime            |
+         +---------------------------+-----------------------------+-------------------------+-----------------------+
+         | Max. Message Size (bytes) | 10,485,760                  | 10,485,760              | 10,485,760            |
+         +---------------------------+-----------------------------+-------------------------+-----------------------+
 
    d. Specify **Tags**.
 
@@ -342,7 +356,7 @@ Procedure
 
 #. Confirm the instance information, and click **Submit**.
 
-#. Return to the instance list and check whether the Kafka instance has been created.
+#. Return to the Kafka instance list and check whether the Kafka instance has been created.
 
    It takes 3 to 15 minutes to create an instance. During this period, the instance status is **Creating**.
 
@@ -354,4 +368,4 @@ Procedure
          Instances that fail to be created do not occupy other resources.
 
 .. |image1| image:: /_static/images/en-us_image_0143929918.png
-.. |image2| image:: /_static/images/en-us_image_0000001707049736.png
+.. |image2| image:: /_static/images/en-us_image_0000001540501562.png

@@ -13,7 +13,7 @@ Distributed Message Service is a message queuing service that is based on the op
 
    **Figure 1** Process of using Kafka
 
-#. :ref:`Creating a User and Granting DMS for Kafka Permissions <createuserandgrantpolicy>`
+#. :ref:`Creating an IAM User and Granting DMS for Kafka Permissions <createuserandgrantpolicy>`
 
    Create IAM users and grant them only the DMS for Kafka permissions required to perform a given task based on their job responsibilities.
 

@@ -7,34 +7,55 @@ Viewing and Resetting Kafka Consumption Offsets
 
 A consumption offset indicates the consumption progress of a consumer. This section describes how to view and reset consumption offsets.
 
-.. important::
+Notes and Constraints
+---------------------
 
-   Messages may be retrieved more than once after the offset is reset. Exercise caution when performing this operation.
+Messages may be consumed more than once after the offset is reset. Exercise caution when performing this operation.
 
 Prerequisites
 -------------
 
-The consumer offset cannot be reset on the fly. You must first stop retrieval of the desired consumer group.
-
-.. important::
-
-   After a client is stopped, the server considers the client offline only after the time period specified in **ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG** (1000 ms by default).
+The consumer offset cannot be reset on the fly. You must first stop consumption of the desired consumer group. After a client is stopped, the server considers the client offline only after the time period specified in **ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG** (1000 ms by default).
 
 Viewing Consumer Offsets (Console)
 ----------------------------------
 
 #. Log in to the console.
-#. Click |image1| in the upper left corner to select a region.
-
-   .. note::
-
-      Select the region where your Kafka instance is located.
-
+#. Click |image1| in the upper left corner to select the region where your instance is located.
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
-#. Click the desired Kafka instance to view the instance details.
+#. Click the desired instance to go to the instance details page.
 #. In the navigation pane, choose **Consumer Groups**.
 #. Click the name of the desired consumer group.
-#. On the **Consumer Offset** tab page, view the list of topics that the consumer group has subscribed to, total number of messages accumulated in the topic, consumption progress in each partition of the topic (number of accumulated messages, offset, latest offset, consumer ID, consumer address, and client ID).
+#. On the **Consumer Offset** tab page, view the list of topics that the consumer group has subscribed to, topic quantity, total number of messages accumulated in the topic, and offset of each partition.
+
+   .. table:: **Table 1** Consumer offset parameters
+
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Parameter                         | Description                                                                                                                                                                                                                                                                                              |
+      +===================================+==========================================================================================================================================================================================================================================================================================================+
+      | Topic Name                        | Name of a topic that the consumer group has subscribed to                                                                                                                                                                                                                                                |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Partitions                        | Number of partitions in a topic                                                                                                                                                                                                                                                                          |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Cumulative Messages               | Number of messages that are not consumed by the consumer group in a topic                                                                                                                                                                                                                                |
+      |                                   |                                                                                                                                                                                                                                                                                                          |
+      |                                   | This parameter indicates the instantaneous value at the sampling. The value of its corresponding metric in monitoring is sampled every minute. These values may vary. For more information, see :ref:`Why Is the Number of Stacked Messages Monitored as 0 when Messages Are Stacked? <kafka-faq-0067>`. |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Partition                         | Partition number in a topic                                                                                                                                                                                                                                                                              |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Accumulated Messages              | Number of messages that are not consumed by the consumer group in a partition                                                                                                                                                                                                                            |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Offset                            | Offset of this partition                                                                                                                                                                                                                                                                                 |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Latest Offset                     | Maximum message position of a partition                                                                                                                                                                                                                                                                  |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | ID                                | ID of the consumer who consumes messages in this partition                                                                                                                                                                                                                                               |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Address                           | Address of the consumer who consumes messages in this partition                                                                                                                                                                                                                                          |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      | Client ID                         | Client identifier. This client is used to connect to a Kafka instance and consume messages in this partition.                                                                                                                                                                                            |
+      +-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
 #. (Optional) To query the consumer offsets of a specific topic, enter the topic name in the search box and press **Enter**.
 
 Viewing Consumer Offsets (Kafka CLI)
@@ -71,53 +92,9 @@ Viewing Consumer Offsets (Kafka CLI)
 
 -  For a Kafka instance with ciphertext access enabled, do as follows:
 
-   #. (Optional) Modify the client configuration file.
+   #. (Optional) If the username and password, and the SSL certificate has been configured, skip this step and go to :ref:`2 <kafka-ug-0014__li155191222323>`. Otherwise, do as follows:
 
-      View **Security Protocol** in the **Connection** area on the **Basic Information** page on the Kafka console. The configuration settings vary depending on the protocol.
-
-      -  SASL_PLAINTEXT: Skip this step and go to :ref:`2 <kafka-ug-0014__li155191222323>` if the username and password are already set. Otherwise, create the **ssl-user-config.properties** file in the **/config** directory on the Kafka client and add the following content to the file:
-
-         .. code-block::
-
-            security.protocol=SASL_PLAINTEXT
-            # If the SASL mechanism is SCRAM-SHA-512, configure as follows:
-            sasl.jaas.config=org.apache.kafka.common.security.scram.ScramLoginModule required \
-            username="**********" \
-            password="**********";
-            sasl.mechanism=SCRAM-SHA-512
-            # If the SASL mechanism is PLAIN, configure as follows:
-            sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
-            username="**********" \
-            password="**********";
-            sasl.mechanism=PLAIN
-
-         Parameter description: **username** and **password** are the ones you set when enabling ciphertext access for the first time or when creating a user.
-
-      -  SASL_SSL: Skip this step and go to :ref:`2 <kafka-ug-0014__li155191222323>` if the username, password, and SSL certificate are already set. Otherwise, create the **ssl-user-config.properties** file in the **/config** directory on the Kafka client and add the following content to the file:
-
-         .. code-block::
-
-            security.protocol=SASL_SSL
-            ssl.truststore.location={ssl_truststore_path}
-            ssl.truststore.password=dms@kafka
-            ssl.endpoint.identification.algorithm=
-            # If the SASL mechanism is SCRAM-SHA-512, configure as follows:
-            sasl.jaas.config=org.apache.kafka.common.security.scram.ScramLoginModule required \
-            username="**********" \
-            password="**********";
-            sasl.mechanism=SCRAM-SHA-512
-            # If the SASL mechanism is PLAIN, configure as follows:
-            sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required \
-            username="**********" \
-            password="**********";
-            sasl.mechanism=PLAIN
-
-         Parameter description:
-
-         -  **ssl.truststore.location**: path for storing the **client.jks** certificate. Even in Windows, you need to use slashes (/) for the certificate path. Do not use backslashes (\\), which are used by default for paths in Windows. Otherwise, the client will fail to obtain the certificate.
-         -  **ssl.truststore.password**: server certificate password, which must be set to **dms@kafka** and cannot be changed.
-         -  **ssl.endpoint.identification.algorithm**: whether to verify the certificate domain name. **This parameter must be left blank, which indicates disabling domain name verification**.
-         -  **username** and **password**: username and password you set when enabling ciphertext access for the first time or when creating a user.
+      Create the **ssl-user-config.properties** file in the **/config** directory of the Kafka client. Add the username and password, and the SSL certificate configuration by referring to :ref:`3 <kafka-ug-180801001__li5414277457>`.
 
    #. .. _kafka-ug-0014__li155191222323:
 
@@ -125,9 +102,17 @@ Viewing Consumer Offsets (Kafka CLI)
 
       .. code-block::
 
-         ./kafka-consumer-groups.sh --bootstrap-server ${connection-address} --offsets --describe --all-groups --command-config ../config/ssl-user-config.properties
+         ./kafka-consumer-groups.sh --bootstrap-server {connection-address} --offsets --describe --all-groups --command-config ../config/{ssl-user-config.properties}
 
-      Parameter description: **connection-address** indicates the Kafka instance address, which can be obtained in the **Connection** area on the **Basic Information** page on the Kafka console.
+      .. table:: **Table 2** Consumer offset query parameters
+
+         +----------------------------+---------------------------------------------------------------------------------------------------------------+
+         | Parameter                  | Description                                                                                                   |
+         +============================+===============================================================================================================+
+         | connection-address         | Connection address of a Kafka instance. To obtain the address, choose **Basic Information** > **Connection**. |
+         +----------------------------+---------------------------------------------------------------------------------------------------------------+
+         | ssl-user-config.properties | Configuration file name. This file contains username, password, and SSL certificate information.              |
+         +----------------------------+---------------------------------------------------------------------------------------------------------------+
 
       Example:
 
@@ -155,15 +140,11 @@ Resetting Consumer Offsets
 
 #. Log in to the console.
 
-#. Click |image2| in the upper left corner to select a region.
-
-   .. note::
-
-      Select the region where your Kafka instance is located.
+#. Click |image2| in the upper left corner to select the region where your instance is located.
 
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
 
-#. Click the desired Kafka instance to view the instance details.
+#. Click the desired instance to go to the instance details page.
 
 #. In the navigation pane, choose the **Consumer Groups** tab.
 
@@ -173,13 +154,13 @@ Resetting Consumer Offsets
 
    -  To reset the consumer offset of all partitions of a single topic, click **Reset Consumer Offset** in the row containing the desired topic.
    -  To reset the consumer offset of a single partition of a single topic, click **Reset Consumer Offset** in the row containing the desired partition.
-   -  To reset the consumer offset of all partitions in all topics, click **One-touch Reset Consumer Offset** above the list.
+   -  To reset the consumer offset of all partitions in all topics, click **One-touch Reset Consumer Offset**.
 
-#. In the displayed **Reset Consumer Offset** dialog box, set the parameters by referring to :ref:`Table 1 <kafka-ug-0014__table13921162119239>`.
+#. In the displayed **Reset Consumer Offset** dialog box, set the parameters by referring to :ref:`Table 3 <kafka-ug-0014__table13921162119239>`.
 
    .. _kafka-ug-0014__table13921162119239:
 
-   .. table:: **Table 1** Parameters for resetting the consumer offset
+   .. table:: **Table 3** Parameters for resetting the consumer offset
 
       +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------+
       | Parameter                         | Description                                                                                                           |
@@ -189,7 +170,7 @@ Resetting Consumer Offsets
       |                                   | -  Time: Reset the offset to the specified time.                                                                      |
       |                                   | -  Offset: Reset the offset to the specified position.                                                                |
       |                                   |                                                                                                                       |
-      |                                   | If you reset offsets in batches, they can only be reset to the specified time.                                        |
+      |                                   | **Reset Consumer Offset** works with a specific time.                                                                 |
       +-----------------------------------+-----------------------------------------------------------------------------------------------------------------------+
       | Time                              | Set this parameter if **Reset By** is set to **Time**.                                                                |
       |                                   |                                                                                                                       |
@@ -208,5 +189,8 @@ Resetting Consumer Offsets
 
 #. Click **Yes** in the confirmation dialog box. The consumer offset is reset.
 
+   On the **Consumer Offset** tab page, click |image3| before the topic whose consumer offset has been reset, and view the new value in the **Offset** column.
+
 .. |image1| image:: /_static/images/en-us_image_0143929918.png
 .. |image2| image:: /_static/images/en-us_image_0143929918.png
+.. |image3| image:: /_static/images/en-us_image_0000001160594580.png

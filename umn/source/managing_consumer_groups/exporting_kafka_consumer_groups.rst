@@ -11,14 +11,9 @@ Procedure
 ---------
 
 #. Log in to the console.
-#. Click |image1| in the upper left corner to select a region.
-
-   .. note::
-
-      Select the region where your Kafka instance is located.
-
+#. Click |image1| in the upper left corner to select the region where your instance is located.
 #. Click **Service List** and choose **Application** > **Distributed Message Service**. The Kafka instance list is displayed.
-#. Click the desired Kafka instance to view its details.
+#. Click the desired instance to go to the instance details page.
 #. In the navigation pane, choose **Consumer Groups**.
 #. Export consumer groups in either of the following ways:
 

@@ -10,7 +10,7 @@ A client can connect to a Kafka instance over a public or private network. Notes
 -  By default, a client and a Kafka instance are interconnected when they are deployed in a VPC.
 -  If they are not, you need to interconnect them because of isolation among VPCs.
 
-:ref:`Table 1 <kafka-ug-180604012__table8965135110343>` lists how a client can connect to a Kafka instance.
+:ref:`Table 1 <kafka-ug-180604012__table8965135110343>` lists how to access a Kafka instance on a client.
 
 .. _kafka-ug-180604012__table8965135110343:
 
@@ -31,7 +31,7 @@ A client can connect to a Kafka instance over a public or private network. Notes
    |                       | When a client and a Kafka instance are deployed in different VPCs of the same region, interconnect two VPCs using a VPC peering connection.                                                                              | `VPC Peering Connection <https://docs.otc.t-systems.com/en-us/usermanual/vpc/vpc_peering_0000.html>`__ |
    +-----------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 
-Before connecting a client to a Kafka instance, allow accesses for the following security groups.
+Before accessing a Kafka instance on a client, configure the following rules in the security group of the instance.
 
 .. note::
 
@@ -41,24 +41,24 @@ Before connecting a client to a Kafka instance, allow accesses for the following
 
 .. table:: **Table 2** Security group rules
 
-   +-----------+-----------+-----------+-----------+-----------------+-------------------------------------------------------------------------------------------+
-   | Direction | Protocol  | Type      | Port      | Source          | Description                                                                               |
-   +===========+===========+===========+===========+=================+===========================================================================================+
-   | Inbound   | TCP       | IPv4      | 9094      | 0.0.0.0/0       | Accessing a Kafka instance over a public network (in plaintext)                           |
-   +-----------+-----------+-----------+-----------+-----------------+-------------------------------------------------------------------------------------------+
-   | Inbound   | TCP       | IPv4      | 9092      | 0.0.0.0/0       | -  Accessing a Kafka instance over a private network within a VPC (in plaintext)          |
-   |           |           |           |           |                 | -  Accessing a Kafka instance using a peering connection across VPCs (in plaintext)       |
-   +-----------+-----------+-----------+-----------+-----------------+-------------------------------------------------------------------------------------------+
-   | Inbound   | TCP       | IPv6      | 9192      | ::/0            | Accessing a Kafka instance using IPv6 addresses (without SSL) (private or public network) |
-   +-----------+-----------+-----------+-----------+-----------------+-------------------------------------------------------------------------------------------+
-   | Inbound   | TCP       | IPv4      | 9095      | 0.0.0.0/0       | Accessing a Kafka instance over a public network (in ciphertext)                          |
-   +-----------+-----------+-----------+-----------+-----------------+-------------------------------------------------------------------------------------------+
-   | Inbound   | TCP       | IPv4      | 9093      | 0.0.0.0/0       | -  Accessing a Kafka instance over a private network within a VPC (in ciphertext)         |
-   |           |           |           |           |                 | -  Accessing a Kafka instance using a peering connection across VPCs (in ciphertext)      |
-   +-----------+-----------+-----------+-----------+-----------------+-------------------------------------------------------------------------------------------+
-   | Inbound   | TCP       | IPv6      | 9193      | ::/0            | Accessing a Kafka instance using IPv6 addresses (with SSL) (private or public network)    |
-   +-----------+-----------+-----------+-----------+-----------------+-------------------------------------------------------------------------------------------+
-   | Inbound   | TCP       | IPv4      | 9011      | 198.19.128.0/17 | Accessing a Kafka instance using a VPC endpoint across VPCs (in cipher- or plaintext)     |
-   +-----------+-----------+-----------+-----------+-----------------+-------------------------------------------------------------------------------------------+
-   | Inbound   | TCP       | IPv4      | 9011      | 0.0.0.0/0       | Accessing a Kafka instance using DNAT (in cipher- or plaintext)                           |
-   +-----------+-----------+-----------+-----------+-----------------+-------------------------------------------------------------------------------------------+
+   +-----------+-----------+-----------+-----------+----------------------------------------------------+-------------------------------------------------------------------------------------------+
+   | Direction | Protocol  | Type      | Port      | Source                                             | Description                                                                               |
+   +===========+===========+===========+===========+====================================================+===========================================================================================+
+   | Inbound   | TCP       | IPv4      | 9094      | IP address or IP address group of the Kafka client | Accessing a Kafka instance over a public network (in plaintext)                           |
+   +-----------+-----------+-----------+-----------+----------------------------------------------------+-------------------------------------------------------------------------------------------+
+   | Inbound   | TCP       | IPv4      | 9092      | IP address or IP address group of the Kafka client | -  Accessing a Kafka instance over a private network within a VPC (in plaintext)          |
+   |           |           |           |           |                                                    | -  Accessing a Kafka instance using a peering connection across VPCs (in plaintext)       |
+   +-----------+-----------+-----------+-----------+----------------------------------------------------+-------------------------------------------------------------------------------------------+
+   | Inbound   | TCP       | IPv6      | 9192      | IP address or IP address group of the Kafka client | Accessing a Kafka instance using IPv6 addresses (without SSL) (private or public network) |
+   +-----------+-----------+-----------+-----------+----------------------------------------------------+-------------------------------------------------------------------------------------------+
+   | Inbound   | TCP       | IPv4      | 9095      | IP address or IP address group of the Kafka client | Accessing a Kafka instance over a public network (in ciphertext)                          |
+   +-----------+-----------+-----------+-----------+----------------------------------------------------+-------------------------------------------------------------------------------------------+
+   | Inbound   | TCP       | IPv4      | 9093      | IP address or IP address group of the Kafka client | -  Accessing a Kafka instance over a private network within a VPC (in ciphertext)         |
+   |           |           |           |           |                                                    | -  Accessing a Kafka instance using a peering connection across VPCs (in ciphertext)      |
+   +-----------+-----------+-----------+-----------+----------------------------------------------------+-------------------------------------------------------------------------------------------+
+   | Inbound   | TCP       | IPv6      | 9193      | IP address or IP address group of the Kafka client | Accessing a Kafka instance using IPv6 addresses (with SSL) (private or public network)    |
+   +-----------+-----------+-----------+-----------+----------------------------------------------------+-------------------------------------------------------------------------------------------+
+   | Inbound   | TCP       | IPv4      | 9011      | 198.19.128.0/17                                    | Accessing a Kafka instance using a VPC endpoint across VPCs (in ciphertext or plaintext)  |
+   +-----------+-----------+-----------+-----------+----------------------------------------------------+-------------------------------------------------------------------------------------------+
+   | Inbound   | TCP       | IPv4      | 9011      | IP address or IP address group of the Kafka client | Accessing a Kafka instance using DNAT (in ciphertext or plaintext)                        |
+   +-----------+-----------+-----------+-----------+----------------------------------------------------+-------------------------------------------------------------------------------------------+

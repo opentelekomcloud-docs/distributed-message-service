@@ -50,3 +50,11 @@ Related Services
 -  Key Management Service (KMS)
 
    When creating a Kafka instance, you can specify whether to enable disk encryption. Enabling disk encryption improves data security. Disk encryption depends on the keys provided by KMS.
+
+-  VPC Endpoint
+
+   A client can access a Kafka instance over a private network: When a client and a Kafka instance are deployed across VPCs in one region, connect the client and the Kafka instance across VPCs using a VPC endpoint.
+
+-  NAT Gateway
+
+   A Kafka instance can communicate with a client over a public network: Configure port mapping from EIPs to specified instance ports using destination NAT (DNAT) of NAT Gateway.
